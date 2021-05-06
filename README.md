@@ -1,4 +1,4 @@
-# C
+# RUNROCKS
 
 Video juego para dispositivos moviles Android
 
@@ -8,10 +8,10 @@ Video juego para dispositivos moviles Android
 - [Aplicación publicada]() 
 
 # Contexto
-
+Se trata de un endless runner que nos permite saltar sobre rocas mientras controlamos a un Jabalí. El objetivo es sobrevivir el mayor tiempo posible.
 
 # Demografia
-
+El publico es un amplio grupo de personas que se quiere adivertir un rato saltando rocas, especificamente los niños encontraran un mayor atractivo en RUNROCKS.
 
 # Instrucciones
 Para acceder al juego dirigete a [Google Play Store](), instala y disfruta del juego.

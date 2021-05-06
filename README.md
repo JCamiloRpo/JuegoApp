@@ -12,6 +12,6 @@ Video juego para dispositivos moviles Android
 Para acceder al juego dirigete a [Google Play Store](), intala y disfruta del juego.
 
 # Contacto
-- [Juan Camilo Restrepo](https://12camilorpo@gmail.com)
-- [Wilder Valencia Ocampo](wilder.valencia@upb.edu.co)
-- [Carolina Monsalve](carolina.monsalvev@upb.edu.co)
+- [Juan Camilo Restrepo](https://github.com/JCamiloRpo)
+- [Wilder Valencia Ocampo](https://github.com/wilder3756)
+- [Carolina Monsalve](https://github.com/CarolinaMons)

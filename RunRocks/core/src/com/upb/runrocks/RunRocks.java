@@ -3,6 +3,7 @@ package com.upb.runrocks;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.upb.runrocks.Screen.MenuScreen;
 import com.upb.runrocks.Screen.SplashScreen;
 
 public class RunRocks extends Game {
@@ -16,7 +17,8 @@ public class RunRocks extends Game {
 	public AssetManager assets;
 
 	// Screens
-	public SplashScreen loading;
+	public SplashScreen splash;
+	public MenuScreen menu;
 	
 	@Override
 	public void create () {
@@ -24,9 +26,11 @@ public class RunRocks extends Game {
 		cam = new OrthographicCamera();
 		cam.setToOrtho(false, WIDTH, HEIGHT);
 
-		loading = new SplashScreen(this);
+		// Inicializacion de Screen
+		splash = new SplashScreen(this);
+		menu = new MenuScreen(this);
 
-		setScreen(loading);
+		setScreen(splash);
 	}
 
 	@Override
@@ -35,7 +39,9 @@ public class RunRocks extends Game {
 	@Override
 	public void dispose () {
 		//Eliminar los recursos de la memoria
+		System.out.println("Dispose de las Screen");
 		assets.dispose();
-
+		splash.dispose();
+		menu.dispose();
 	}
 }

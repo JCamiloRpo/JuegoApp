@@ -7,7 +7,6 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
@@ -58,9 +57,8 @@ public class SplashScreen extends BaseScreen {
         // Limpiar la pantalla
         ScreenUtils.clear(new Color(FONDOHEX));
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-
-        update(delta); // Actualizar
-
+        // Actualizar
+        update(delta);
         // Dibujar
         stage.draw();
 
@@ -68,6 +66,7 @@ public class SplashScreen extends BaseScreen {
 
     @Override
     public void dispose() {
+        System.out.println("DISPOSE SPLASH");
         stage.dispose();
     }
 
@@ -77,8 +76,10 @@ public class SplashScreen extends BaseScreen {
         clProgress.setSize(progress * (bgProgress.getWidth()-10),clProgress.getHeight());
 
         if (game.assets.update() && progress >= game.assets.getProgress() - 0.001f){
-            game.setScreen(this);
+            game.setScreen(game.menu);
         }
+
+
     }
 
     private void queuAssets() {
@@ -112,6 +113,7 @@ public class SplashScreen extends BaseScreen {
         // Cargar jabalis
         game.assets.load("jabali/still.png", Texture.class);
         game.assets.load("jabali/jabali.atlas", TextureAtlas.class);
+        game.assets.load("icons/icono.png", Texture.class);
         // Cargar elementos de scenes
         game.assets.load("scene/bg_0.png", Texture.class);
         game.assets.load("scene/bg_1.png", Texture.class);

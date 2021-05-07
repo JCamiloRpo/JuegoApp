@@ -12,6 +12,8 @@ public class DesktopLauncher {
 		config.title = TITLE;
 		config.width = WIDTH;
 		config.height = HEIGHT;
+		config.x = 0;
+		config.y = 0;
 		new LwjglApplication(new RunRocks(), config);
 	}
 }

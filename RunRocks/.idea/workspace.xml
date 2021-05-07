@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="1b2aeed4-db32-490b-9eb1-edd34914cd37" name="Default Changelist" comment="" />
+    <list default="true" id="1b2aeed4-db32-490b-9eb1-edd34914cd37" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/android/assets/texts/Acercade.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/android/assets/texts/GameOver.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/android/assets/texts/Opciones.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/android/assets/texts/Pausa.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/android/assets/texts/RUNROCKS.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/android/assets/texts/autores.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/android/assets/texts/descripcion.png" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />

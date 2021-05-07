@@ -1,15 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="1b2aeed4-db32-490b-9eb1-edd34914cd37" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/android/assets/texts/Acercade.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/assets/texts/GameOver.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/assets/texts/Opciones.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/assets/texts/Pausa.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/assets/texts/RUNROCKS.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/assets/texts/autores.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/assets/texts/descripcion.png" afterDir="false" />
-    </list>
+    <list default="true" id="1b2aeed4-db32-490b-9eb1-edd34914cd37" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -42,6 +34,7 @@
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Administrador\Documents\Repositorios\JuegoApp\RunRocks\android\assets" />
+      <recent name="C:\Users\Administrador\Documents\Repositorios\JuegoApp\RunRocks\android\assets\texts" />
       <recent name="C:\Users\Administrador\Documents\Repositorios\JuegoApp\RunRocks\android\assets\jabali" />
     </key>
   </component>
@@ -144,6 +137,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="498" y="202" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.1536.824@0.0.1536.824" timestamp="1620404005005" />
+    <state x="349" y="167" key="AndroidCreateResourceDirectoryDialog" timestamp="1620406156973">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="349" y="167" key="AndroidCreateResourceDirectoryDialog/0.0.1536.824@0.0.1536.824" timestamp="1620406156973" />
     <state width="1491" height="210" key="GridCell.Tab.0.bottom" timestamp="1620405539525">
       <screen x="0" y="0" width="1536" height="824" />
     </state>

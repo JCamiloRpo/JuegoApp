@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/RunRocks.iml" filepath="$PROJECT_DIR$/.idea/modules/RunRocks.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/android/RunRocks.android.iml" filepath="$PROJECT_DIR$/.idea/modules/android/RunRocks.android.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/core/RunRocks.core.iml" filepath="$PROJECT_DIR$/.idea/modules/core/RunRocks.core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/desktop/RunRocks.desktop.iml" filepath="$PROJECT_DIR$/.idea/modules/desktop/RunRocks.desktop.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/ios/RunRocks.ios.iml" filepath="$PROJECT_DIR$/.idea/modules/ios/RunRocks.ios.iml" />
+    </modules>
+  </component>
+</project>

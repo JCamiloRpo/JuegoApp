@@ -1,31 +1,38 @@
 package com.upb.runrocks;
 
 import com.badlogic.gdx.ApplicationAdapter;
+import com.badlogic.gdx.Game;
+import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.ScreenUtils;
 
-public class RunRocks extends ApplicationAdapter {
-	SpriteBatch batch;
-	Texture img;
+public class RunRocks extends Game {
+	// Constantes de vista
+	public static int FONDOHEX = 0x65C1E6FF;
+	public static String TITLE = "RUNROCKS";
+	public static int WIDTH = 640, HEIGHT = 360;
+
+	// Variables de administracion
+	public OrthographicCamera cam;
+	public AssetManager assets;
 	
 	@Override
 	public void create () {
-		batch = new SpriteBatch();
-		img = new Texture("jabali/still.png");
+		assets = new AssetManager();
+		cam = new OrthographicCamera();
+		cam.setToOrtho(false, WIDTH, HEIGHT);
 	}
 
 	@Override
-	public void render () {
-		ScreenUtils.clear(1, 0, 0, 1);
-		batch.begin();
-		batch.draw(img, 0, 0);
-		batch.end();
-	}
+	public void render () { super.render(); }
 	
 	@Override
 	public void dispose () {
-		batch.dispose();
-		img.dispose();
+		//Eliminar los recursos de la memoria
+		assets.dispose();
+
 	}
 }

@@ -1,5 +1,5 @@
-com/upb/runrocks/Screen/LoandingScreen.java
- com.upb.runrocks.Screen.LoandingScreen
+com/upb/runrocks/Screen/SplashScreen.java
+ com.upb.runrocks.Screen.SplashScreen
 com/upb/runrocks/Screen/BaseScreen.java
  com.upb.runrocks.Screen.BaseScreen
 com/upb/runrocks/RunRocks.java

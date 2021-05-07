@@ -8,26 +8,47 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.math.MathUtils;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.upb.runrocks.RunRocks;
 
+import static com.badlogic.gdx.scenes.scene2d.actions.Actions.*;
 import static com.upb.runrocks.RunRocks.*;
 
-public class LoandingScreen extends BaseScreen {
+public class SplashScreen extends BaseScreen {
 
-    private ShapeRenderer shape;
     private float progress;
+    private Image logo, bgProgress, clProgress;
 
-    public LoandingScreen(RunRocks game) {
+    public SplashScreen(RunRocks game) {
         super(game);
-        this.shape = new ShapeRenderer();
     }
 
     @Override
     public void show() {
-        shape.setProjectionMatrix(game.cam.combined);
+        Gdx.input.setInputProcessor(stage);
+        stage.clear();
+
+        logo = new Image(new Texture("icons/runrocks.png"));
+        logo.setSize(220, 220);
+        logo.setPosition((WIDTH - logo.getWidth()) / 2, HEIGHT );
+        logo.addAction( sequence(
+                alpha(0f), scaleTo( 0.2f, 0.2f), parallel(
+                        moveTo((WIDTH - logo.getWidth()) / 2, ((HEIGHT - logo.getHeight()) / 2) + 40, 2f, Interpolation.swing) ,
+                        fadeIn(2f, Interpolation.pow2), scaleTo(1f, 1f, 2f, Interpolation.pow2))
+        ));
+        stage.addActor(logo);
+
+        bgProgress = new Image(new Texture("buttons/progress-bar-empty.png"));
+        bgProgress.setPosition((WIDTH - bgProgress.getWidth()) / 2, 30 );
+        stage.addActor(bgProgress);
+        clProgress = new Image(new Texture("buttons/progress-bar-knof.png"));
+        clProgress.setSize(0,clProgress.getHeight());
+        clProgress.setPosition(bgProgress.getX()+5, 35 );
+        stage.addActor(clProgress);
+
         progress = 0;
         queuAssets();
     }
@@ -41,23 +62,19 @@ public class LoandingScreen extends BaseScreen {
         update(delta); // Actualizar
 
         // Dibujar
-        shape.begin(ShapeRenderer.ShapeType.Filled);
-        shape.setColor(new Color(0x3F1100FF));
-        shape.rect(32, game.cam.viewportHeight/2 - 8, game.cam.viewportWidth - 64, 16);
-
-        shape.setColor(new Color(0xFFC00DFF));
-        shape.rect(32, game.cam.viewportHeight/2 - 8, progress * (game.cam.viewportWidth - 64), 16);
-        shape.end();
+        stage.draw();
 
     }
 
     @Override
     public void dispose() {
-        shape.dispose();
+        stage.dispose();
     }
 
     private void update(float delta) {
+        stage.act(delta);
         progress = MathUtils.lerp(progress, game.assets.getProgress(), 0.1f);
+        clProgress.setSize(progress * (bgProgress.getWidth()-10),clProgress.getHeight());
 
         if (game.assets.update() && progress >= game.assets.getProgress() - 0.001f){
             game.setScreen(this);

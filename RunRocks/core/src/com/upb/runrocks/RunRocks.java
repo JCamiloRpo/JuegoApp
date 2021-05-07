@@ -1,14 +1,9 @@
 package com.upb.runrocks;
 
-import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.utils.ScreenUtils;
-import com.upb.runrocks.Screen.LoandingScreen;
+import com.upb.runrocks.Screen.SplashScreen;
 
 public class RunRocks extends Game {
 	// Constantes de vista
@@ -21,7 +16,7 @@ public class RunRocks extends Game {
 	public AssetManager assets;
 
 	// Screens
-	public LoandingScreen loading;
+	public SplashScreen loading;
 	
 	@Override
 	public void create () {
@@ -29,7 +24,7 @@ public class RunRocks extends Game {
 		cam = new OrthographicCamera();
 		cam.setToOrtho(false, WIDTH, HEIGHT);
 
-		loading = new LoandingScreen(this);
+		loading = new SplashScreen(this);
 
 		setScreen(loading);
 	}

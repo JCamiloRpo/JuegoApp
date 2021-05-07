@@ -2,7 +2,7 @@
 
 Video juego para dispositivos moviles Android
 
-- [Wireframe Manual]()
+- [Wireframe Manual](https://upbeduco-my.sharepoint.com/:b:/g/personal/wilder_valencia_upb_edu_co/EXxRaX8PehhLjxBawpw6HBMBPQ5FQk81FAQjbFeh-H0FVA?e=2niyGQ)
 - [Wireframe Digital](https://www.figma.com/file/Tg9i5cYrWfqAwusWl7MyyX/Proyecto-C?node-id=28%3A0)
 - [Diagrama de flujo](https://www.figma.com/proto/Tg9i5cYrWfqAwusWl7MyyX/Proyecto-C?node-id=19%3A8793&scaling=min-zoom&page-id=2%3A9118)
 - [Aplicación publicada]() 

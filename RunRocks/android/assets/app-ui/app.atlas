@@ -1,0 +1,349 @@
+
+app.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+button1
+  rotate: false
+  xy: 1, 359
+  size: 108, 48
+  orig: 108, 48
+  offset: 0, 0
+  index: -1
+button2
+  rotate: false
+  xy: 1, 309
+  size: 107, 48
+  orig: 107, 48
+  offset: 0, 0
+  index: -1
+button3
+  rotate: false
+  xy: 1, 259
+  size: 107, 48
+  orig: 107, 48
+  offset: 0, 0
+  index: -1
+imagebutton1
+  rotate: false
+  xy: 1, 136
+  size: 65, 66
+  orig: 65, 66
+  offset: 0, 0
+  index: -1
+imagebutton2
+  rotate: false
+  xy: 1, 69
+  size: 65, 65
+  orig: 65, 65
+  offset: 0, 0
+  index: -1
+imagebutton3
+  rotate: false
+  xy: 1, 1
+  size: 65, 66
+  orig: 65, 66
+  offset: 0, 0
+  index: -1
+label1
+  rotate: false
+  xy: 1, 409
+  size: 176, 56
+  orig: 176, 56
+  offset: 0, 0
+  index: -1
+label2
+  rotate: false
+  xy: 1, 204
+  size: 84, 53
+  orig: 84, 53
+  offset: 0, 0
+  index: -1
+progress-bar
+  rotate: false
+  xy: 1, 486
+  size: 199, 25
+  orig: 199, 25
+  offset: 0, 0
+  index: -1
+progress-bar-knof
+  rotate: false
+  xy: 1, 467
+  size: 188, 17
+  orig: 188, 17
+  offset: 0, 0
+  index: -1
+abajo
+  rotate: false
+  xy: 68, 89
+  size: 35, 30
+  orig: 35, 30
+  offset: 0, 0
+  index: -1
+account
+  rotate: false
+  xy: 237, 384
+  size: 34, 37
+  orig: 34, 37
+  offset: 0, 0
+  index: -1
+arriba
+  rotate: false
+  xy: 68, 57
+  size: 35, 30
+  orig: 35, 30
+  offset: 0, 0
+  index: -1
+bombillo
+  rotate: false
+  xy: 140, 39
+  size: 23, 37
+  orig: 23, 37
+  offset: 0, 0
+  index: -1
+close
+  rotate: false
+  xy: 68, 17
+  size: 35, 38
+  orig: 35, 38
+  offset: 0, 0
+  index: -1
+coin
+  rotate: false
+  xy: 179, 423
+  size: 35, 40
+  orig: 35, 40
+  offset: 0, 0
+  index: -1
+coins
+  rotate: false
+  xy: 246, 472
+  size: 40, 39
+  orig: 40, 39
+  offset: 0, 0
+  index: -1
+confirm
+  rotate: false
+  xy: 111, 368
+  size: 46, 39
+  orig: 46, 39
+  offset: 0, 0
+  index: -1
+control
+  rotate: false
+  xy: 288, 468
+  size: 40, 43
+  orig: 40, 43
+  offset: 0, 0
+  index: -1
+derecha
+  rotate: false
+  xy: 304, 392
+  size: 26, 38
+  orig: 26, 38
+  offset: 0, 0
+  index: -1
+download
+  rotate: false
+  xy: 216, 423
+  size: 35, 40
+  orig: 35, 40
+  offset: 0, 0
+  index: -1
+exclamacion
+  rotate: false
+  xy: 145, 279
+  size: 15, 44
+  orig: 15, 44
+  offset: 0, 0
+  index: -1
+heart
+  rotate: false
+  xy: 330, 475
+  size: 40, 36
+  orig: 40, 36
+  offset: 0, 0
+  index: -1
+heart_off
+  rotate: false
+  xy: 372, 475
+  size: 40, 36
+  orig: 40, 36
+  offset: 0, 0
+  index: -1
+home
+  rotate: false
+  xy: 110, 285
+  size: 33, 38
+  orig: 33, 38
+  offset: 0, 0
+  index: -1
+info
+  rotate: false
+  xy: 202, 465
+  size: 42, 46
+  orig: 42, 46
+  offset: 0, 0
+  index: -1
+interrogacion
+  rotate: false
+  xy: 140, 78
+  size: 25, 43
+  orig: 25, 43
+  offset: 0, 0
+  index: -1
+izquierda
+  rotate: false
+  xy: 278, 352
+  size: 27, 38
+  orig: 27, 38
+  offset: 0, 0
+  index: -1
+leave
+  rotate: false
+  xy: 106, 181
+  size: 34, 33
+  orig: 34, 33
+  offset: 0, 0
+  index: -1
+list
+  rotate: false
+  xy: 105, 67
+  size: 33, 52
+  orig: 33, 52
+  offset: 0, 0
+  index: -1
+mas
+  rotate: false
+  xy: 200, 383
+  size: 35, 38
+  orig: 35, 38
+  offset: 0, 0
+  index: -1
+megusta
+  rotate: false
+  xy: 105, 31
+  size: 33, 34
+  orig: 33, 34
+  offset: 0, 0
+  index: -1
+menos
+  rotate: false
+  xy: 106, 163
+  size: 34, 16
+  orig: 34, 16
+  offset: 0, 0
+  index: -1
+music
+  rotate: false
+  xy: 106, 123
+  size: 34, 38
+  orig: 34, 38
+  offset: 0, 0
+  index: -1
+nude
+  rotate: false
+  xy: 414, 480
+  size: 40, 31
+  orig: 40, 31
+  offset: 0, 0
+  index: -1
+pause
+  rotate: false
+  xy: 273, 392
+  size: 29, 34
+  orig: 29, 34
+  offset: 0, 0
+  index: -1
+personas
+  rotate: false
+  xy: 456, 477
+  size: 40, 34
+  orig: 40, 34
+  offset: 0, 0
+  index: -1
+play
+  rotate: false
+  xy: 214, 337
+  size: 30, 44
+  orig: 30, 44
+  offset: 0, 0
+  index: -1
+ranking
+  rotate: false
+  xy: 159, 374
+  size: 39, 33
+  orig: 39, 33
+  offset: 0, 0
+  index: -1
+refresh
+  rotate: false
+  xy: 147, 327
+  size: 32, 39
+  orig: 32, 39
+  offset: 0, 0
+  index: -1
+setting
+  rotate: false
+  xy: 68, 163
+  size: 36, 39
+  orig: 36, 39
+  offset: 0, 0
+  index: -1
+share
+  rotate: false
+  xy: 253, 428
+  size: 33, 42
+  orig: 33, 42
+  offset: 0, 0
+  index: -1
+sound
+  rotate: false
+  xy: 246, 342
+  size: 30, 40
+  orig: 30, 40
+  offset: 0, 0
+  index: -1
+star
+  rotate: false
+  xy: 87, 216
+  size: 40, 41
+  orig: 40, 41
+  offset: 0, 0
+  index: -1
+trash
+  rotate: false
+  xy: 307, 348
+  size: 26, 42
+  orig: 26, 42
+  offset: 0, 0
+  index: -1
+treslineash
+  rotate: false
+  xy: 288, 432
+  size: 33, 34
+  orig: 33, 34
+  offset: 0, 0
+  index: -1
+treslineasv
+  rotate: false
+  xy: 181, 335
+  size: 31, 37
+  orig: 31, 37
+  offset: 0, 0
+  index: -1
+trofeo
+  rotate: false
+  xy: 68, 121
+  size: 36, 40
+  orig: 36, 40
+  offset: 0, 0
+  index: -1
+upload
+  rotate: false
+  xy: 111, 325
+  size: 34, 41
+  orig: 34, 41
+  offset: 0, 0
+  index: -1

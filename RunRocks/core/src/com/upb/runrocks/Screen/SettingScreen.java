@@ -25,7 +25,6 @@ public class SettingScreen extends BaseScreen {
         Gdx.input.setInputProcessor(stage);
         stage.clear();
 
-        clicked = game.assets.get("audio/click.ogg");
         //Inicializar elementos
         loadComponents();
         //Posicionar elementos
@@ -54,7 +53,7 @@ public class SettingScreen extends BaseScreen {
         btnInfo = new Image(game.assets.get("buttons/btn_info.png", Texture.class));
         btnClose = new Image(game.assets.get("buttons/btn_close.png", Texture.class));
 
-        if(game.music){
+        if(game.musicOn){
             btnMusic = new Image(game.assets.get("buttons/btn_music.png", Texture.class));
             btnMusicAxu = new Image(game.assets.get("buttons/btn_music_off.png", Texture.class));
         }
@@ -62,7 +61,7 @@ public class SettingScreen extends BaseScreen {
             btnMusic = new Image(game.assets.get("buttons/btn_music_off.png", Texture.class));
             btnMusicAxu = new Image(game.assets.get("buttons/btn_music.png", Texture.class));
         }
-        if (game.sound){
+        if (game.soundOn){
             btnSound = new Image(game.assets.get("buttons/btn_sound.png", Texture.class));
             btnSoundAxu = new Image(game.assets.get("buttons/btn_sound_off.png", Texture.class));
         }
@@ -94,17 +93,19 @@ public class SettingScreen extends BaseScreen {
         btnMusic.addCaptureListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                if(game.sound) clicked.play(0.5f);
+                if(game.soundOn) game.clicked.play(0.5f);
                 Drawable tmp = btnMusic.getDrawable();
-                if(game.music){
+                if(game.musicOn){
                     btnMusic.setDrawable(btnMusicAxu.getDrawable());
                     btnMusicAxu.setDrawable(tmp);
-                    game.music = false;
+                    game.music.stop();
+                    game.musicOn = false;
                 }
                 else {
                     btnMusic.setDrawable(btnMusicAxu.getDrawable());
                     btnMusicAxu.setDrawable(tmp);
-                    game.music = true;
+                    game.music.play();
+                    game.musicOn = true;
                 }
 
             }
@@ -113,17 +114,17 @@ public class SettingScreen extends BaseScreen {
         btnSound.addCaptureListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                if(game.sound) clicked.play(0.5f);
+                if(game.soundOn) game.clicked.play(0.5f);
                 Drawable tmp = btnSound.getDrawable();
-                if(game.sound){
+                if(game.soundOn){
                     btnSound.setDrawable(btnSoundAxu.getDrawable());
                     btnSoundAxu.setDrawable(tmp);
-                    game.sound = false;
+                    game.soundOn = false;
                 }
                 else {
                     btnSound.setDrawable(btnSoundAxu.getDrawable());
                     btnSoundAxu.setDrawable(tmp);
-                    game.sound = true;
+                    game.soundOn = true;
                 }
             }
         });
@@ -131,7 +132,7 @@ public class SettingScreen extends BaseScreen {
         btnInfo.addCaptureListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                if(game.sound) clicked.play(0.5f);
+                if(game.soundOn) game.clicked.play(0.5f);
                 game.screens.set(game.screens.newInfo());
             }
         });
@@ -139,7 +140,7 @@ public class SettingScreen extends BaseScreen {
         btnClose.addCaptureListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                if(game.sound) clicked.play(0.5f);
+                if(game.soundOn) game.clicked.play(0.5f);
                 game.screens.set(game.screens.newMenu());
             }
         });

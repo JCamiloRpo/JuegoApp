@@ -31,7 +31,6 @@ public class InfoScreen extends BaseScreen {
         Gdx.input.setInputProcessor(stage);
         stage.clear();
 
-        clicked = game.assets.get("audio/click.ogg");
         //Inicializar elementos
         loadComponents();
         //Posicionar elementos
@@ -80,7 +79,7 @@ public class InfoScreen extends BaseScreen {
         btnClose.addCaptureListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                if(game.sound) clicked.play(0.5f);
+                if(game.soundOn) game.clicked.play(0.5f);
                 game.screens.set(game.screens.newSetting());
             }
         });

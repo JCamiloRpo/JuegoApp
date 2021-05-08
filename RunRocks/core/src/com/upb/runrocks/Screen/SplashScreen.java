@@ -135,6 +135,11 @@ public class SplashScreen extends BaseScreen {
         clProgress.setSize(progress * (bgProgress.getWidth()-10),clProgress.getHeight());
 
         if (game.assets.update() && progress >= game.assets.getProgress() - 0.001f){
+            game.clicked = game.assets.get("audio/click.ogg");
+            game.music = game.assets.get("audio/music.mp3");
+            game.music.setVolume(0.5f);
+            if(game.musicOn) game.music.play();
+
             game.screens.set(game.screens.newMenu());
         }
 

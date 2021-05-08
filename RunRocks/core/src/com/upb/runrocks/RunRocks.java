@@ -2,6 +2,8 @@ package com.upb.runrocks;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.upb.runrocks.Screen.ScreenManager;
 import com.upb.runrocks.Screen.SplashScreen;
@@ -16,7 +18,10 @@ public class RunRocks extends Game {
 	public OrthographicCamera cam;
 	public AssetManager assets;
 	public ScreenManager screens;
-	public boolean music = true, sound = true;
+
+	public Sound clicked;
+	public Music music;
+	public boolean musicOn = true, soundOn = true;
 	
 	@Override
 	public void create () {
@@ -36,5 +41,7 @@ public class RunRocks extends Game {
 	public void dispose () {
 		assets.dispose();
 		screens.dispose();
+		music.dispose();
+		clicked.dispose();
 	}
 }

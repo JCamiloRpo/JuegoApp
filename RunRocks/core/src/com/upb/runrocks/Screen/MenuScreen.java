@@ -1,6 +1,7 @@
 package com.upb.runrocks.Screen;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
@@ -17,6 +18,7 @@ import static com.upb.runrocks.RunRocks.*;
 public class MenuScreen extends BaseScreen {
 
     private Image bg, jabali, dialog, title, btnPlay, btnLeave, btnSetting, icono;
+    private Sound start;
 
     public MenuScreen(RunRocks game) { super(game); }
 
@@ -25,8 +27,7 @@ public class MenuScreen extends BaseScreen {
         Gdx.input.setInputProcessor(stage);
         stage.clear();
 
-        clicked = game.assets.get("audio/click.ogg");
-
+        start = game.assets.get("audio/start.ogg");
         //Inicializar elementos
         loadComponents();
         //Posicionar elementos
@@ -77,7 +78,7 @@ public class MenuScreen extends BaseScreen {
         btnLeave.addCaptureListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                if (game.sound) clicked.play(0.5f);
+                if (game.soundOn) game.clicked.play(0.5f);
                 delay(1f);
                 Gdx.app.exit();
             }
@@ -86,7 +87,7 @@ public class MenuScreen extends BaseScreen {
         btnSetting.addCaptureListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                if (game.sound) clicked.play(0.5f);
+                if (game.soundOn) game.clicked.play(0.5f);
                 game.screens.set(game.screens.newSetting());
             }
         });
@@ -94,7 +95,10 @@ public class MenuScreen extends BaseScreen {
         btnPlay.addCaptureListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                if (game.sound) clicked.play(0.5f);
+                if (game.soundOn){
+                    game.clicked.play(0.5f);
+                    start.play(0.5f);
+                }
                 game.screens.set(game.screens.newMenu());
             }
         });

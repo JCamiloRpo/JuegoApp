@@ -2,6 +2,7 @@ package com.upb.runrocks.Screen;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.upb.runrocks.RunRocks;
@@ -11,10 +12,12 @@ public abstract  class BaseScreen implements Screen {
 
     protected RunRocks game; // Para tener acceso al manager
     protected Stage stage; // Para dibujar en los screen
+    protected Sound clicked;
 
     public BaseScreen(RunRocks game){
         this.game = game;
         this.stage = new Stage(new StretchViewport(WIDTH, HEIGHT, game.cam));
+
     }
 
     @Override

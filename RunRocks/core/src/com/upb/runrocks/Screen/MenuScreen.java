@@ -18,7 +18,6 @@ import static com.upb.runrocks.RunRocks.*;
 public class MenuScreen extends BaseScreen {
 
     private Image bg, jabali, dialog, title, btnPlay, btnLeave, btnSetting, icono;
-    private Sound clicked;
 
     public MenuScreen(RunRocks game) {
         super(game);
@@ -80,7 +79,7 @@ public class MenuScreen extends BaseScreen {
         btnLeave.addCaptureListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                clicked.play(0.5f);
+                if(game.sound) clicked.play(0.5f);
                 delay(1f);
                 Gdx.app.exit();
             }
@@ -89,14 +88,15 @@ public class MenuScreen extends BaseScreen {
         btnSetting.addCaptureListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                clicked.play(0.5f);
+                if(game.sound) clicked.play(0.5f);
+                game.setScreen(game.setting);
             }
         });
         btnPlay.addAction(sequence( alpha(0f), fadeIn(0.5f, Interpolation.pow2) ));
         btnPlay.addCaptureListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                clicked.play(0.5f);
+                if(game.sound) clicked.play(0.5f);
                 game.setScreen(game.menu);
             }
         });

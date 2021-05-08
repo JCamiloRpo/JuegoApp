@@ -4,6 +4,7 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.upb.runrocks.Screen.MenuScreen;
+import com.upb.runrocks.Screen.SettingClass;
 import com.upb.runrocks.Screen.SplashScreen;
 
 public class RunRocks extends Game {
@@ -15,10 +16,12 @@ public class RunRocks extends Game {
 	// Variables de administracion
 	public OrthographicCamera cam;
 	public AssetManager assets;
+	public boolean music = true, sound = true;
 
 	// Screens
 	public SplashScreen splash;
 	public MenuScreen menu;
+	public SettingClass setting;
 	
 	@Override
 	public void create () {
@@ -29,6 +32,7 @@ public class RunRocks extends Game {
 		// Inicializacion de Screen
 		splash = new SplashScreen(this);
 		menu = new MenuScreen(this);
+		setting = new SettingClass(this);
 
 		setScreen(splash);
 	}

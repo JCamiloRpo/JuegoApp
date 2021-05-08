@@ -1,3 +1,9 @@
+com/upb/runrocks/Screen/SettingClass.java
+ com.upb.runrocks.Screen.SettingClass
+ com.upb.runrocks.Screen.SettingClass$1
+ com.upb.runrocks.Screen.SettingClass$2
+ com.upb.runrocks.Screen.SettingClass$3
+ com.upb.runrocks.Screen.SettingClass$4
 com/upb/runrocks/Screen/SplashScreen.java
  com.upb.runrocks.Screen.SplashScreen
 com/upb/runrocks/Screen/BaseScreen.java

@@ -52,36 +52,6 @@ public class SplashScreen extends BaseScreen {
         queuAssets();
     }
 
-    @Override
-    public void render(float delta) {
-        // Limpiar la pantalla
-        ScreenUtils.clear(new Color(FONDOHEX));
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        // Actualizar
-        update(delta);
-        // Dibujar
-        stage.draw();
-
-    }
-
-    @Override
-    public void dispose() {
-        System.out.println("DISPOSE SPLASH");
-        stage.dispose();
-    }
-
-    private void update(float delta) {
-        stage.act(delta);
-        progress = MathUtils.lerp(progress, game.assets.getProgress(), 0.1f);
-        clProgress.setSize(progress * (bgProgress.getWidth()-10),clProgress.getHeight());
-
-        if (game.assets.update() && progress >= game.assets.getProgress() - 0.001f){
-            game.setScreen(game.menu);
-        }
-
-
-    }
-
     private void queuAssets() {
         // Cargar audios
         game.assets.load("audio/music.mp3", Music.class);
@@ -146,4 +116,35 @@ public class SplashScreen extends BaseScreen {
         game.assets.load("texts/runrocks.png", Texture.class);
 
     }
+
+    @Override
+    public void render(float delta) {
+        // Limpiar la pantalla
+        ScreenUtils.clear(new Color(FONDOHEX));
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        // Actualizar
+        update(delta);
+        // Dibujar
+        stage.draw();
+
+    }
+
+    private void update(float delta) {
+        stage.act(delta);
+        progress = MathUtils.lerp(progress, game.assets.getProgress(), 0.1f);
+        clProgress.setSize(progress * (bgProgress.getWidth()-10),clProgress.getHeight());
+
+        if (game.assets.update() && progress >= game.assets.getProgress() - 0.001f){
+            game.setScreen(game.menu);
+        }
+
+
+    }
+
+    @Override
+    public void dispose() {
+        System.out.println("DISPOSE SPLASH");
+        stage.dispose();
+    }
+
 }

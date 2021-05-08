@@ -3,6 +3,7 @@ package com.upb.runrocks;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.upb.runrocks.Screen.InfoScreen;
 import com.upb.runrocks.Screen.MenuScreen;
 import com.upb.runrocks.Screen.SettingClass;
 import com.upb.runrocks.Screen.SplashScreen;
@@ -22,6 +23,7 @@ public class RunRocks extends Game {
 	public SplashScreen splash;
 	public MenuScreen menu;
 	public SettingClass setting;
+	public InfoScreen info;
 	
 	@Override
 	public void create () {
@@ -33,6 +35,7 @@ public class RunRocks extends Game {
 		splash = new SplashScreen(this);
 		menu = new MenuScreen(this);
 		setting = new SettingClass(this);
+		info = new InfoScreen(this);
 
 		setScreen(splash);
 	}

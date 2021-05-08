@@ -87,7 +87,7 @@ public class SettingClass extends BaseScreen {
 
     private void addActions() {
         icono.addAction(alpha(0.4f));
-        jabali.addAction(sequence(alpha(0f), fadeIn(0.5f, Interpolation.pow2) ));
+        //jabali.addAction(sequence(alpha(0f), fadeIn(0.5f, Interpolation.pow2) ));
         dialog.addAction(sequence(alpha(0f), fadeIn(0.5f, Interpolation.pow2) ));
         title.addAction(sequence(alpha(0f), fadeIn(0.5f, Interpolation.pow2) ));
         btnMusic.addAction(sequence(alpha(0f), fadeIn(0.5f, Interpolation.pow2) ));
@@ -132,7 +132,7 @@ public class SettingClass extends BaseScreen {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 if(game.sound) clicked.play(0.5f);
-                game.setScreen(game.setting);
+                game.setScreen(game.info);
             }
         });
         btnClose.addAction(sequence( alpha(0f), fadeIn(0.5f, Interpolation.pow2) ));
@@ -156,14 +156,12 @@ public class SettingClass extends BaseScreen {
         stage.draw();
     }
 
+    public void update(float delta){ stage.act(delta); }
+
     @Override
     public void dispose() {
-        System.out.println("DISPOSE MENU");
+        System.out.println("DISPOSE SETTINGS");
         stage.dispose();
-    }
-
-    public void update(float delta){
-        stage.act(delta);
     }
 
 }

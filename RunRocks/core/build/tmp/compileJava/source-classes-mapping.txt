@@ -8,6 +8,9 @@ com/upb/runrocks/Screen/SplashScreen.java
  com.upb.runrocks.Screen.SplashScreen
 com/upb/runrocks/Screen/BaseScreen.java
  com.upb.runrocks.Screen.BaseScreen
+com/upb/runrocks/Screen/InfoScreen.java
+ com.upb.runrocks.Screen.InfoScreen
+ com.upb.runrocks.Screen.InfoScreen$1
 com/upb/runrocks/RunRocks.java
  com.upb.runrocks.RunRocks
 com/upb/runrocks/Screen/MenuScreen.java

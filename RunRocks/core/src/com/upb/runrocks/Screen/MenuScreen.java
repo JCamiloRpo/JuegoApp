@@ -1,7 +1,6 @@
 package com.upb.runrocks.Screen;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
@@ -67,36 +66,36 @@ public class MenuScreen extends BaseScreen {
         icono.setPosition(WIDTH - icono.getWidth() - 5, 5);
         btnLeave.setPosition(dialog.getX() + 10, (HEIGHT - btnLeave.getHeight()) / 2);
         btnSetting.setPosition(dialog.getX() + dialog.getWidth() - btnSetting.getWidth() - 10, (HEIGHT - btnSetting.getHeight()) / 2);
-        btnPlay.setPosition((WIDTH - btnPlay.getWidth()) / 2 , (HEIGHT - btnPlay.getHeight()) / 2);
+        btnPlay.setPosition((WIDTH - btnPlay.getWidth()) / 2, (HEIGHT - btnPlay.getHeight()) / 2);
     }
 
     private void addActions() {
         icono.addAction(alpha(0.4f));
-        jabali.addAction(sequence(alpha(0f), fadeIn(0.5f, Interpolation.pow2) ));
-        dialog.addAction(sequence(alpha(0f), fadeIn(0.5f, Interpolation.pow2) ));
-        title.addAction(sequence(alpha(0f), fadeIn(0.5f, Interpolation.pow2) ));
-        btnLeave.addAction(sequence(alpha(0f), fadeIn(0.5f, Interpolation.pow2) ));
+        //jabali.addAction(sequence(alpha(0f), fadeIn(0.5f, Interpolation.pow2)));
+        dialog.addAction(sequence(alpha(0f), fadeIn(0.5f, Interpolation.pow2)));
+        title.addAction(sequence(alpha(0f), fadeIn(0.5f, Interpolation.pow2)));
+        btnLeave.addAction(sequence(alpha(0f), fadeIn(0.5f, Interpolation.pow2)));
         btnLeave.addCaptureListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                if(game.sound) clicked.play(0.5f);
+                if (game.sound) clicked.play(0.5f);
                 delay(1f);
                 Gdx.app.exit();
             }
         });
-        btnSetting.addAction(sequence( alpha(0f), fadeIn(0.5f, Interpolation.pow2) ));
+        btnSetting.addAction(sequence(alpha(0f), fadeIn(0.5f, Interpolation.pow2)));
         btnSetting.addCaptureListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                if(game.sound) clicked.play(0.5f);
+                if (game.sound) clicked.play(0.5f);
                 game.setScreen(game.setting);
             }
         });
-        btnPlay.addAction(sequence( alpha(0f), fadeIn(0.5f, Interpolation.pow2) ));
+        btnPlay.addAction(sequence(alpha(0f), fadeIn(0.5f, Interpolation.pow2)));
         btnPlay.addCaptureListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                if(game.sound) clicked.play(0.5f);
+                if (game.sound) clicked.play(0.5f);
                 game.setScreen(game.menu);
             }
         });
@@ -113,15 +112,14 @@ public class MenuScreen extends BaseScreen {
         stage.draw();
     }
 
+    public void update(float delta) {
+        stage.act(delta);
+    }
+
     @Override
     public void dispose() {
         System.out.println("DISPOSE MENU");
         stage.dispose();
     }
-
-    public void update(float delta){
-        stage.act(delta);
-    }
-
 
 }

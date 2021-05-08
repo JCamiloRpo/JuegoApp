@@ -1,13 +1,13 @@
-com/upb/runrocks/Screen/SettingClass.java
- com.upb.runrocks.Screen.SettingClass
- com.upb.runrocks.Screen.SettingClass$1
- com.upb.runrocks.Screen.SettingClass$2
- com.upb.runrocks.Screen.SettingClass$3
- com.upb.runrocks.Screen.SettingClass$4
-com/upb/runrocks/Screen/SplashScreen.java
- com.upb.runrocks.Screen.SplashScreen
+com/upb/runrocks/Screen/SettingScreen.java
+ com.upb.runrocks.Screen.SettingScreen
+ com.upb.runrocks.Screen.SettingScreen$1
+ com.upb.runrocks.Screen.SettingScreen$2
+ com.upb.runrocks.Screen.SettingScreen$3
+ com.upb.runrocks.Screen.SettingScreen$4
 com/upb/runrocks/Screen/BaseScreen.java
  com.upb.runrocks.Screen.BaseScreen
+com/upb/runrocks/Screen/SplashScreen.java
+ com.upb.runrocks.Screen.SplashScreen
 com/upb/runrocks/Screen/InfoScreen.java
  com.upb.runrocks.Screen.InfoScreen
  com.upb.runrocks.Screen.InfoScreen$1
@@ -18,3 +18,5 @@ com/upb/runrocks/Screen/MenuScreen.java
  com.upb.runrocks.Screen.MenuScreen$1
  com.upb.runrocks.Screen.MenuScreen$2
  com.upb.runrocks.Screen.MenuScreen$3
+com/upb/runrocks/Screen/ScreenManager.java
+ com.upb.runrocks.Screen.ScreenManager

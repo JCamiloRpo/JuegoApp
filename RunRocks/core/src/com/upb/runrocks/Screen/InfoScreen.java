@@ -81,7 +81,7 @@ public class InfoScreen extends BaseScreen {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 if(game.sound) clicked.play(0.5f);
-                game.setScreen(game.setting);
+                game.screens.set(game.screens.newSetting());
             }
         });
     }
@@ -103,8 +103,8 @@ public class InfoScreen extends BaseScreen {
 
     @Override
     public void dispose() {
-        System.out.println("DISPOSE MENU");
-        stage.dispose();
+        super.dispose();
+        System.out.println("DISPOSE INFO");
     }
 
 }

@@ -135,7 +135,7 @@ public class SplashScreen extends BaseScreen {
         clProgress.setSize(progress * (bgProgress.getWidth()-10),clProgress.getHeight());
 
         if (game.assets.update() && progress >= game.assets.getProgress() - 0.001f){
-            game.setScreen(game.menu);
+            game.screens.set(game.screens.newMenu());
         }
 
 
@@ -143,8 +143,8 @@ public class SplashScreen extends BaseScreen {
 
     @Override
     public void dispose() {
+        super.dispose();
         System.out.println("DISPOSE SPLASH");
-        stage.dispose();
     }
 
 }

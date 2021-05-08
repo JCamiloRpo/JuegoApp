@@ -17,7 +17,6 @@ public abstract  class BaseScreen implements Screen {
     public BaseScreen(RunRocks game){
         this.game = game;
         this.stage = new Stage(new StretchViewport(WIDTH, HEIGHT, game.cam));
-
     }
 
     @Override
@@ -50,7 +49,7 @@ public abstract  class BaseScreen implements Screen {
 
     @Override
     public void dispose() {
-        game.dispose();
-        stage.dispose();
+        System.out.println("DISPOSE BS");
+        if (stage != null) stage.dispose();
     }
 }

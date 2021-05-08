@@ -14,11 +14,11 @@ import com.upb.runrocks.RunRocks;
 import static com.badlogic.gdx.scenes.scene2d.actions.Actions.*;
 import static com.upb.runrocks.RunRocks.*;
 
-public class SettingClass extends BaseScreen {
+public class SettingScreen extends BaseScreen {
 
     private Image bg, jabali, dialog, title, btnMusic, btnSound, btnInfo, icono, btnClose, btnMusicAxu, btnSoundAxu;
 
-    public SettingClass(RunRocks game) { super(game); }
+    public SettingScreen(RunRocks game) { super(game); }
 
     @Override
     public void show() {
@@ -132,7 +132,7 @@ public class SettingClass extends BaseScreen {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 if(game.sound) clicked.play(0.5f);
-                game.setScreen(game.info);
+                game.screens.set(game.screens.newInfo());
             }
         });
         btnClose.addAction(sequence( alpha(0f), fadeIn(0.5f, Interpolation.pow2) ));
@@ -140,7 +140,7 @@ public class SettingClass extends BaseScreen {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 if(game.sound) clicked.play(0.5f);
-                game.setScreen(game.menu);
+                game.screens.set(game.screens.newMenu());
             }
         });
     }
@@ -160,8 +160,8 @@ public class SettingClass extends BaseScreen {
 
     @Override
     public void dispose() {
+        super.dispose();
         System.out.println("DISPOSE SETTINGS");
-        stage.dispose();
     }
 
 }

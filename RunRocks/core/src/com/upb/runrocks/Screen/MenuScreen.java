@@ -18,9 +18,7 @@ public class MenuScreen extends BaseScreen {
 
     private Image bg, jabali, dialog, title, btnPlay, btnLeave, btnSetting, icono;
 
-    public MenuScreen(RunRocks game) {
-        super(game);
-    }
+    public MenuScreen(RunRocks game) { super(game); }
 
     @Override
     public void show() {
@@ -28,6 +26,7 @@ public class MenuScreen extends BaseScreen {
         stage.clear();
 
         clicked = game.assets.get("audio/click.ogg");
+
         //Inicializar elementos
         loadComponents();
         //Posicionar elementos
@@ -88,7 +87,7 @@ public class MenuScreen extends BaseScreen {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 if (game.sound) clicked.play(0.5f);
-                game.setScreen(game.setting);
+                game.screens.set(game.screens.newSetting());
             }
         });
         btnPlay.addAction(sequence(alpha(0f), fadeIn(0.5f, Interpolation.pow2)));
@@ -96,7 +95,7 @@ public class MenuScreen extends BaseScreen {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 if (game.sound) clicked.play(0.5f);
-                game.setScreen(game.menu);
+                game.screens.set(game.screens.newMenu());
             }
         });
     }
@@ -118,8 +117,8 @@ public class MenuScreen extends BaseScreen {
 
     @Override
     public void dispose() {
+        super.dispose();
         System.out.println("DISPOSE MENU");
-        stage.dispose();
     }
 
 }

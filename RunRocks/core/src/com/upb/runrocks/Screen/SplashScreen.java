@@ -112,6 +112,7 @@ public class SplashScreen extends BaseScreen {
         game.assets.load("dialogs/pausa.png", Texture.class);
         // Cargar jabalis
         game.assets.load("jabali/still.png", Texture.class);
+        game.assets.load("jabali/die.png", Texture.class);
         game.assets.load("jabali/jabali.atlas", TextureAtlas.class);
         game.assets.load("icons/icono.png", Texture.class);
         // Cargar elementos de scenes

@@ -33,7 +33,7 @@ public class GameScreen extends BaseScreen{
     private Sound pause;
     // Elementos para pausa
     private Stage stageP;
-    private Image bgP, jabaliP, rockP, coinP, dialogP, titleP, btnPlayP, btnLeaveP, btnSettingP, btnCloseP, lifesP, coinsP;
+    private Image bgP, jabaliP, rockP, coinP, dialogP, titleP, btnPlayP, btnLeaveP, btnSettingP, btnCloseP, lifesP, coinsP, iconoP;
     private Label nroCoinsP;
 
     public GameScreen(RunRocks game) { super(game); }
@@ -73,6 +73,7 @@ public class GameScreen extends BaseScreen{
         stageP.addActor(btnLeaveP);
         stageP.addActor(btnSettingP);
         stageP.addActor(btnCloseP);
+        stageP.addActor(iconoP);
 
     }
 
@@ -102,6 +103,7 @@ public class GameScreen extends BaseScreen{
         lifesP = new Image(game.assets.get("icons/heart.png", Texture.class));
         coinsP = new Image(game.assets.get("icons/coins.png", Texture.class));
         nroCoinsP = new Label("012345", skin, "default");
+        iconoP = new Image(game.assets.get("icons/icono.png", Texture.class));
     }
 
     private void setComponents() {
@@ -123,14 +125,18 @@ public class GameScreen extends BaseScreen{
         coinsP.setPosition(titleP.getX(), titleP.getY() - 50);
         nroCoinsP.setPosition(coinsP.getX() + coinsP.getWidth() + 10, titleP.getY() - 50);
         lifesP.setPosition((WIDTH - lifes.getWidth()) / 2, coinsP.getY() - 50);
+        iconoP.setSize(90, 90);
+        iconoP.setPosition(WIDTH - iconoP.getWidth() - 5, 5);
 
         btnLeaveP.setPosition(dialogP.getX() + 10, dialogP.getY() - 20);
         btnSettingP.setPosition(dialogP.getX() + dialogP.getWidth() - btnSettingP.getWidth() - 10, dialogP.getY() - 20);
         btnPlayP.setPosition((WIDTH - btnPlayP.getWidth()) / 2, dialogP.getY() - 40);
         btnCloseP.setPosition(WIDTH - dialogP.getX() - 30,HEIGHT - dialogP.getY() - 30);
+
     }
 
     private void addActions() {
+        iconoP.addAction(alpha(0.4f));
         btnPause.addCaptureListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {

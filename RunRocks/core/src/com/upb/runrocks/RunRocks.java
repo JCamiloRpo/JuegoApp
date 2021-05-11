@@ -13,6 +13,7 @@ public class RunRocks extends Game {
 	public static String TITLE = "RUNROCKS";
 	public static int WIDTH = 640, HEIGHT = 360;
 	public static float PIXEL_METERS = 60f;
+	public static float SPEED = 4f;
 
 	// Variables de administracion
 	public OrthographicCamera cam;

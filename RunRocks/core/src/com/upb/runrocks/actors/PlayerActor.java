@@ -102,10 +102,10 @@ public class PlayerActor extends Actor {
         }
 
         // Avanzar
-        //if (alive){
-        //    float velY = body.getLinearVelocity().y;
-        //    body.setLinearVelocity(SPEED, velY);
-        //}
+        if (alive){
+            float velY = body.getLinearVelocity().y;
+            body.setLinearVelocity(SPEED, velY);
+        }
     }
 
     public void jump(){

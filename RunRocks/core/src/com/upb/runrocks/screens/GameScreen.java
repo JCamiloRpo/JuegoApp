@@ -226,6 +226,9 @@ public class GameScreen extends BaseScreen{
             Gdx.input.setInputProcessor(stage);
             world.step(delta, 6, 2);
 
+            if (player.getX() > 150 && player.isAlive()) {
+                stage.getCamera().translate(SPEED * delta * PIXEL_METERS, 0, 0);
+            }
             stage.act(delta);
         }
     }

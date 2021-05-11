@@ -1,8 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AndroidLayouts">
+    <shared>
+      <config />
+    </shared>
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="1b2aeed4-db32-490b-9eb1-edd34914cd37" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/core/src/com/upb/runrocks/actors/ActorManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/android/res/drawable/ic_launcher_background.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/android/res/mipmap-anydpi-v26/ic_launcher.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/android/res/mipmap-anydpi-v26/ic_launcher_round.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/android/res/mipmap-hdpi/ic_launcher.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/android/res/mipmap-hdpi/ic_launcher_foreground.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/android/res/mipmap-hdpi/ic_launcher_round.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/android/res/mipmap-mdpi/ic_launcher.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/android/res/mipmap-mdpi/ic_launcher_foreground.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/android/res/mipmap-mdpi/ic_launcher_round.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/android/res/mipmap-xhdpi/ic_launcher.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/android/res/mipmap-xhdpi/ic_launcher_foreground.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/android/res/mipmap-xhdpi/ic_launcher_round.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/android/res/mipmap-xxhdpi/ic_launcher.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/android/res/mipmap-xxhdpi/ic_launcher_foreground.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/android/res/mipmap-xxhdpi/ic_launcher_round.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/android/res/mipmap-xxxhdpi/ic_launcher.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/android/res/mipmap-xxxhdpi/ic_launcher_foreground.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/android/res/mipmap-xxxhdpi/ic_launcher_round.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.7.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.7.1/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.7.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.7.1/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.7.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.7.1/fileHashes/fileHashes.bin" afterDir="false" />
@@ -13,15 +35,18 @@
       <change beforePath="$PROJECT_DIR$/.gradle/6.7.1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.7.1/javaCompile/javaCompile.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.7.1/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.7.1/javaCompile/taskHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/android/RunRocks.android.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/android/RunRocks.android.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/build/classes/java/main/com/upb/runrocks/RunRocks.class" beforeDir="false" afterPath="$PROJECT_DIR$/core/build/classes/java/main/com/upb/runrocks/RunRocks.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/build/libs/core-1.0.jar" beforeDir="false" afterPath="$PROJECT_DIR$/core/build/libs/core-1.0.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/build/tmp/compileJava/source-classes-mapping.txt" beforeDir="false" afterPath="$PROJECT_DIR$/core/build/tmp/compileJava/source-classes-mapping.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/com/upb/runrocks/RunRocks.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/upb/runrocks/RunRocks.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/com/upb/runrocks/actors/PlayerActor.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/upb/runrocks/actors/PlayerActor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/com/upb/runrocks/actors/RockActor.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/upb/runrocks/actors/RockActor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/com/upb/runrocks/screens/GameScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/upb/runrocks/screens/GameScreen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/com/upb/runrocks/screens/SplashScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/upb/runrocks/screens/SplashScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/android/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/res/drawable-anydpi-v26/ic_launcher.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/res/drawable-anydpi-v26/ic_launcher_foreground.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/res/drawable-hdpi/ic_launcher.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/res/drawable-mdpi/ic_launcher.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/res/drawable-xhdpi/ic_launcher.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/res/drawable-xxhdpi/ic_launcher.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/res/drawable-xxxhdpi/ic_launcher.png" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,7 +97,7 @@
       <recent name="C:\Users\Administrador\Documents\Repositorios\JuegoApp\RunRocks\android\assets" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Desktop">
+  <component name="RunManager" selected="Android App.android">
     <configuration default="true" type="AndroidJUnit" factoryName="Android JUnit">
       <option name="TEST_OBJECT" value="class" />
       <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
@@ -80,7 +105,7 @@
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="android" type="AndroidRunConfigurationType" factoryName="Android App">
+    <configuration name="android" type="AndroidRunConfigurationType" factoryName="Android App" activateToolWindowBeforeRun="false">
       <module name="RunRocks.android" />
       <option name="DEPLOY" value="true" />
       <option name="DEPLOY_APK_FROM_BUNDLE" value="false" />
@@ -183,22 +208,26 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="349" y="167" key="AndroidCreateResourceDirectoryDialog/0.0.1536.824@0.0.1536.824" timestamp="1620406156973" />
-    <state width="1491" height="141" key="GridCell.Tab.0.bottom" timestamp="1620750094645">
+    <state x="549" y="167" key="FileChooserDialogImpl" timestamp="1620750834154">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1491" height="141" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1620750094645" />
-    <state width="1491" height="141" key="GridCell.Tab.0.center" timestamp="1620750094645">
+    <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1620750834154" />
+    <state width="1491" height="141" key="GridCell.Tab.0.bottom" timestamp="1620750591734">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1491" height="141" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1620750094645" />
-    <state width="1491" height="141" key="GridCell.Tab.0.left" timestamp="1620750094645">
+    <state width="1491" height="141" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1620750591734" />
+    <state width="1491" height="141" key="GridCell.Tab.0.center" timestamp="1620750591734">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1491" height="141" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1620750094645" />
-    <state width="1491" height="141" key="GridCell.Tab.0.right" timestamp="1620750094645">
+    <state width="1491" height="141" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1620750591734" />
+    <state width="1491" height="141" key="GridCell.Tab.0.left" timestamp="1620750591734">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1491" height="141" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1620750094645" />
+    <state width="1491" height="141" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1620750591734" />
+    <state width="1491" height="141" key="GridCell.Tab.0.right" timestamp="1620750591734">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1491" height="141" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1620750591734" />
     <state x="0" y="0" width="1216" height="639" key="dock-window-1" timestamp="1620450627004">
       <screen x="0" y="0" width="1536" height="824" />
     </state>

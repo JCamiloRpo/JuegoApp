@@ -41,7 +41,7 @@ import static com.upb.runrocks.RunRocks.WIDTH;
 public class GameScreen extends BaseScreen{
 
     private float camX = 0;
-    private Image lifes, coins, btnPause;
+    private Image coins, btnPause;
     private Skin skin;
     private Label nroCoins;
     private Sound pause;
@@ -72,7 +72,6 @@ public class GameScreen extends BaseScreen{
         for (FloorActor f : floors) stage.addActor(f);
         for (RockActor r : rocks) stage.addActor(r);
         stage.addActor(player);
-        stage.addActor(lifes);
         stage.addActor(coins);
         stage.addActor(nroCoins);
         stage.addActor(btnPause);
@@ -97,7 +96,9 @@ public class GameScreen extends BaseScreen{
 
     private void loadComponents() {
 
-        player = new PlayerActor(game.assets.get("jabali/jabali.atlas", TextureAtlas.class), 10, 55, game);
+        player = new PlayerActor(game.assets.get("jabali/jabali.atlas", TextureAtlas.class), 10, 55, game,
+                game.assets.get("icons/heart.png", Texture.class), game.assets.get("icons/heart_off.png", Texture.class));
+
         for (int i=0; i < 3;i++){
             floors.add(new FloorActor(game.assets.get("scene/bg_0.png", Texture.class),
                     game.assets.get("scene/floor_0.png", Texture.class),i * WIDTH));
@@ -107,7 +108,6 @@ public class GameScreen extends BaseScreen{
                     game.assets.get("icons/coin.png", Texture.class), i*RockActor.GAP, 55));
         }
 
-        lifes = new Image(game.assets.get("icons/heart.png", Texture.class));
         coins = new Image(game.assets.get("icons/coins.png", Texture.class));
         btnPause = new Image(game.assets.get("buttons/btn_pause.png", Texture.class));
 
@@ -132,7 +132,6 @@ public class GameScreen extends BaseScreen{
     }
 
     private void setComponents() {
-        lifes.setPosition(camX + WIDTH - lifes.getWidth() - btnPause.getWidth() - 20, HEIGHT - btnPause.getHeight() - 5);
         coins.setPosition(camX + 10, HEIGHT - coins.getHeight() - 10);
         btnPause.setPosition(camX + WIDTH - btnPause.getWidth() - 10, HEIGHT - btnPause.getHeight() - 10);
         nroCoins.setPosition(  10 + coins.getX() + coins.getWidth(), HEIGHT - coins.getHeight() - 10);
@@ -224,7 +223,7 @@ public class GameScreen extends BaseScreen{
             Gdx.input.setInputProcessor(stage);
 
             if (player.isAlive()){
-                if (player.getX() > 100) {
+                if (player.getX() > 50) {
                     stage.getCamera().translate(SPEED * delta, 0, 0);
                     stage.getCamera().update();
 
@@ -238,7 +237,8 @@ public class GameScreen extends BaseScreen{
 
                     for (RockActor r : rocks) {
                         // Colisiones
-                        player.collision(r.getBoundsRock());
+                        if(r.rockOn && player.collision(r.getBoundsRock()))
+                            r.rockOn = false;
                         if(r.coinOn && player.coin(r.getBoundsCoin()))
                             r.coinOn = false;
 

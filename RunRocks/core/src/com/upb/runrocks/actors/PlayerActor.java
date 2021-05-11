@@ -1,21 +1,20 @@
 package com.upb.runrocks.actors;
 
 import com.badlogic.gdx.audio.Sound;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.utils.Array;
 import com.upb.runrocks.RunRocks;
 
+import static com.upb.runrocks.RunRocks.HEIGHT;
 import static com.upb.runrocks.RunRocks.SPEED;
+import static com.upb.runrocks.RunRocks.WIDTH;
 
 public class PlayerActor extends Actor {
 
@@ -32,14 +31,16 @@ public class PlayerActor extends Actor {
     // Die
     private Animation<TextureRegion> die;
     // Scene2D
+    private Texture[] lifes;
+    private Texture lifeOn, lifeOff;
     private Vector2 pos, speed;
     private Rectangle bounds;
     private Sound sndJump, sndHit, sndDie, sndCoin;
     // Variables del jugador
-    private int coins, lifes = 3;
+    private int nroCoins = 0, nroLifes = 3;
     private boolean alive = true, jumping = false, mustJump = false;
 
-    public PlayerActor(TextureAtlas atlas, float x, float y, RunRocks game){
+    public PlayerActor(TextureAtlas atlas, float x, float y, RunRocks game, Texture lifeOn, Texture lifeOff){
         this.game = game;
         sndJump = game.assets.get("audio/jump.ogg");
         sndHit = game.assets.get("audio/hitvoice1.ogg");
@@ -62,13 +63,15 @@ public class PlayerActor extends Actor {
         setPosition(pos.x, pos.y);
         setSize(W, H);
         bounds = new Rectangle(x + 5 , y, getWidth() - 5, getHeight() - 10);
+
+        this.lifeOn = lifeOn;
+        this.lifeOff = lifeOff;
+        lifes = new Texture[]{lifeOn, lifeOn, lifeOn};
     }
 
     public boolean isAlive() { return alive; }
 
     public boolean isJumping() { return jumping; }
-
-    public void setJumping(boolean jumping) { this.jumping = jumping; }
 
     public void setMustJump(boolean mustJump) { this.mustJump = mustJump; }
 
@@ -79,6 +82,9 @@ public class PlayerActor extends Actor {
         if (jumping) batch.draw(jump.getKeyFrame(timeFrame), getX(), getY(), getWidth(), getHeight());
         else if(alive) batch.draw(run.getKeyFrame(timeFrame), getX(), getY(), getWidth(), getHeight());
         else batch.draw(die.getKeyFrame(timeFrame), getX(), getY(), getWidth(), getHeight());
+        for (int i=0; i < lifes.length; i++){
+            batch.draw(lifes[i],getX() + WIDTH - (i*lifes[i].getWidth()) - 160, HEIGHT - 55);
+        }
     }
 
     @Override
@@ -124,12 +130,19 @@ public class PlayerActor extends Actor {
         return false;
     }
 
-    public void collision(Rectangle rock){
+    public boolean collision(Rectangle rock){
         if(rock.overlaps(bounds)){
-            alive = false;
-            jumping = false;
             sndHit.play(0.5f);
+            nroLifes--;
+            if(nroLifes < 0){
+                alive = false;
+                jumping = false;
+                return true;
+            }
+            lifes[nroLifes] = lifeOff;
+            return true;
         }
+        return false;
     }
 
     public void detach(){

@@ -12,7 +12,7 @@ public class RockActor extends Actor {
     public static String TAG = "ROCK";
     public static float GAP = 300, SPACE = 100;
     public float W, H;
-    public boolean coinOn = true;
+    public boolean coinOn = true, rockOn = true;
     private Texture rock, coin;
     private Vector2 pos;
     private Rectangle boundsRock, boundsCoin;
@@ -43,6 +43,7 @@ public class RockActor extends Actor {
 
     public void rePos(float x){
         coinOn = true;
+        rockOn = true;
         pos.set(x, 55);
         setPosition(x, 55);
         boundsRock.setPosition(pos.x, 55);

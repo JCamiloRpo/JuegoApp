@@ -17,8 +17,7 @@ public class ActorManager {
     }
 
     public PlayerActor createPlayer(float x){
-        return  new PlayerActor(game.assets.get("jabali/jabali.atlas", TextureAtlas.class), x, Y, game,
-                game.assets.get("icons/heart.png", Texture.class), game.assets.get("icons/heart_off.png", Texture.class));
+        return  new PlayerActor(game.assets.get("jabali/jabali.atlas", TextureAtlas.class), x, Y, game);
     }
 
     public FloorActor createFloor(int i, int type){

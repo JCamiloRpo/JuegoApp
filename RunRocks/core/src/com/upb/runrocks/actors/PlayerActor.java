@@ -31,8 +31,6 @@ public class PlayerActor extends Actor {
     // Die
     private Animation<TextureRegion> die;
     // Scene2D
-    private Texture[] lifes;
-    private Texture lifeOn, lifeOff;
     private Vector2 pos, speed;
     private Rectangle bounds;
     private Sound sndJump, sndHit, sndDie, sndCoin;
@@ -40,7 +38,7 @@ public class PlayerActor extends Actor {
     private int nroCoins = 0, nroLifes = 3;
     private boolean alive = true, jumping = false, mustJump = false;
 
-    public PlayerActor(TextureAtlas atlas, float x, float y, RunRocks game, Texture lifeOn, Texture lifeOff){
+    public PlayerActor(TextureAtlas atlas, float x, float y, RunRocks game){
         this.game = game;
         sndJump = game.assets.get("audio/jump.ogg");
         sndHit = game.assets.get("audio/hitvoice1.ogg");
@@ -63,10 +61,6 @@ public class PlayerActor extends Actor {
         setPosition(pos.x, pos.y);
         setSize(W, H);
         bounds = new Rectangle(x + 5 , y, getWidth() - 5, getHeight() - 12);
-
-        this.lifeOn = lifeOn;
-        this.lifeOff = lifeOff;
-        lifes = new Texture[]{lifeOn, lifeOn, lifeOn};
     }
 
     public int getNroCoins() { return nroCoins; }
@@ -86,9 +80,7 @@ public class PlayerActor extends Actor {
         if (jumping) batch.draw(jump.getKeyFrame(timeFrame), getX(), getY(), getWidth(), getHeight());
         else if(alive) batch.draw(run.getKeyFrame(timeFrame), getX(), getY(), getWidth(), getHeight());
         else batch.draw(die.getKeyFrame(timeFrame), getX(), getY(), getWidth(), getHeight());
-        for (int i=0; i < lifes.length; i++){
-            batch.draw(lifes[i],getX() + WIDTH - (i*lifes[i].getWidth()) - 160, HEIGHT - 55);
-        }
+
     }
 
     @Override
@@ -145,7 +137,6 @@ public class PlayerActor extends Actor {
                 jumping = false;
                 return true;
             }
-            lifes[nroLifes] = lifeOff;
             return true;
         }
         return false;

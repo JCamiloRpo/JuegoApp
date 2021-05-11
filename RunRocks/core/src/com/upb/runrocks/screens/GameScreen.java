@@ -32,7 +32,7 @@ import static com.upb.runrocks.RunRocks.WIDTH;
 public class GameScreen extends BaseScreen{
 
     private float camX = 0;
-    private Image coins, btnPause;
+    private Image lifes[], coins, btnPause;
     private Skin skin;
     private Label nroCoins;
     private Sound pause;
@@ -65,6 +65,9 @@ public class GameScreen extends BaseScreen{
         for (FloorActor f : floors) stage.addActor(f);
         for (RockActor r : rocks) stage.addActor(r);
         stage.addActor(player);
+        stage.addActor(lifes[0]);
+        stage.addActor(lifes[1]);
+        stage.addActor(lifes[2]);
         stage.addActor(coins);
         stage.addActor(nroCoins);
         stage.addActor(btnPause);
@@ -100,6 +103,11 @@ public class GameScreen extends BaseScreen{
             rocks.add(actors.createRock(i, i));
         }
 
+
+        lifeOff = new Image(game.assets.get("icons/heart_off.png", Texture.class));
+        lifes = new Image[]{ new Image(game.assets.get("icons/heart.png", Texture.class)),
+                new Image(game.assets.get("icons/heart.png", Texture.class)),
+                new Image(game.assets.get("icons/heart.png", Texture.class))};
         coins = new Image(game.assets.get("icons/coins.png", Texture.class));
         btnPause = new Image(game.assets.get("buttons/btn_pause.png", Texture.class));
 
@@ -107,7 +115,6 @@ public class GameScreen extends BaseScreen{
         nroCoins = new Label(player.getNroCoins()+"", skin, "default");
 
         // Componentes cuando esta en pausa
-        lifeOff = new Image(game.assets.get("icons/heart_off.png", Texture.class));
         bgP = new Image(floors.get(0).getBg());
         coinP = new Image(rocks.get(0).getCoin());
         rockP = new Image(rocks.get(0).getRock());
@@ -129,8 +136,12 @@ public class GameScreen extends BaseScreen{
     }
 
     private void setComponents() {
-        coins.setPosition(camX + 10, HEIGHT - coins.getHeight() - 10);
         btnPause.setPosition(camX + WIDTH - btnPause.getWidth() - 10, HEIGHT - btnPause.getHeight() - 10);
+        lifes[0].setPosition(btnPause.getX() - lifes[0].getWidth() - 20, HEIGHT - 55);
+        lifes[1].setPosition(lifes[0].getX() - lifes[0].getWidth(), HEIGHT - 55);
+        lifes[2].setPosition(lifes[1].getX() - lifes[0].getWidth(), HEIGHT - 55);
+
+        coins.setPosition(camX + 10, HEIGHT - coins.getHeight() - 10);
         nroCoins.setPosition(  10 + coins.getX() + coins.getWidth(), HEIGHT - coins.getHeight() - 10);
         //Pausa
         setUpPause();
@@ -226,7 +237,6 @@ public class GameScreen extends BaseScreen{
         }
         else {
             Gdx.input.setInputProcessor(stage);
-            stage.act(delta);
 
             if (player.isAlive()){
                 if (player.getX() > 50) {
@@ -244,7 +254,10 @@ public class GameScreen extends BaseScreen{
                         // Colisiones
                         if(r.rockOn && player.collision(r.getBoundsRock())){
                             r.rockOn = false;
-                            if (player.getNroLifes() >= 0) lifesP[player.getNroLifes()].setDrawable(lifeOff.getDrawable());
+                            if (player.getNroLifes() >= 0){
+                                lifes[player.getNroLifes()].setDrawable(lifeOff.getDrawable());
+                                lifesP[player.getNroLifes()].setDrawable(lifeOff.getDrawable());
+                            }
                         }
                         if(r.coinOn && player.coin(r.getBoundsCoin())){
                             r.coinOn = false;
@@ -267,7 +280,6 @@ public class GameScreen extends BaseScreen{
                 }
             }
             else {
-
                 Runnable trans = new Runnable() {
                     @Override
                     public void run() {
@@ -277,6 +289,7 @@ public class GameScreen extends BaseScreen{
                 };
                 player.addAction(sequence(delay(3f), run(trans)));
             }
+            stage.act(delta);
         }
     }
 

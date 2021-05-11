@@ -131,6 +131,43 @@ public class GameScreen extends BaseScreen{
     }
 
     private void addActions() {
+        btnPause.addCaptureListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                if (game.soundOn) pause.play(0.5f);
+                game.pause = true;
+            }
+        });
+
+        btnCloseP.addCaptureListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                if(game.soundOn) pause.play(0.5f);
+                game.pause = false;
+            }
+        });
+        btnPlayP.addCaptureListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                if(game.soundOn) pause.play(0.5f);
+                game.pause = false;
+            }
+        });
+        btnLeaveP.addCaptureListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                if(game.soundOn) pause.play(0.5f);
+                game.pause = false;
+                game.screens.set(game.screens.newMenu());
+            }
+        });
+        btnSettingP.addCaptureListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                if(game.soundOn) pause.play(0.5f);
+                game.screens.set(game.screens.newSetting());
+            }
+        });
 
     }
 

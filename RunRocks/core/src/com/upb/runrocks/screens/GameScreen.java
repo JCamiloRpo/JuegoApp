@@ -27,6 +27,7 @@ import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.upb.runrocks.RunRocks;
 import com.upb.runrocks.actors.FloorActor;
 import com.upb.runrocks.actors.PlayerActor;
+import com.upb.runrocks.actors.RockActor;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,7 +41,7 @@ import static com.upb.runrocks.RunRocks.WIDTH;
 public class GameScreen extends BaseScreen{
 
     private float camX = 0;
-    private Image lifes, coins, rock, coin, btnPause;
+    private Image lifes, coins, btnPause;
     private Skin skin;
     private Label nroCoins;
     private Sound pause;
@@ -52,6 +53,7 @@ public class GameScreen extends BaseScreen{
     // Jugador
     private PlayerActor player;
     private List<FloorActor> floors = new ArrayList<>();
+    private List<RockActor> rocks = new ArrayList<>();
 
     public GameScreen(RunRocks game) { super(game); }
 
@@ -68,14 +70,12 @@ public class GameScreen extends BaseScreen{
         addActions();
         //Agregar al stage
         for (FloorActor f : floors) stage.addActor(f);
+        for (RockActor r : rocks) stage.addActor(r);
+        stage.addActor(player);
         stage.addActor(lifes);
         stage.addActor(coins);
-        stage.addActor(rock);
-        stage.addActor(coin);
         stage.addActor(nroCoins);
         stage.addActor(btnPause);
-
-        stage.addActor(player);
         //Pausa
         stageP = new Stage(new StretchViewport(WIDTH, HEIGHT, game.cam));
         stageP.addActor(bgP);
@@ -102,11 +102,13 @@ public class GameScreen extends BaseScreen{
             floors.add(new FloorActor(game.assets.get("scene/bg_0.png", Texture.class),
                     game.assets.get("scene/floor_0.png", Texture.class),i * WIDTH));
         }
+        for (int i=1; i <= 3; i++){
+            rocks.add(new RockActor(game.assets.get("scene/rock_0.png", Texture.class),
+                    game.assets.get("icons/coin.png", Texture.class), i*RockActor.GAP, 55));
+        }
 
         lifes = new Image(game.assets.get("icons/heart.png", Texture.class));
         coins = new Image(game.assets.get("icons/coins.png", Texture.class));
-        coin = new Image(game.assets.get("icons/coin.png", Texture.class));
-        rock = new Image(game.assets.get("scene/rock_0.png", Texture.class));
         btnPause = new Image(game.assets.get("buttons/btn_pause.png", Texture.class));
 
         skin = new Skin(Gdx.files.internal("skin/app.json"));
@@ -132,12 +134,11 @@ public class GameScreen extends BaseScreen{
     private void setComponents() {
         lifes.setPosition(camX + WIDTH - lifes.getWidth() - btnPause.getWidth() - 20, HEIGHT - btnPause.getHeight() - 5);
         coins.setPosition(camX + 10, HEIGHT - coins.getHeight() - 10);
-        rock.setPosition(camX + 500, 60);
-        coin.setPosition(camX + 500, rock.getY() + rock.getHeight() + 20);
         btnPause.setPosition(camX + WIDTH - btnPause.getWidth() - 10, HEIGHT - btnPause.getHeight() - 10);
         nroCoins.setPosition(  10 + coins.getX() + coins.getWidth(), HEIGHT - coins.getHeight() - 10);
         // Pausa
-        bgP.setSize(camX + stage.getWidth(), stage.getHeight());
+        bgP.setSize(stage.getWidth(), stage.getHeight());
+        bgP.setPosition(camX, 0);
         jabaliP.setPosition(camX + 10, 60);
         rockP.setPosition(camX + 500, 60);
         coinP.setPosition(camX + 500, rockP.getY() + rockP.getHeight() + 20);
@@ -230,13 +231,14 @@ public class GameScreen extends BaseScreen{
                     camX = stage.getCamera().position.x - (stage.getCamera().viewportWidth/2);
                     setComponents();
 
-                    for (FloorActor f : floors){
-                        if (camX > f.getX() + f.getWidth()){
-                            System.out.println("Reposicionar piso "+f.getX());
-                            f.rePos(f.getX() + (2 * f.getWidth()));
-                            System.out.println("Reposicionado piso "+f.getX());
-                        }
-                    }
+                    // Reposicion pisos
+                    for (FloorActor f : floors)
+                        if (camX > f.getX() + f.getWidth())
+                            f.rePos(f.getX() + ((floors.size()-1) * f.getWidth()));
+                    // Reposiconar rocas
+                    for (RockActor r : rocks)
+                        if (camX > r.getX() + r.getWidth())
+                            r.rePos(r.getX() + (rocks.size() * RockActor.GAP));
                 }
 
                 if(Gdx.input.justTouched() && !player.isJumping()) {

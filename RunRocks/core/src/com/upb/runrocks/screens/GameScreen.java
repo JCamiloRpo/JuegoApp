@@ -99,7 +99,7 @@ public class GameScreen extends BaseScreen{
 
         player = new PlayerActor(game.assets.get("jabali/jabali.atlas", TextureAtlas.class), 10, 55, game);
         for (int i=0; i < 3;i++){
-            floors.add(new FloorActor(game.assets.get("scene/bg_1.png", Texture.class),
+            floors.add(new FloorActor(game.assets.get("scene/bg_0.png", Texture.class),
                     game.assets.get("scene/floor_0.png", Texture.class),i * WIDTH));
         }
 

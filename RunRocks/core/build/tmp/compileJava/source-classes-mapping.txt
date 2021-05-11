@@ -1,11 +1,9 @@
-com/upb/runrocks/screens/GameScreen.java
- com.upb.runrocks.screens.GameScreen
- com.upb.runrocks.screens.GameScreen$1
- com.upb.runrocks.screens.GameScreen$2
- com.upb.runrocks.screens.GameScreen$3
- com.upb.runrocks.screens.GameScreen$4
- com.upb.runrocks.screens.GameScreen$5
- com.upb.runrocks.screens.GameScreen$GameContactListener
+com/upb/runrocks/screens/SettingScreen.java
+ com.upb.runrocks.screens.SettingScreen
+ com.upb.runrocks.screens.SettingScreen$1
+ com.upb.runrocks.screens.SettingScreen$2
+ com.upb.runrocks.screens.SettingScreen$3
+ com.upb.runrocks.screens.SettingScreen$4
 com/upb/runrocks/actors/PlayerActor.java
  com.upb.runrocks.actors.PlayerActor
 com/upb/runrocks/screens/InfoScreen.java
@@ -19,8 +17,8 @@ com/upb/runrocks/screens/GameOverScreen.java
  com.upb.runrocks.screens.GameOverScreen$2
  com.upb.runrocks.screens.GameOverScreen$3
  com.upb.runrocks.screens.GameOverScreen$4
-com/upb/runrocks/actors/FloorActor.java
- com.upb.runrocks.actors.FloorActor
+com/upb/runrocks/screens/BaseScreen.java
+ com.upb.runrocks.screens.BaseScreen
 com/upb/runrocks/screens/SplashScreen.java
  com.upb.runrocks.screens.SplashScreen
 com/upb/runrocks/screens/MenuScreen.java
@@ -30,11 +28,13 @@ com/upb/runrocks/screens/MenuScreen.java
  com.upb.runrocks.screens.MenuScreen$3
 com/upb/runrocks/RunRocks.java
  com.upb.runrocks.RunRocks
-com/upb/runrocks/screens/BaseScreen.java
- com.upb.runrocks.screens.BaseScreen
-com/upb/runrocks/screens/SettingScreen.java
- com.upb.runrocks.screens.SettingScreen
- com.upb.runrocks.screens.SettingScreen$1
- com.upb.runrocks.screens.SettingScreen$2
- com.upb.runrocks.screens.SettingScreen$3
- com.upb.runrocks.screens.SettingScreen$4
+com/upb/runrocks/screens/GameScreen.java
+ com.upb.runrocks.screens.GameScreen
+ com.upb.runrocks.screens.GameScreen$1
+ com.upb.runrocks.screens.GameScreen$2
+ com.upb.runrocks.screens.GameScreen$3
+ com.upb.runrocks.screens.GameScreen$4
+ com.upb.runrocks.screens.GameScreen$5
+ com.upb.runrocks.screens.GameScreen$GameContactListener
+com/upb/runrocks/actors/FloorActor.java
+ com.upb.runrocks.actors.FloorActor

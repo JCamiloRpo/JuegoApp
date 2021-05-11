@@ -11,13 +11,13 @@ import static com.upb.runrocks.RunRocks.WIDTH;
 public class FloorActor extends Actor {
 
     public static String TAG = "FLOOR";
-
+    public static float W = WIDTH+1, H = 75;
     private Texture bg, floor;
     private Vector2 pos;
 
     public FloorActor(Texture bg, Texture floor, float x) {
         this.bg = bg;
-        this.floor = floor;
+        if (floor != null) this.floor = floor;
 
         pos = new Vector2(x, 0);
 
@@ -27,8 +27,8 @@ public class FloorActor extends Actor {
 
     @Override
     public void draw(Batch batch, float parentAlpha) {
-        batch.draw(bg, getX(), getY(), WIDTH + 1, HEIGHT);
-        batch.draw(floor, getX(), getY(), WIDTH + 1, floor.getHeight());
+        batch.draw(bg, getX(), getY(), W, HEIGHT);
+        if (floor != null) batch.draw(floor, getX(), getY(), W, H);
     }
 
     public void rePos(float x){
@@ -38,6 +38,6 @@ public class FloorActor extends Actor {
 
     public void detach(){
         bg.dispose();
-        floor.dispose();
+        if (floor != null) floor.dispose();
     }
 }

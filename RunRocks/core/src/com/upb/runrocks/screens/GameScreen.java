@@ -92,19 +92,6 @@ public class GameScreen extends BaseScreen{
 
     @Override
     public void show() {
-        //camX = stage.getCamera().position.x - (stage.getCamera().viewportWidth/2);
-        System.out.println(camX);
-        /*
-        if (player != null) player.rePos(camX + 50);
-        if (!floors.isEmpty()) {
-            for (int i=0; i < 4;i++)
-                floors.get(i).rePos(camX + (i * floors.get(i).getWidth()));
-        }
-        if (!rocks.isEmpty()){
-            for (int i=0; i < 6; i++)
-                rocks.get(i).rePos(camX + (i+1)*RockActor.GAP);
-        }
-        */
         if (camX > 0){
             stage.getCamera().translate(camX, 0, 0);
         }
@@ -291,13 +278,19 @@ public class GameScreen extends BaseScreen{
                     }
                 }
 
+                // x < 583 && y < 58
                 if(Gdx.input.justTouched() && !player.isJumping()) {
-                    player.jump();
+                    int x = Gdx.input.getX(), y = Gdx.input.getY();
+                    if (x < 580 && y > 60)
+                        player.jump();
                 }
 
                 if (Gdx.input.isTouched()) {
-                    player.setMustJump(true);
+                    int x = Gdx.input.getX(), y = Gdx.input.getY();
+                    if (x < 580 && y > 60)
+                        player.setMustJump(true);
                 }
+
             }
             else {
                 Runnable trans = new Runnable() {

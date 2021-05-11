@@ -142,11 +142,6 @@ public class PlayerActor extends Actor {
         return false;
     }
 
-    public void rePos(float x){
-        pos.set(x, pos.y);
-        setPosition(x, pos.y);
-    }
-
     public void detach(){
     }
 }

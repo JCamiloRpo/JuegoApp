@@ -4,7 +4,13 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.math.Vector3;
+import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
+import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
@@ -14,10 +20,17 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.upb.runrocks.RunRocks;
+import com.upb.runrocks.actors.FloorActor;
+import com.upb.runrocks.actors.PlayerActor;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static com.badlogic.gdx.scenes.scene2d.actions.Actions.*;
 import static com.upb.runrocks.RunRocks.FONDOHEX;
 import static com.upb.runrocks.RunRocks.HEIGHT;
+import static com.upb.runrocks.RunRocks.PIXEL_METERS;
+import static com.upb.runrocks.RunRocks.SPEED;
 import static com.upb.runrocks.RunRocks.WIDTH;
 
 public class GameScreen extends BaseScreen{
@@ -25,11 +38,16 @@ public class GameScreen extends BaseScreen{
     private Image bg, jabali, lifes, coins, rock, coin, btnPause;
     private Skin skin;
     private Label nroCoins;
-    private Sound pause, die;
+    private Sound pause;
     // Elementos para pausa
     private Stage stageP;
     private Image bgP, jabaliP, rockP, coinP, dialogP, titleP, btnPlayP, btnLeaveP, btnSettingP, btnCloseP, lifesP, coinsP, iconoP;
     private Label nroCoinsP;
+
+
+    // Mundo
+    private World world;
+    private Vector3 position;
 
     public GameScreen(RunRocks game) { super(game); }
 
@@ -38,7 +56,6 @@ public class GameScreen extends BaseScreen{
         stage.clear();
 
         pause = game.assets.get("audio/pause.ogg");
-        die = game.assets.get("audio/gameover.ogg");
         //Inicializar elementos
         loadComponents();
         //Posicionar elementos
@@ -46,7 +63,6 @@ public class GameScreen extends BaseScreen{
         //Añadir acciones
         addActions();
         //Agregar al stage
-        stage.addActor(bg);
         stage.addActor(jabali);
         stage.addActor(lifes);
         stage.addActor(coins);
@@ -54,6 +70,8 @@ public class GameScreen extends BaseScreen{
         stage.addActor(coin);
         stage.addActor(nroCoins);
         stage.addActor(btnPause);
+
+        stage.addActor(player);
         //Pausa
         stageP = new Stage(new StretchViewport(WIDTH, HEIGHT, game.cam));
         stageP.addActor(bgP);
@@ -74,8 +92,14 @@ public class GameScreen extends BaseScreen{
     }
 
     private void loadComponents() {
-        bg = new Image(game.assets.get("scene/bg_0.png", Texture.class));
         jabali = new Image(game.assets.get("jabali/still.png", Texture.class));
+        world = new World(new Vector2(0, -10), true);
+        player = new PlayerActor(world, game.assets.get("jabali/jabali.atlas", TextureAtlas.class), 0, 1.1f, game);
+        position = new Vector3(stage.getCamera().position);
+
+        stage.getCamera().position.set(position);
+        stage.getCamera().update();
+
         lifes = new Image(game.assets.get("icons/heart.png", Texture.class));
         coins = new Image(game.assets.get("icons/coins.png", Texture.class));
         coin = new Image(game.assets.get("icons/coin.png", Texture.class));
@@ -104,7 +128,6 @@ public class GameScreen extends BaseScreen{
 
     private void setComponents() {
         bg.setSize(stage.getWidth(), stage.getHeight());
-        jabali.setPosition(10, 60);
         lifes.setPosition(WIDTH - lifes.getWidth() - btnPause.getWidth() - 20, HEIGHT - btnPause.getHeight() - 5);
         coins.setPosition(10, HEIGHT - coins.getHeight() - 10);
         rock.setPosition(500, 60);
@@ -138,14 +161,6 @@ public class GameScreen extends BaseScreen{
             public void clicked(InputEvent event, float x, float y) {
                 if (game.soundOn) pause.play(0.5f);
                 game.pause = true;
-            }
-        });
-
-        jabali.addCaptureListener(new ClickListener() {
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-                if (game.soundOn) die.play(0.5f);
-                game.screens.set(game.screens.newGameOver());
             }
         });
 
@@ -204,6 +219,8 @@ public class GameScreen extends BaseScreen{
         }
         else {
             Gdx.input.setInputProcessor(stage);
+            world.step(delta, 6, 2);
+
             stage.act(delta);
         }
     }
@@ -211,6 +228,7 @@ public class GameScreen extends BaseScreen{
     @Override
     public void dispose() {
         super.dispose();
+        player.detach();
         System.out.println("DISPOSE MENU");
     }
 

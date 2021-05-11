@@ -90,6 +90,31 @@ public class PlayerActor extends Actor {
 
     @Override
     public void act(float delta) {
+        super.act(delta);
+        // Iniciar un salto
+        if (mustJump){
+            mustJump = false;
+            jump();
+        }
+
+        if (jumping){
+            body.applyForceToCenter(0, -IMPULSE_JUMP * 1.15f, true);
+        }
+
+        // Avanzar
+        //if (alive){
+        //    float velY = body.getLinearVelocity().y;
+        //    body.setLinearVelocity(SPEED, velY);
+        //}
+    }
+
+    public void jump(){
+        if(!jumping && alive) {
+            sndJump.play(0.5f);
+            jumping = true;
+            Vector2 pos = body.getPosition();
+            body.applyLinearImpulse(0, IMPULSE_JUMP, pos.x, pos.y, true);
+        }
     }
 
     public void detach(){

@@ -23,16 +23,15 @@ public class PlayerActor extends Actor {
 
     public static String TAG = "PLAYER";
     public static float W = 108 / PIXEL_METERS, H = 90 / PIXEL_METERS;
+    private RunRocks game;
     // Elementos de Scene2D - Animacion
     // Run
     private Animation<TextureRegion> run;
-    private float timeRun;
+    private float timeFrame;
     // Jump
     private Animation<TextureRegion> jump;
-    private float timeJump;
     // Die
     private Animation<TextureRegion> die;
-    private float timeDie;
     private Sound sndJump, sndHit, sndDie, sndCoin;
     // Elementos de Box2D
     private World world;
@@ -43,6 +42,7 @@ public class PlayerActor extends Actor {
     private boolean alive = true, jumping = false, mustJump = false;
 
     public PlayerActor(World world, TextureAtlas atlas, float x, float y, RunRocks game){
+        this.game = game;
         sndJump = game.assets.get("audio/jump.ogg");
         sndHit = game.assets.get("audio/hitvoice1.ogg");
         sndDie = game.assets.get("audio/gameover.ogg");
@@ -51,15 +51,13 @@ public class PlayerActor extends Actor {
         this.world = world;
         Array<TextureAtlas.AtlasRegion> run = atlas.findRegions("run");
         this.run = new Animation<TextureRegion>(5f, run, Animation.PlayMode.LOOP);
-        timeRun = 0;
+        timeFrame = 0;
 
         Array<TextureAtlas.AtlasRegion> jump = atlas.findRegions("jump");
-        this.jump = new Animation<TextureRegion>(5f, jump, Animation.PlayMode.LOOP);
-        timeJump = 0;
+        this.jump = new Animation<TextureRegion>(10f, jump, Animation.PlayMode.NORMAL);
 
         Array<TextureAtlas.AtlasRegion> die = atlas.findRegions("die");
-        this.die = new Animation<TextureRegion>(5f, die, Animation.PlayMode.LOOP);
-        timeDie = 0;
+        this.die = new Animation<TextureRegion>(5f, die, Animation.PlayMode.NORMAL);
 
 
         // Create the player body.
@@ -80,12 +78,34 @@ public class PlayerActor extends Actor {
         setSize(W * PIXEL_METERS, H * PIXEL_METERS);
     }
 
+    public int getCoins() { return coins; }
+
+    public void setCoins(int coins) { this.coins = coins; }
+
+    public int getLifes() { return lifes; }
+
+    public void setLifes(int lifes) { this.lifes = lifes; }
+
+    public boolean isAlive() { return alive; }
+
+    public void setAlive(boolean alive) { this.alive = alive; }
+
+    public boolean isJumping() { return jumping; }
+
+    public void setJumping(boolean jumping) { this.jumping = jumping; }
+
+    public boolean isMustJump() { return mustJump; }
+
+    public void setMustJump(boolean mustJump) { this.mustJump = mustJump; }
+
     @Override
     public void draw(Batch batch, float parentAlpha) {
-        timeRun += parentAlpha;
+        timeFrame += parentAlpha;
         setPosition((body.getPosition().x - (W/2)) * PIXEL_METERS,
                 (body.getPosition().y - (H/2)) * PIXEL_METERS);
-        batch.draw(run.getKeyFrame(timeRun), getX(), getY(), getWidth(), getHeight());
+        if (jumping) batch.draw(jump.getKeyFrame(timeFrame), getX(), getY(), getWidth(), getHeight());
+        else batch.draw(run.getKeyFrame(timeFrame), getX(), getY(), getWidth(), getHeight());
+
     }
 
     @Override
@@ -110,7 +130,7 @@ public class PlayerActor extends Actor {
 
     public void jump(){
         if(!jumping && alive) {
-            sndJump.play(0.5f);
+            if(game.soundOn) sndJump.play(0.5f);
             jumping = true;
             Vector2 pos = body.getPosition();
             body.applyLinearImpulse(0, IMPULSE_JUMP, pos.x, pos.y, true);

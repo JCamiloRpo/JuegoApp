@@ -10,9 +10,14 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
+import com.badlogic.gdx.physics.box2d.Contact;
+import com.badlogic.gdx.physics.box2d.ContactImpulse;
+import com.badlogic.gdx.physics.box2d.ContactListener;
+import com.badlogic.gdx.physics.box2d.Manifold;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
@@ -96,6 +101,8 @@ public class GameScreen extends BaseScreen{
 
     private void loadComponents() {
         world = new World(new Vector2(0, -10), true);
+        world.setContactListener(new GameContactListener());
+
         player = new PlayerActor(world, game.assets.get("jabali/jabali.atlas", TextureAtlas.class), 0, 1.1f, game);
         for (int i=1; i < 10;i++){
             floors.add(new FloorActor(world, game.assets.get("scene/bg_1.png", Texture.class),
@@ -229,6 +236,11 @@ public class GameScreen extends BaseScreen{
             if (player.getX() > 150 && player.isAlive()) {
                 stage.getCamera().translate(SPEED * delta * PIXEL_METERS, 0, 0);
             }
+
+            if(Gdx.input.justTouched() && player.isAlive() && !player.isJumping()) {
+                player.jump();
+            }
+
             stage.act(delta);
         }
     }
@@ -244,4 +256,29 @@ public class GameScreen extends BaseScreen{
         System.out.println("DISPOSE MENU");
     }
 
+    private class GameContactListener implements ContactListener {
+        private boolean areCollided(Contact c, Object A, Object B){
+            return (c.getFixtureA().getUserData().equals(A) && c.getFixtureB().getUserData().equals(B)) ||
+                    (c.getFixtureA().getUserData().equals(B) && c.getFixtureB().getUserData().equals(B));
+        }
+
+        @Override
+        public void beginContact(Contact contact) {
+            if (areCollided(contact, PlayerActor.TAG, FloorActor.TAG)) {
+                player.setJumping(false);
+                if (Gdx.input.isTouched() && player.isAlive()) {
+                    player.setMustJump(true);
+                }
+            }
+        }
+
+        @Override
+        public void endContact(Contact contact) {  }
+
+        @Override
+        public void preSolve(Contact contact, Manifold oldManifold) { }
+
+        @Override
+        public void postSolve(Contact contact, ContactImpulse impulse) { }
+    }
 }

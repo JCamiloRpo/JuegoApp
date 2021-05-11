@@ -34,7 +34,6 @@ import java.util.List;
 import static com.badlogic.gdx.scenes.scene2d.actions.Actions.*;
 import static com.upb.runrocks.RunRocks.FONDOHEX;
 import static com.upb.runrocks.RunRocks.HEIGHT;
-import static com.upb.runrocks.RunRocks.PIXEL_METERS;
 import static com.upb.runrocks.RunRocks.SPEED;
 import static com.upb.runrocks.RunRocks.WIDTH;
 
@@ -53,9 +52,6 @@ public class GameScreen extends BaseScreen{
     // Jugador
     private PlayerActor player;
     private List<FloorActor> floors = new ArrayList<>();
-
-    // Mundo
-    private World world;
 
     public GameScreen(RunRocks game) { super(game); }
 
@@ -100,13 +96,11 @@ public class GameScreen extends BaseScreen{
     }
 
     private void loadComponents() {
-        world = new World(new Vector2(0, -10), true);
-        world.setContactListener(new GameContactListener());
 
-        player = new PlayerActor(world, game.assets.get("jabali/jabali.atlas", TextureAtlas.class), 0, 1.1f, game);
-        for (int i=1; i < 3;i++){
-            floors.add(new FloorActor(world, game.assets.get("scene/bg_1.png", Texture.class),
-                    game.assets.get("scene/floor_0.png", Texture.class),(i-1) * (FloorActor.W/PIXEL_METERS), 1.1f));
+        player = new PlayerActor(game.assets.get("jabali/jabali.atlas", TextureAtlas.class), 10, 55, game);
+        for (int i=0; i < 3;i++){
+            floors.add(new FloorActor(game.assets.get("scene/bg_1.png", Texture.class),
+                    game.assets.get("scene/floor_0.png", Texture.class),i * WIDTH));
         }
 
         lifes = new Image(game.assets.get("icons/heart.png", Texture.class));
@@ -227,18 +221,31 @@ public class GameScreen extends BaseScreen{
         }
         else {
             Gdx.input.setInputProcessor(stage);
-            world.step(delta, 6, 2);
 
-            if (player.getX() > 150 && player.isAlive()) {
+            if (player.isAlive()){
+                if (player.getX() > 100) {
+                    stage.getCamera().translate(SPEED * delta, 0, 0);
+                    stage.getCamera().update();
 
-                stage.getCamera().translate(SPEED * delta * PIXEL_METERS, 0, 0);
-                stage.getCamera().update();
-                camX = stage.getCamera().position.x - (stage.getCamera().viewportWidth/2);
-                setComponents();
-            }
+                    camX = stage.getCamera().position.x - (stage.getCamera().viewportWidth/2);
+                    setComponents();
 
-            if(Gdx.input.justTouched() && player.isAlive() && !player.isJumping()) {
-                player.jump();
+                    for (FloorActor f : floors){
+                        if (camX > f.getX() + f.getWidth()){
+                            System.out.println("Reposicionar piso "+f.getX());
+                            f.rePos(f.getX() + (2 * f.getWidth()));
+                            System.out.println("Reposicionado piso "+f.getX());
+                        }
+                    }
+                }
+
+                if(Gdx.input.justTouched() && !player.isJumping()) {
+                    player.jump();
+                }
+
+                if (Gdx.input.isTouched()) {
+                    player.setMustJump(true);
+                }
             }
 
             stage.act(delta);

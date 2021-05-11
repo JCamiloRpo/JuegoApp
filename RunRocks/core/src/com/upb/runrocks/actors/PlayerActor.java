@@ -111,7 +111,7 @@ public class PlayerActor extends Actor {
         }
 
         if (pos.y < 55){
-            pos.y=55;
+            pos.y = 55;
             jumping = false;
         }
         speed.scl(1/delta);

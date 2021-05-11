@@ -9,7 +9,7 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 public class RockActor extends Actor {
 
     public static String TAG = "ROCK";
-    public static float GAP = 300, SPACE = 100;
+    public static float GAP = 350, SPACE = 100;
     public float W, H;
     public boolean coinOn = true, rockOn = true;
     private Texture rock, coin;
@@ -26,7 +26,7 @@ public class RockActor extends Actor {
 
         setSize(W, H);
         setPosition(x, y);
-        boundsRock = new Rectangle(x + 5, y, W - 10, H - 10);
+        boundsRock = new Rectangle(x + 10, y, W - 10, H - 12);
         boundsCoin = new Rectangle(x + 5, y + SPACE, coin.getWidth() - 10, coin.getHeight() - 12);
     }
 
@@ -47,10 +47,10 @@ public class RockActor extends Actor {
     public void rePos(float x){
         coinOn = true;
         rockOn = true;
-        pos.set(x, 55);
-        setPosition(x, 55);
-        boundsRock.setPosition(pos.x, 55);
-        boundsCoin.setPosition(x, 55 + SPACE);
+        pos.set(x, pos.y);
+        setPosition(x, pos.y);
+        boundsRock.setPosition(pos.x + 5, 55);
+        boundsCoin.setPosition(x, pos.y + SPACE);
     }
 
     public void detach(){

@@ -15,6 +15,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.upb.runrocks.RunRocks;
+import com.upb.runrocks.actors.ActorManager;
 import com.upb.runrocks.actors.FloorActor;
 import com.upb.runrocks.actors.PlayerActor;
 import com.upb.runrocks.actors.RockActor;
@@ -40,7 +41,8 @@ public class GameScreen extends BaseScreen{
     private Image bgP, jabaliP, rockP, coinP, dialogP, titleP, btnPlayP, btnLeaveP, btnSettingP, btnCloseP, lifesP[], lifeOff, coinsP, iconoP;
     private Label nroCoinsP;
 
-    // Jugador
+    // Actores
+    private ActorManager actors;
     private PlayerActor player;
     private List<FloorActor> floors = new ArrayList<>();
     private List<RockActor> rocks = new ArrayList<>();
@@ -87,16 +89,15 @@ public class GameScreen extends BaseScreen{
     }
 
     private void loadComponents() {
-        player = new PlayerActor(game.assets.get("jabali/jabali.atlas", TextureAtlas.class), 10, 55, game,
-                game.assets.get("icons/heart.png", Texture.class), game.assets.get("icons/heart_off.png", Texture.class));
+        actors = new ActorManager(game);
+        player = actors.createPlayer(10);
 
+        floors.add(actors.createFloor(0, -1));
         for (int i=0; i < 3;i++){
-            floors.add(new FloorActor(game.assets.get("scene/bg_0.png", Texture.class),
-                    game.assets.get("scene/floor_0.png", Texture.class),i * WIDTH));
+            floors.add(actors.createFloor(i+1, i));
         }
-        for (int i=1; i <= 3; i++){
-            rocks.add(new RockActor(game.assets.get("scene/rock_0.png", Texture.class),
-                    game.assets.get("icons/coin.png", Texture.class), i*RockActor.GAP, 55));
+        for (int i=0; i < 6; i++){
+            rocks.add(actors.createRock(i, i));
         }
 
         coins = new Image(game.assets.get("icons/coins.png", Texture.class));
@@ -237,7 +238,7 @@ public class GameScreen extends BaseScreen{
                     // Reposicion pisos
                     for (FloorActor f : floors)
                         if (camX > f.getX() + f.getWidth())
-                            f.rePos(f.getX() + ((floors.size()-1) * f.getWidth()));
+                            f.rePos(f.getX() + (floors.size() * f.getWidth()));
 
                     for (RockActor r : rocks) {
                         // Colisiones

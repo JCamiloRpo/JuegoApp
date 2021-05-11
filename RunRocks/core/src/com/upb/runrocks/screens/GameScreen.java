@@ -238,6 +238,7 @@ public class GameScreen extends BaseScreen{
 
                     for (RockActor r : rocks) {
                         // Colisiones
+                        player.collision(r.getBoundsRock());
                         if(r.coinOn && player.coin(r.getBoundsCoin()))
                             r.coinOn = false;
 

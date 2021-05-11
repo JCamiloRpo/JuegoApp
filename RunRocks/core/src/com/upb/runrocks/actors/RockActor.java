@@ -31,6 +31,8 @@ public class RockActor extends Actor {
         boundsCoin = new Rectangle(x + 5, y + SPACE, coin.getWidth() - 10, coin.getHeight() - 10);
     }
 
+    public Rectangle getBoundsRock() { return boundsRock; }
+
     public Rectangle getBoundsCoin() { return boundsCoin; }
 
     @Override

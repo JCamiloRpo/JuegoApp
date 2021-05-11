@@ -54,7 +54,7 @@ public class PlayerActor extends Actor {
         this.jump = new Animation<TextureRegion>(10f, jump, Animation.PlayMode.NORMAL);
 
         Array<TextureAtlas.AtlasRegion> die = atlas.findRegions("die");
-        this.die = new Animation<TextureRegion>(5f, die, Animation.PlayMode.NORMAL);
+        this.die = new Animation<TextureRegion>(20f, die, Animation.PlayMode.NORMAL);
 
         pos = new Vector2(x, y);
         speed = new Vector2(0, 0);
@@ -77,8 +77,8 @@ public class PlayerActor extends Actor {
         timeFrame += parentAlpha;
         setPosition(pos.x, pos.y);
         if (jumping) batch.draw(jump.getKeyFrame(timeFrame), getX(), getY(), getWidth(), getHeight());
-        else batch.draw(run.getKeyFrame(timeFrame), getX(), getY(), getWidth(), getHeight());
-
+        else if(alive) batch.draw(run.getKeyFrame(timeFrame), getX(), getY(), getWidth(), getHeight());
+        else batch.draw(die.getKeyFrame(timeFrame), getX(), getY(), getWidth(), getHeight());
     }
 
     @Override
@@ -123,6 +123,15 @@ public class PlayerActor extends Actor {
         }
         return false;
     }
+
+    public void collision(Rectangle rock){
+        if(rock.overlaps(bounds)){
+            alive = false;
+            jumping = false;
+            sndHit.play(0.5f);
+        }
+    }
+
     public void detach(){
         sndJump.dispose();
         sndHit.dispose();

@@ -1,4 +1,4 @@
-package com.upb.runrocks.Screen;
+package com.upb.runrocks.screen;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Music;

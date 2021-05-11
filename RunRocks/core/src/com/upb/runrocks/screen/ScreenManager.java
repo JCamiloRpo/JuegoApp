@@ -1,13 +1,12 @@
-package com.upb.runrocks.Screen;
+package com.upb.runrocks.screen;
 
-import com.badlogic.gdx.Game;
 import com.upb.runrocks.RunRocks;
 
 import java.util.Stack;
 
 public class ScreenManager {
 
-    private Stack<BaseScreen> screens;
+    private Stack<com.upb.runrocks.screen.BaseScreen> screens;
     private RunRocks game;
 
     public ScreenManager(RunRocks game){
@@ -15,7 +14,7 @@ public class ScreenManager {
         screens = new Stack<>();
     }
 
-    private void push(BaseScreen screen){
+    private void push(com.upb.runrocks.screen.BaseScreen screen){
         game.setScreen(screen);
         screens.push(screen);
     }
@@ -32,10 +31,10 @@ public class ScreenManager {
             screens.pop().dispose();
     }
 
-    public SplashScreen newSplash(){ return new SplashScreen(game); }
+    public com.upb.runrocks.screen.SplashScreen newSplash(){ return new SplashScreen(game); }
     public MenuScreen newMenu(){ return new MenuScreen(game); }
     public SettingScreen newSetting(){ return new SettingScreen(game); }
-    public InfoScreen newInfo(){ return new InfoScreen(game); }
-    public GameScreen newGame(){ return new GameScreen(game); }
-    public GameOverScreen newGameOver(){ return new GameOverScreen(game); }
+    public com.upb.runrocks.screen.InfoScreen newInfo(){ return new InfoScreen(game); }
+    public com.upb.runrocks.screen.GameScreen newGame(){ return new GameScreen(game); }
+    public com.upb.runrocks.screen.GameOverScreen newGameOver(){ return new GameOverScreen(game); }
 }

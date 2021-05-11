@@ -1,4 +1,4 @@
-package com.upb.runrocks.Screen;
+package com.upb.runrocks.screen;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
@@ -20,7 +20,7 @@ import static com.upb.runrocks.RunRocks.FONDOHEX;
 import static com.upb.runrocks.RunRocks.HEIGHT;
 import static com.upb.runrocks.RunRocks.WIDTH;
 
-public class GameOverScreen extends BaseScreen{
+public class GameOverScreen extends BaseScreen {
 
     private Image bg, jabali, rock, coin, dialog, title, btnRetry, btnLeave, btnSetting, btnClose, lifes, coins, icono;
     private Label nroCoins;

@@ -35,7 +35,7 @@ import static com.upb.runrocks.RunRocks.WIDTH;
 
 public class GameScreen extends BaseScreen{
 
-    private Image bg, jabali, lifes, coins, rock, coin, btnPause;
+    private Image lifes, coins, rock, coin, btnPause;
     private Skin skin;
     private Label nroCoins;
     private Sound pause;
@@ -44,6 +44,9 @@ public class GameScreen extends BaseScreen{
     private Image bgP, jabaliP, rockP, coinP, dialogP, titleP, btnPlayP, btnLeaveP, btnSettingP, btnCloseP, lifesP, coinsP, iconoP;
     private Label nroCoinsP;
 
+    // Jugador
+    private PlayerActor player;
+    private List<FloorActor> floors = new ArrayList<>();
 
     // Mundo
     private World world;
@@ -63,7 +66,7 @@ public class GameScreen extends BaseScreen{
         //Añadir acciones
         addActions();
         //Agregar al stage
-        stage.addActor(jabali);
+        for (FloorActor f : floors) stage.addActor(f);
         stage.addActor(lifes);
         stage.addActor(coins);
         stage.addActor(rock);
@@ -92,9 +95,12 @@ public class GameScreen extends BaseScreen{
     }
 
     private void loadComponents() {
-        jabali = new Image(game.assets.get("jabali/still.png", Texture.class));
         world = new World(new Vector2(0, -10), true);
         player = new PlayerActor(world, game.assets.get("jabali/jabali.atlas", TextureAtlas.class), 0, 1.1f, game);
+        for (int i=1; i < 10;i++){
+            floors.add(new FloorActor(world, game.assets.get("scene/bg_1.png", Texture.class),
+                    game.assets.get("scene/floor_0.png", Texture.class),(i-1) * (FloorActor.W/PIXEL_METERS), 1.1f));
+        }
         position = new Vector3(stage.getCamera().position);
 
         stage.getCamera().position.set(position);
@@ -127,7 +133,6 @@ public class GameScreen extends BaseScreen{
     }
 
     private void setComponents() {
-        bg.setSize(stage.getWidth(), stage.getHeight());
         lifes.setPosition(WIDTH - lifes.getWidth() - btnPause.getWidth() - 20, HEIGHT - btnPause.getHeight() - 5);
         coins.setPosition(10, HEIGHT - coins.getHeight() - 10);
         rock.setPosition(500, 60);
@@ -229,6 +234,10 @@ public class GameScreen extends BaseScreen{
     public void dispose() {
         super.dispose();
         player.detach();
+
+        for (FloorActor f : floors) f.detach();
+        floors.clear();
+
         System.out.println("DISPOSE MENU");
     }
 

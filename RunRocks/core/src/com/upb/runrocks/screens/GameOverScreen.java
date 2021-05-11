@@ -22,7 +22,7 @@ import static com.upb.runrocks.RunRocks.WIDTH;
 
 public class GameOverScreen extends BaseScreen {
 
-    private Image bg, jabali, rock, coin, dialog, title, btnRetry, btnLeave, btnSetting, btnClose, lifes, coins, icono;
+    private Image bg, jabali, rock, coin, dialog, title, btnRetry, btnLeave, btnSetting, btnClose, lifes[], coins, icono;
     private Label nroCoins;
     private Skin skin;
 
@@ -51,7 +51,9 @@ public class GameOverScreen extends BaseScreen {
         stage.addActor(title);
         stage.addActor(coins);
         stage.addActor(nroCoins);
-        stage.addActor(lifes);
+        stage.addActor(lifes[0]);
+        stage.addActor(lifes[1]);
+        stage.addActor(lifes[2]);
         stage.addActor(btnRetry);
         stage.addActor(btnLeave);
         stage.addActor(btnSetting);
@@ -73,9 +75,11 @@ public class GameOverScreen extends BaseScreen {
         btnLeave = new Image(game.assets.get("buttons/btn_leave.png", Texture.class));
         btnSetting = new Image(game.assets.get("buttons/btn_setting.png", Texture.class));
         btnClose = new Image(game.assets.get("buttons/btn_close.png", Texture.class));
-        lifes = new Image(game.assets.get("icons/heart.png", Texture.class));
+        lifes = new Image[]{ new Image(game.assets.get("icons/heart_off.png", Texture.class)),
+                new Image(game.assets.get("icons/heart_off.png", Texture.class)),
+                new Image(game.assets.get("icons/heart_off.png", Texture.class))};
         coins = new Image(game.assets.get("icons/coins.png", Texture.class));
-        nroCoins = new Label("012345", skin, "default");
+        nroCoins = new Label(game.nroCoins + "", skin, "black");
         icono = new Image(game.assets.get("icons/icono.png", Texture.class));
     }
 
@@ -88,7 +92,9 @@ public class GameOverScreen extends BaseScreen {
         title.setPosition((WIDTH - title.getWidth()) / 2, HEIGHT - dialog.getY() - 30);
         coins.setPosition(((WIDTH - coins.getWidth() - nroCoins.getWidth() + 10) / 2) - 5, title.getY() - 50);
         nroCoins.setPosition(5 + coins.getWidth() + (WIDTH - coins.getWidth() - nroCoins.getWidth() + 10) / 2, title.getY() - 50);
-        lifes.setPosition((WIDTH - lifes.getWidth()) / 2, coins.getY() - 50);
+        lifes[2].setPosition( - lifes[0].getWidth() + (WIDTH - lifes[0].getWidth()) / 2, coins.getY() - 50);
+        lifes[1].setPosition( (WIDTH - lifes[0].getWidth()) / 2, coins.getY() - 50);
+        lifes[0].setPosition( lifes[0].getWidth() + (WIDTH - lifes[0].getWidth()) / 2, coins.getY() - 50);
         icono.setSize(90, 90);
         icono.setPosition(WIDTH - icono.getWidth() - 5, 5);
 
@@ -105,7 +111,9 @@ public class GameOverScreen extends BaseScreen {
         title.addAction(sequence(alpha(0f), fadeIn(0.5f, Interpolation.pow2) ));
         coins.addAction(sequence(alpha(0f), fadeIn(0.5f, Interpolation.pow2) ));
         nroCoins.addAction(sequence(alpha(0f), fadeIn(0.5f, Interpolation.pow2) ));
-        lifes.addAction(sequence(alpha(0f), fadeIn(0.5f, Interpolation.pow2) ));
+        lifes[0].addAction(sequence(alpha(0f), fadeIn(0.5f, Interpolation.pow2) ));
+        lifes[1].addAction(sequence(alpha(0f), fadeIn(0.5f, Interpolation.pow2) ));
+        lifes[2].addAction(sequence(alpha(0f), fadeIn(0.5f, Interpolation.pow2) ));
         btnClose.addAction(sequence(alpha(0f), fadeIn(0.5f, Interpolation.pow2) ));
         btnClose.addCaptureListener(new ClickListener() {
             @Override

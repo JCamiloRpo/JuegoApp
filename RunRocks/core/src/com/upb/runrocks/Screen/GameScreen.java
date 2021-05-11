@@ -30,7 +30,7 @@ public class GameScreen extends BaseScreen{
     private Image bg, jabali, lifes, coins, rock, coin, btnPause;
     private Skin skin;
     private Label nroCoins;
-    private Sound pause;
+    private Sound pause, die;
     // Elementos para pausa
     private Stage stageP;
     private Image bgP, jabaliP, rockP, coinP, dialogP, titleP, btnPlayP, btnLeaveP, btnSettingP, btnCloseP, lifesP, coinsP, iconoP;
@@ -43,6 +43,7 @@ public class GameScreen extends BaseScreen{
         stage.clear();
 
         pause = game.assets.get("audio/pause.ogg");
+        die = game.assets.get("audio/gameover.ogg");
         //Inicializar elementos
         loadComponents();
         //Posicionar elementos
@@ -122,9 +123,9 @@ public class GameScreen extends BaseScreen{
         coinP.setPosition(500, rockP.getY() + rockP.getHeight() + 20);
         dialogP.setPosition((WIDTH - dialogP.getWidth()) / 2, (HEIGHT - dialogP.getHeight()) / 2);
         titleP.setPosition((WIDTH - titleP.getWidth()) / 2, HEIGHT - dialogP.getY() - 30);
-        coinsP.setPosition(titleP.getX(), titleP.getY() - 50);
-        nroCoinsP.setPosition(coinsP.getX() + coinsP.getWidth() + 10, titleP.getY() - 50);
-        lifesP.setPosition((WIDTH - lifes.getWidth()) / 2, coinsP.getY() - 50);
+        coinsP.setPosition(((WIDTH - coinsP.getWidth() - nroCoinsP.getWidth() + 10) / 2) - 5, titleP.getY() - 50);
+        nroCoinsP.setPosition(5 + coinsP.getWidth() + ((WIDTH - coinsP.getWidth() - nroCoinsP.getWidth() + 10) / 2), titleP.getY() - 50);
+        lifesP.setPosition((WIDTH - lifesP.getWidth()) / 2, coinsP.getY() - 50);
         iconoP.setSize(90, 90);
         iconoP.setPosition(WIDTH - iconoP.getWidth() - 5, 5);
 
@@ -142,6 +143,14 @@ public class GameScreen extends BaseScreen{
             public void clicked(InputEvent event, float x, float y) {
                 if (game.soundOn) pause.play(0.5f);
                 game.pause = true;
+            }
+        });
+
+        jabali.addCaptureListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                if (game.soundOn) die.play(0.5f);
+                game.screens.set(game.screens.newGameOver());
             }
         });
 

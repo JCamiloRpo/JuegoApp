@@ -20,6 +20,12 @@ com/upb/runrocks/Screen/MenuScreen.java
  com.upb.runrocks.Screen.MenuScreen$3
 com/upb/runrocks/Screen/ScreenManager.java
  com.upb.runrocks.Screen.ScreenManager
+com/upb/runrocks/Screen/GameOverScreen.java
+ com.upb.runrocks.Screen.GameOverScreen
+ com.upb.runrocks.Screen.GameOverScreen$1
+ com.upb.runrocks.Screen.GameOverScreen$2
+ com.upb.runrocks.Screen.GameOverScreen$3
+ com.upb.runrocks.Screen.GameOverScreen$4
 com/upb/runrocks/Screen/GameScreen.java
  com.upb.runrocks.Screen.GameScreen
  com.upb.runrocks.Screen.GameScreen$1
@@ -27,3 +33,4 @@ com/upb/runrocks/Screen/GameScreen.java
  com.upb.runrocks.Screen.GameScreen$3
  com.upb.runrocks.Screen.GameScreen$4
  com.upb.runrocks.Screen.GameScreen$5
+ com.upb.runrocks.Screen.GameScreen$6

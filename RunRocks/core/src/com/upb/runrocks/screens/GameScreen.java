@@ -31,7 +31,7 @@ import static com.upb.runrocks.RunRocks.WIDTH;
 
 public class GameScreen extends BaseScreen{
 
-    private float camX = 0;
+    private static float camX;
     private Image lifes[], coins, btnPause;
     private Skin skin;
     private Label nroCoins;
@@ -47,12 +47,11 @@ public class GameScreen extends BaseScreen{
     private List<FloorActor> floors = new ArrayList<>();
     private List<RockActor> rocks = new ArrayList<>();
 
-    public GameScreen(RunRocks game) { super(game); }
-
-    @Override
-    public void show() {
+    public GameScreen(RunRocks game) {
+        super(game);
         stage.clear();
         stageP = new Stage(new StretchViewport(WIDTH, HEIGHT, game.cam));
+        camX = 0;
 
         pause = game.assets.get("audio/pause.ogg");
         //Inicializar elementos
@@ -89,6 +88,27 @@ public class GameScreen extends BaseScreen{
         stageP.addActor(btnSettingP);
         stageP.addActor(btnCloseP);
         stageP.addActor(iconoP);
+    }
+
+    @Override
+    public void show() {
+        //camX = stage.getCamera().position.x - (stage.getCamera().viewportWidth/2);
+        System.out.println(camX);
+        /*
+        if (player != null) player.rePos(camX + 50);
+        if (!floors.isEmpty()) {
+            for (int i=0; i < 4;i++)
+                floors.get(i).rePos(camX + (i * floors.get(i).getWidth()));
+        }
+        if (!rocks.isEmpty()){
+            for (int i=0; i < 6; i++)
+                rocks.get(i).rePos(camX + (i+1)*RockActor.GAP);
+        }
+        */
+        if (camX > 0){
+            stage.getCamera().translate(camX, 0, 0);
+        }
+        setComponents();
     }
 
     private void loadComponents() {
@@ -183,7 +203,7 @@ public class GameScreen extends BaseScreen{
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 if(game.soundOn) pause.play(0.5f);
-                game.screens.set(game.screens.newSetting());
+                game.screens.push(game.screens.newSetting());
             }
         });
 

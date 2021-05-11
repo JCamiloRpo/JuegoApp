@@ -142,7 +142,7 @@ public class SettingScreen extends BaseScreen {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 if(game.soundOn) game.clicked.play(0.5f);
-                if(game.pause) game.screens.set(game.screens.newGame());
+                if(game.pause) game.screens.pop(true);
                 else if (game.gameOver) game.screens.set(game.screens.newGameOver());
                 else game.screens.set(game.screens.newMenu());
             }

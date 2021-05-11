@@ -5,7 +5,7 @@ import java.util.Stack;
 
 public class ScreenManager {
 
-    private Stack<com.upb.runrocks.screens.BaseScreen> screens;
+    private Stack<BaseScreen> screens;
     private RunRocks game;
 
     public ScreenManager(RunRocks game){
@@ -13,15 +13,18 @@ public class ScreenManager {
         screens = new Stack<>();
     }
 
-    private void push(com.upb.runrocks.screens.BaseScreen screen){
+    public void push(BaseScreen screen){
         game.setScreen(screen);
         screens.push(screen);
     }
 
-    private void pop(){ screens.pop().dispose(); }
+    public void pop(boolean set){
+        screens.pop().dispose();
+        if(set) game.setScreen(screens.peek());
+    }
 
     public void set(BaseScreen screen){
-        if(!screens.empty()) pop();
+        if(!screens.empty()) pop(false);
         push(screen);
     }
 

@@ -21,7 +21,7 @@ public class RunRocks extends Game {
 
 	public Sound clicked;
 	public Music music;
-	public boolean musicOn = true, soundOn = true;
+	public boolean musicOn = true, soundOn = true, pause = false;
 	
 	@Override
 	public void create () {

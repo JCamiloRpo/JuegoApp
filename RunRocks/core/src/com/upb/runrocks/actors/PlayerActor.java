@@ -5,26 +5,20 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.physics.box2d.Body;
-import com.badlogic.gdx.physics.box2d.BodyDef;
-import com.badlogic.gdx.physics.box2d.Fixture;
-import com.badlogic.gdx.physics.box2d.PolygonShape;
-import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.utils.Array;
 import com.upb.runrocks.RunRocks;
 
-import static com.upb.runrocks.RunRocks.IMPULSE_JUMP;
-import static com.upb.runrocks.RunRocks.PIXEL_METERS;
 import static com.upb.runrocks.RunRocks.SPEED;
 
 public class PlayerActor extends Actor {
 
+    private static float GRAVITY = -15;
     public static String TAG = "PLAYER";
-    public static float W = 108 / PIXEL_METERS, H = 90 / PIXEL_METERS;
     private RunRocks game;
-    // Elementos de Scene2D - Animacion
+    // Animacion
     // Run
     private Animation<TextureRegion> run;
     private float timeFrame;
@@ -32,23 +26,21 @@ public class PlayerActor extends Actor {
     private Animation<TextureRegion> jump;
     // Die
     private Animation<TextureRegion> die;
+    // Scene2D
+    private Vector2 pos, speed;
+    private Rectangle bounds;
     private Sound sndJump, sndHit, sndDie, sndCoin;
-    // Elementos de Box2D
-    private World world;
-    private Body body;
-    private Fixture fix;
     // Variables del jugador
     private int coins, lifes = 3;
     private boolean alive = true, jumping = false, mustJump = false;
 
-    public PlayerActor(World world, TextureAtlas atlas, float x, float y, RunRocks game){
+    public PlayerActor(TextureAtlas atlas, float x, float y, RunRocks game){
         this.game = game;
         sndJump = game.assets.get("audio/jump.ogg");
         sndHit = game.assets.get("audio/hitvoice1.ogg");
         sndDie = game.assets.get("audio/gameover.ogg");
         sndCoin = game.assets.get("audio/coin.ogg");
 
-        this.world = world;
         Array<TextureAtlas.AtlasRegion> run = atlas.findRegions("run");
         this.run = new Animation<TextureRegion>(5f, run, Animation.PlayMode.LOOP);
         timeFrame = 0;
@@ -59,24 +51,17 @@ public class PlayerActor extends Actor {
         Array<TextureAtlas.AtlasRegion> die = atlas.findRegions("die");
         this.die = new Animation<TextureRegion>(5f, die, Animation.PlayMode.NORMAL);
 
+        pos = new Vector2(x, y);
+        speed = new Vector2(0, 0);
 
-        // Create the player body.
-        BodyDef def = new BodyDef();
-        def.position.set(x + (W/2),y + (H/2));
-        def.fixedRotation = true;
-        def.type = BodyDef.BodyType.DynamicBody;
-        body = world.createBody(def);
-
-        // Give it some shape.
-        PolygonShape box = new PolygonShape();
-        box.setAsBox(W/2 - 0.1f, H/2 - 0.1f);
-        fix = body.createFixture(box, 1);
-        fix.setUserData(TAG);
-
-        box.dispose();
-
-        setSize(W * PIXEL_METERS, H * PIXEL_METERS);
+        setPosition(pos.x, pos.y);
+        setSize(108, 90);
+        bounds = new Rectangle(x, y, getWidth(), getHeight());
     }
+
+    public Vector2 getPos() { return pos; }
+
+    public Rectangle getBounds() { return bounds; }
 
     public int getCoins() { return coins; }
 
@@ -101,8 +86,7 @@ public class PlayerActor extends Actor {
     @Override
     public void draw(Batch batch, float parentAlpha) {
         timeFrame += parentAlpha;
-        setPosition((body.getPosition().x - (W/2)) * PIXEL_METERS,
-                (body.getPosition().y - (H/2)) * PIXEL_METERS);
+        setPosition(pos.x, pos.y);
         if (jumping) batch.draw(jump.getKeyFrame(timeFrame), getX(), getY(), getWidth(), getHeight());
         else batch.draw(run.getKeyFrame(timeFrame), getX(), getY(), getWidth(), getHeight());
 
@@ -118,28 +102,32 @@ public class PlayerActor extends Actor {
         }
 
         if (jumping){
-            body.applyForceToCenter(0, -IMPULSE_JUMP * 1.15f, true);
+            speed.add(0, GRAVITY);
         }
 
         // Avanzar
         if (alive){
-            float velY = body.getLinearVelocity().y;
-            body.setLinearVelocity(SPEED, velY);
+            speed.scl(delta);
+            pos.add(SPEED*delta, speed.y);
         }
+
+        if (pos.y < 55){
+            pos.y=55;
+            jumping = false;
+        }
+        speed.scl(1/delta);
+        bounds.setPosition(pos.x, pos.y);
     }
 
     public void jump(){
         if(!jumping && alive) {
             if(game.soundOn) sndJump.play(0.5f);
             jumping = true;
-            Vector2 pos = body.getPosition();
-            body.applyLinearImpulse(0, IMPULSE_JUMP, pos.x, pos.y, true);
+            speed.y = 550;
         }
     }
 
     public void detach(){
-        body.destroyFixture(fix);
-        world.destroyBody(body);
         sndJump.dispose();
         sndHit.dispose();
         sndDie.dispose();

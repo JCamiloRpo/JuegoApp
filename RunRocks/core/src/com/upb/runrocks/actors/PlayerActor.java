@@ -69,6 +69,8 @@ public class PlayerActor extends Actor {
         lifes = new Texture[]{lifeOn, lifeOn, lifeOn};
     }
 
+    public int getNroCoins() { return nroCoins; }
+
     public boolean isAlive() { return alive; }
 
     public boolean isJumping() { return jumping; }
@@ -125,6 +127,7 @@ public class PlayerActor extends Actor {
     public boolean coin(Rectangle coin){
         if (coin.overlaps(bounds)){
             sndCoin.play(0.5f);
+            nroCoins ++;
             return true;
         }
         return false;

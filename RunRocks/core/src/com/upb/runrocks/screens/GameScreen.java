@@ -112,7 +112,7 @@ public class GameScreen extends BaseScreen{
         btnPause = new Image(game.assets.get("buttons/btn_pause.png", Texture.class));
 
         skin = new Skin(Gdx.files.internal("skin/app.json"));
-        nroCoins = new Label("012345", skin, "default");
+        nroCoins = new Label(player.getNroCoins()+"", skin, "default");
 
         // Componentes cuando esta en pausa
         bgP = new Image(game.assets.get("scene/bg_0.png", Texture.class));
@@ -127,7 +127,7 @@ public class GameScreen extends BaseScreen{
         btnCloseP = new Image(game.assets.get("buttons/btn_close.png", Texture.class));
         lifesP = new Image(game.assets.get("icons/heart.png", Texture.class));
         coinsP = new Image(game.assets.get("icons/coins.png", Texture.class));
-        nroCoinsP = new Label("012345", skin, "black");
+        nroCoinsP = new Label(player.getNroCoins()+"", skin, "black");
         iconoP = new Image(game.assets.get("icons/icono.png", Texture.class));
     }
 
@@ -239,8 +239,12 @@ public class GameScreen extends BaseScreen{
                         // Colisiones
                         if(r.rockOn && player.collision(r.getBoundsRock()))
                             r.rockOn = false;
-                        if(r.coinOn && player.coin(r.getBoundsCoin()))
+                        if(r.coinOn && player.coin(r.getBoundsCoin())){
                             r.coinOn = false;
+                            nroCoins.setText(player.getNroCoins()+"");
+                            nroCoinsP.setText(player.getNroCoins()+"");
+                        }
+
 
                         // Reposiconar rocas
                         if (camX > r.getX() + r.getWidth())

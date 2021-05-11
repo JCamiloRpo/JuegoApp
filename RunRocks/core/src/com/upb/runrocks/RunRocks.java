@@ -5,7 +5,7 @@ import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.upb.runrocks.screen.ScreenManager;
+import com.upb.runrocks.screens.ScreenManager;
 
 public class RunRocks extends Game {
 	// Constantes de vista

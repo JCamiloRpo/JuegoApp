@@ -1,4 +1,4 @@
-package com.upb.runrocks.screen;
+package com.upb.runrocks.screens;
 
 import com.upb.runrocks.RunRocks;
 
@@ -6,7 +6,7 @@ import java.util.Stack;
 
 public class ScreenManager {
 
-    private Stack<com.upb.runrocks.screen.BaseScreen> screens;
+    private Stack<com.upb.runrocks.screens.BaseScreen> screens;
     private RunRocks game;
 
     public ScreenManager(RunRocks game){
@@ -14,7 +14,7 @@ public class ScreenManager {
         screens = new Stack<>();
     }
 
-    private void push(com.upb.runrocks.screen.BaseScreen screen){
+    private void push(com.upb.runrocks.screens.BaseScreen screen){
         game.setScreen(screen);
         screens.push(screen);
     }
@@ -31,10 +31,10 @@ public class ScreenManager {
             screens.pop().dispose();
     }
 
-    public com.upb.runrocks.screen.SplashScreen newSplash(){ return new SplashScreen(game); }
+    public com.upb.runrocks.screens.SplashScreen newSplash(){ return new SplashScreen(game); }
     public MenuScreen newMenu(){ return new MenuScreen(game); }
     public SettingScreen newSetting(){ return new SettingScreen(game); }
-    public com.upb.runrocks.screen.InfoScreen newInfo(){ return new InfoScreen(game); }
-    public com.upb.runrocks.screen.GameScreen newGame(){ return new GameScreen(game); }
-    public com.upb.runrocks.screen.GameOverScreen newGameOver(){ return new GameOverScreen(game); }
+    public com.upb.runrocks.screens.InfoScreen newInfo(){ return new InfoScreen(game); }
+    public com.upb.runrocks.screens.GameScreen newGame(){ return new GameScreen(game); }
+    public com.upb.runrocks.screens.GameOverScreen newGameOver(){ return new GameOverScreen(game); }
 }

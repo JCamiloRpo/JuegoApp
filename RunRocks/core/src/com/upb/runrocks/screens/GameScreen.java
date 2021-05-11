@@ -1,4 +1,4 @@
-package com.upb.runrocks.screen;
+package com.upb.runrocks.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
@@ -15,10 +15,7 @@ import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.upb.runrocks.RunRocks;
 
-import static com.badlogic.gdx.scenes.scene2d.actions.Actions.alpha;
-import static com.badlogic.gdx.scenes.scene2d.actions.Actions.delay;
-import static com.badlogic.gdx.scenes.scene2d.actions.Actions.fadeIn;
-import static com.badlogic.gdx.scenes.scene2d.actions.Actions.sequence;
+import static com.badlogic.gdx.scenes.scene2d.actions.Actions.*;
 import static com.upb.runrocks.RunRocks.FONDOHEX;
 import static com.upb.runrocks.RunRocks.HEIGHT;
 import static com.upb.runrocks.RunRocks.WIDTH;

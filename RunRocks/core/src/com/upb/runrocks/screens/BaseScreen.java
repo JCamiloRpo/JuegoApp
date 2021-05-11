@@ -1,4 +1,4 @@
-package com.upb.runrocks.screen;
+package com.upb.runrocks.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;

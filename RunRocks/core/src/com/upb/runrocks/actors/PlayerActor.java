@@ -17,6 +17,7 @@ public class PlayerActor extends Actor {
 
     private static float GRAVITY = -15;
     public static String TAG = "PLAYER";
+    public static float W = 108, H = 90;
     private RunRocks game;
     // Animacion
     // Run
@@ -55,31 +56,15 @@ public class PlayerActor extends Actor {
         speed = new Vector2(0, 0);
 
         setPosition(pos.x, pos.y);
-        setSize(108, 90);
+        setSize(W, H);
         bounds = new Rectangle(x, y, getWidth(), getHeight());
     }
 
-    public Vector2 getPos() { return pos; }
-
-    public Rectangle getBounds() { return bounds; }
-
-    public int getCoins() { return coins; }
-
-    public void setCoins(int coins) { this.coins = coins; }
-
-    public int getLifes() { return lifes; }
-
-    public void setLifes(int lifes) { this.lifes = lifes; }
-
     public boolean isAlive() { return alive; }
-
-    public void setAlive(boolean alive) { this.alive = alive; }
 
     public boolean isJumping() { return jumping; }
 
     public void setJumping(boolean jumping) { this.jumping = jumping; }
-
-    public boolean isMustJump() { return mustJump; }
 
     public void setMustJump(boolean mustJump) { this.mustJump = mustJump; }
 

@@ -1,10 +1,14 @@
 package com.upb.runrocks.actors;
 
 import com.badlogic.gdx.audio.Sound;
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -57,7 +61,7 @@ public class PlayerActor extends Actor {
 
         setPosition(pos.x, pos.y);
         setSize(W, H);
-        bounds = new Rectangle(x, y, getWidth(), getHeight());
+        bounds = new Rectangle(x + 5 , y, getWidth() - 5, getHeight() - 10);
     }
 
     public boolean isAlive() { return alive; }
@@ -112,6 +116,13 @@ public class PlayerActor extends Actor {
         }
     }
 
+    public boolean coin(Rectangle coin){
+        if (coin.overlaps(bounds)){
+            sndCoin.play(0.5f);
+            return true;
+        }
+        return false;
+    }
     public void detach(){
         sndJump.dispose();
         sndHit.dispose();

@@ -235,10 +235,16 @@ public class GameScreen extends BaseScreen{
                     for (FloorActor f : floors)
                         if (camX > f.getX() + f.getWidth())
                             f.rePos(f.getX() + ((floors.size()-1) * f.getWidth()));
-                    // Reposiconar rocas
-                    for (RockActor r : rocks)
+
+                    for (RockActor r : rocks) {
+                        // Colisiones
+                        if(r.coinOn && player.coin(r.getBoundsCoin()))
+                            r.coinOn = false;
+
+                        // Reposiconar rocas
                         if (camX > r.getX() + r.getWidth())
                             r.rePos(r.getX() + (rocks.size() * RockActor.GAP));
+                    }
                 }
 
                 if(Gdx.input.justTouched() && !player.isJumping()) {
@@ -262,35 +268,12 @@ public class GameScreen extends BaseScreen{
         for (FloorActor f : floors) f.detach();
         floors.clear();
 
+        for (RockActor r : rocks) r.detach();
+        rocks.clear();
+
         stage.getCamera().translate(0, 0, 0);
         stage.getCamera().update();
 
         System.out.println("DISPOSE GAME");
-    }
-
-    private class GameContactListener implements ContactListener {
-        private boolean areCollided(Contact c, Object A, Object B){
-            return (c.getFixtureA().getUserData().equals(A) && c.getFixtureB().getUserData().equals(B)) ||
-                    (c.getFixtureA().getUserData().equals(B) && c.getFixtureB().getUserData().equals(B));
-        }
-
-        @Override
-        public void beginContact(Contact contact) {
-            if (areCollided(contact, PlayerActor.TAG, FloorActor.TAG)) {
-                player.setJumping(false);
-                if (Gdx.input.isTouched() && player.isAlive()) {
-                    player.setMustJump(true);
-                }
-            }
-        }
-
-        @Override
-        public void endContact(Contact contact) {  }
-
-        @Override
-        public void preSolve(Contact contact, Manifold oldManifold) { }
-
-        @Override
-        public void postSolve(Contact contact, ContactImpulse impulse) { }
     }
 }

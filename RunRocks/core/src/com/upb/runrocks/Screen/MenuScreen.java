@@ -99,7 +99,7 @@ public class MenuScreen extends BaseScreen {
                     game.clicked.play(0.5f);
                     start.play(0.5f);
                 }
-                game.screens.set(game.screens.newMenu());
+                game.screens.set(game.screens.newGame());
             }
         });
     }

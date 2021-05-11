@@ -36,5 +36,5 @@ public class ScreenManager {
     public MenuScreen newMenu(){ return new MenuScreen(game); }
     public SettingScreen newSetting(){ return new SettingScreen(game); }
     public InfoScreen newInfo(){ return new InfoScreen(game); }
-
+    public GameScreen newGame(){ return new GameScreen(game); }
 }

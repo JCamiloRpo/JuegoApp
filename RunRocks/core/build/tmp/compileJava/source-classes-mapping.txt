@@ -20,3 +20,5 @@ com/upb/runrocks/Screen/MenuScreen.java
  com.upb.runrocks.Screen.MenuScreen$3
 com/upb/runrocks/Screen/ScreenManager.java
  com.upb.runrocks.Screen.ScreenManager
+com/upb/runrocks/Screen/GameScreen.java
+ com.upb.runrocks.Screen.GameScreen

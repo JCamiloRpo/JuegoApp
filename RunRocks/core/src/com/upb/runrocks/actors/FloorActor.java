@@ -39,7 +39,5 @@ public class FloorActor extends Actor {
     }
 
     public void detach(){
-        bg.dispose();
-        if (floor != null) floor.dispose();
     }
 }

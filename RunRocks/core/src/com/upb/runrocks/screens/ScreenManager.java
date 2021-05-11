@@ -1,7 +1,6 @@
 package com.upb.runrocks.screens;
 
 import com.upb.runrocks.RunRocks;
-
 import java.util.Stack;
 
 public class ScreenManager {
@@ -31,10 +30,10 @@ public class ScreenManager {
             screens.pop().dispose();
     }
 
-    public com.upb.runrocks.screens.SplashScreen newSplash(){ return new SplashScreen(game); }
+    public SplashScreen newSplash(){ return new SplashScreen(game); }
     public MenuScreen newMenu(){ return new MenuScreen(game); }
     public SettingScreen newSetting(){ return new SettingScreen(game); }
-    public com.upb.runrocks.screens.InfoScreen newInfo(){ return new InfoScreen(game); }
-    public com.upb.runrocks.screens.GameScreen newGame(){ return new GameScreen(game); }
-    public com.upb.runrocks.screens.GameOverScreen newGameOver(){ return new GameOverScreen(game); }
+    public InfoScreen newInfo(){ return new InfoScreen(game); }
+    public GameScreen newGame(){ return new GameScreen(game); }
+    public GameOverScreen newGameOver(){ return new GameOverScreen(game); }
 }

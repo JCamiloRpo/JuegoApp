@@ -9,7 +9,6 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.utils.Array;
 import com.upb.runrocks.RunRocks;
 
@@ -63,7 +62,7 @@ public class PlayerActor extends Actor {
 
         setPosition(pos.x, pos.y);
         setSize(W, H);
-        bounds = new Rectangle(x + 5 , y, getWidth() - 5, getHeight() - 10);
+        bounds = new Rectangle(x + 5 , y, getWidth() - 5, getHeight() - 12);
 
         this.lifeOn = lifeOn;
         this.lifeOff = lifeOff;
@@ -129,7 +128,7 @@ public class PlayerActor extends Actor {
 
     public boolean coin(Rectangle coin){
         if (coin.overlaps(bounds)){
-            sndCoin.play(0.5f);
+            if(game.soundOn) sndCoin.play(0.5f);
             nroCoins ++;
             return true;
         }
@@ -138,9 +137,10 @@ public class PlayerActor extends Actor {
 
     public boolean collision(Rectangle rock){
         if(rock.overlaps(bounds)){
-            sndHit.play(0.5f);
+            if(game.soundOn) sndHit.play(0.5f);
             nroLifes--;
             if(nroLifes < 0){
+                if(game.soundOn) sndDie.play(0.5f);
                 alive = false;
                 jumping = false;
                 return true;
@@ -152,9 +152,5 @@ public class PlayerActor extends Actor {
     }
 
     public void detach(){
-        sndJump.dispose();
-        sndHit.dispose();
-        sndDie.dispose();
-        sndCoin.dispose();
     }
 }

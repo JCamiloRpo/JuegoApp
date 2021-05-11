@@ -58,7 +58,8 @@ public class MenuScreen extends BaseScreen {
     }
 
     private void setComponents() {
-        bg.setSize(stage.getWidth(), stage.getHeight());
+        bg.setSize(WIDTH, HEIGHT);
+
         jabali.setPosition(10, 60);
         dialog.setPosition((WIDTH - dialog.getWidth()) / 2, (HEIGHT - dialog.getHeight()) / 2);
         title.setPosition((WIDTH - title.getWidth()) / 2, HEIGHT - dialog.getY() - 30);

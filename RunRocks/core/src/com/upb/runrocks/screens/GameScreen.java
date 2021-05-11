@@ -4,20 +4,10 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.math.Vector3;
-import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
-import com.badlogic.gdx.physics.box2d.Contact;
-import com.badlogic.gdx.physics.box2d.ContactImpulse;
-import com.badlogic.gdx.physics.box2d.ContactListener;
-import com.badlogic.gdx.physics.box2d.Manifold;
-import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
@@ -235,11 +225,11 @@ public class GameScreen extends BaseScreen{
         }
         else {
             Gdx.input.setInputProcessor(stage);
+            stage.act(delta);
 
             if (player.isAlive()){
                 if (player.getX() > 50) {
                     stage.getCamera().translate(SPEED * delta, 0, 0);
-                    stage.getCamera().update();
 
                     camX = stage.getCamera().position.x - (stage.getCamera().viewportWidth/2);
                     setComponents();
@@ -275,8 +265,17 @@ public class GameScreen extends BaseScreen{
                     player.setMustJump(true);
                 }
             }
+            else {
 
-            stage.act(delta);
+                Runnable trans = new Runnable() {
+                    @Override
+                    public void run() {
+                        game.nroCoins = player.getNroCoins();
+                        game.screens.set(game.screens.newGameOver());
+                    }
+                };
+                player.addAction(sequence(delay(3f), run(trans)));
+            }
         }
     }
 
@@ -291,9 +290,8 @@ public class GameScreen extends BaseScreen{
         for (RockActor r : rocks) r.detach();
         rocks.clear();
 
-        stage.getCamera().translate(0, 0, 0);
-        stage.getCamera().update();
-
+        stageP.dispose();
+        game.cam.translate(0, 0, 0);
         System.out.println("DISPOSE GAME");
     }
 }

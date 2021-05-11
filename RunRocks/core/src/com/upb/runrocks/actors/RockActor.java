@@ -2,7 +2,6 @@ package com.upb.runrocks.actors;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
-import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -28,7 +27,7 @@ public class RockActor extends Actor {
         setSize(W, H);
         setPosition(x, y);
         boundsRock = new Rectangle(x + 5, y, W - 10, H - 10);
-        boundsCoin = new Rectangle(x + 5, y + SPACE, coin.getWidth() - 10, coin.getHeight() - 10);
+        boundsCoin = new Rectangle(x + 5, y + SPACE, coin.getWidth() - 10, coin.getHeight() - 12);
     }
 
     public Rectangle getBoundsRock() { return boundsRock; }
@@ -55,8 +54,6 @@ public class RockActor extends Actor {
     }
 
     public void detach(){
-        rock.dispose();
-        coin.dispose();
     }
 
 }

@@ -144,6 +144,7 @@ public class SplashScreen extends BaseScreen {
             game.clicked = game.assets.get("audio/click.ogg");
             game.music = game.assets.get("audio/music.mp3");
             game.music.setVolume(0.5f);
+            game.music.setLooping(true);
             if(game.musicOn) game.music.play();
 
             game.screens.set(game.screens.newMenu());

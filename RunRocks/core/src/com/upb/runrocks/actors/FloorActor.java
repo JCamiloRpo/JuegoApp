@@ -25,6 +25,8 @@ public class FloorActor extends Actor {
         setPosition(x, 0);
     }
 
+    public Texture getBg() { return bg; }
+
     @Override
     public void draw(Batch batch, float parentAlpha) {
         batch.draw(bg, getX(), getY(), W, HEIGHT);

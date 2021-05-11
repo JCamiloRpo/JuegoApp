@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.utils.Array;
 import com.upb.runrocks.RunRocks;
 
@@ -70,6 +71,8 @@ public class PlayerActor extends Actor {
     }
 
     public int getNroCoins() { return nroCoins; }
+
+    public int getNroLifes() { return nroLifes; }
 
     public boolean isAlive() { return alive; }
 

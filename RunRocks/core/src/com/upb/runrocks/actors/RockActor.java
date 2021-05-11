@@ -35,6 +35,10 @@ public class RockActor extends Actor {
 
     public Rectangle getBoundsCoin() { return boundsCoin; }
 
+    public Texture getRock() { return rock; }
+
+    public Texture getCoin() { return coin; }
+
     @Override
     public void draw(Batch batch, float parentAlpha) {
         batch.draw(rock, getX(), getY(), W, H);

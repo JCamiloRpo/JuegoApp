@@ -40,6 +40,7 @@ import static com.upb.runrocks.RunRocks.WIDTH;
 
 public class GameScreen extends BaseScreen{
 
+    private float camX = 0;
     private Image lifes, coins, rock, coin, btnPause;
     private Skin skin;
     private Label nroCoins;
@@ -66,7 +67,7 @@ public class GameScreen extends BaseScreen{
         //Inicializar elementos
         loadComponents();
         //Posicionar elementos
-        setComponents(0);
+        setComponents();
         //Añadir acciones
         addActions();
         //Agregar al stage
@@ -103,7 +104,7 @@ public class GameScreen extends BaseScreen{
         world.setContactListener(new GameContactListener());
 
         player = new PlayerActor(world, game.assets.get("jabali/jabali.atlas", TextureAtlas.class), 0, 1.1f, game);
-        for (int i=1; i < 10;i++){
+        for (int i=1; i < 3;i++){
             floors.add(new FloorActor(world, game.assets.get("scene/bg_1.png", Texture.class),
                     game.assets.get("scene/floor_0.png", Texture.class),(i-1) * (FloorActor.W/PIXEL_METERS), 1.1f));
         }
@@ -134,7 +135,7 @@ public class GameScreen extends BaseScreen{
         iconoP = new Image(game.assets.get("icons/icono.png", Texture.class));
     }
 
-    private void setComponents(float camX) {
+    private void setComponents() {
         lifes.setPosition(camX + WIDTH - lifes.getWidth() - btnPause.getWidth() - 20, HEIGHT - btnPause.getHeight() - 5);
         coins.setPosition(camX + 10, HEIGHT - coins.getHeight() - 10);
         rock.setPosition(camX + 500, 60);
@@ -229,9 +230,11 @@ public class GameScreen extends BaseScreen{
             world.step(delta, 6, 2);
 
             if (player.getX() > 150 && player.isAlive()) {
+
                 stage.getCamera().translate(SPEED * delta * PIXEL_METERS, 0, 0);
                 stage.getCamera().update();
-                setComponents(stage.getCamera().position.x - (stage.getCamera().viewportWidth/2));
+                camX = stage.getCamera().position.x - (stage.getCamera().viewportWidth/2);
+                setComponents();
             }
 
             if(Gdx.input.justTouched() && player.isAlive() && !player.isJumping()) {
@@ -250,7 +253,10 @@ public class GameScreen extends BaseScreen{
         for (FloorActor f : floors) f.detach();
         floors.clear();
 
-        System.out.println("DISPOSE MENU");
+        stage.getCamera().translate(0, 0, 0);
+        stage.getCamera().update();
+
+        System.out.println("DISPOSE GAME");
     }
 
     private class GameContactListener implements ContactListener {

@@ -12,7 +12,8 @@ com.badlogic.gdx.scenes.scene2d.ui.Button$ButtonStyle: {
 	tertiary: { up: button3 }
 },
 com.badlogic.gdx.scenes.scene2d.ui.Label$LabelStyle: {
-	default: { font: montserrat, fontColor: black, }
+	default: { font: montserrat, fontColor: white, },
+	black: { font: montserrat, fontColor: black, }
 },
 com.badlogic.gdx.scenes.scene2d.ui.ProgressBar$ProgressBarStyle: {
 	default-horizontal: { background: progress-bar, knobAfter: progress-bar-knof, }

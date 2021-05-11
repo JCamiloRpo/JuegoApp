@@ -55,7 +55,6 @@ public class GameScreen extends BaseScreen{
 
     // Mundo
     private World world;
-    private Vector3 position;
 
     public GameScreen(RunRocks game) { super(game); }
 
@@ -67,7 +66,7 @@ public class GameScreen extends BaseScreen{
         //Inicializar elementos
         loadComponents();
         //Posicionar elementos
-        setComponents();
+        setComponents(0);
         //Añadir acciones
         addActions();
         //Agregar al stage
@@ -108,10 +107,6 @@ public class GameScreen extends BaseScreen{
             floors.add(new FloorActor(world, game.assets.get("scene/bg_1.png", Texture.class),
                     game.assets.get("scene/floor_0.png", Texture.class),(i-1) * (FloorActor.W/PIXEL_METERS), 1.1f));
         }
-        position = new Vector3(stage.getCamera().position);
-
-        stage.getCamera().position.set(position);
-        stage.getCamera().update();
 
         lifes = new Image(game.assets.get("icons/heart.png", Texture.class));
         coins = new Image(game.assets.get("icons/coins.png", Texture.class));
@@ -135,34 +130,34 @@ public class GameScreen extends BaseScreen{
         btnCloseP = new Image(game.assets.get("buttons/btn_close.png", Texture.class));
         lifesP = new Image(game.assets.get("icons/heart.png", Texture.class));
         coinsP = new Image(game.assets.get("icons/coins.png", Texture.class));
-        nroCoinsP = new Label("012345", skin, "default");
+        nroCoinsP = new Label("012345", skin, "black");
         iconoP = new Image(game.assets.get("icons/icono.png", Texture.class));
     }
 
-    private void setComponents() {
-        lifes.setPosition(WIDTH - lifes.getWidth() - btnPause.getWidth() - 20, HEIGHT - btnPause.getHeight() - 5);
-        coins.setPosition(10, HEIGHT - coins.getHeight() - 10);
-        rock.setPosition(500, 60);
-        coin.setPosition(500, rock.getY() + rock.getHeight() + 20);
-        btnPause.setPosition(WIDTH - btnPause.getWidth() - 10, HEIGHT - btnPause.getHeight() - 10);
-        nroCoins.setPosition(10 + coins.getX() + coins.getWidth(), HEIGHT - coins.getHeight() - 10);
+    private void setComponents(float camX) {
+        lifes.setPosition(camX + WIDTH - lifes.getWidth() - btnPause.getWidth() - 20, HEIGHT - btnPause.getHeight() - 5);
+        coins.setPosition(camX + 10, HEIGHT - coins.getHeight() - 10);
+        rock.setPosition(camX + 500, 60);
+        coin.setPosition(camX + 500, rock.getY() + rock.getHeight() + 20);
+        btnPause.setPosition(camX + WIDTH - btnPause.getWidth() - 10, HEIGHT - btnPause.getHeight() - 10);
+        nroCoins.setPosition(  10 + coins.getX() + coins.getWidth(), HEIGHT - coins.getHeight() - 10);
         // Pausa
-        bgP.setSize(stage.getWidth(), stage.getHeight());
-        jabaliP.setPosition(10, 60);
-        rockP.setPosition(500, 60);
-        coinP.setPosition(500, rockP.getY() + rockP.getHeight() + 20);
-        dialogP.setPosition((WIDTH - dialogP.getWidth()) / 2, (HEIGHT - dialogP.getHeight()) / 2);
-        titleP.setPosition((WIDTH - titleP.getWidth()) / 2, HEIGHT - dialogP.getY() - 30);
-        coinsP.setPosition(((WIDTH - coinsP.getWidth() - nroCoinsP.getWidth() + 10) / 2) - 5, titleP.getY() - 50);
-        nroCoinsP.setPosition(5 + coinsP.getWidth() + ((WIDTH - coinsP.getWidth() - nroCoinsP.getWidth() + 10) / 2), titleP.getY() - 50);
-        lifesP.setPosition((WIDTH - lifesP.getWidth()) / 2, coinsP.getY() - 50);
+        bgP.setSize(camX + stage.getWidth(), stage.getHeight());
+        jabaliP.setPosition(camX + 10, 60);
+        rockP.setPosition(camX + 500, 60);
+        coinP.setPosition(camX + 500, rockP.getY() + rockP.getHeight() + 20);
+        dialogP.setPosition(camX + (WIDTH - dialogP.getWidth()) / 2, (HEIGHT - dialogP.getHeight()) / 2);
+        titleP.setPosition(camX + (WIDTH - titleP.getWidth()) / 2, HEIGHT - dialogP.getY() - 30);
+        coinsP.setPosition(camX + ((WIDTH - coinsP.getWidth() - nroCoinsP.getWidth() + 10) / 2) - 5, titleP.getY() - 50);
+        nroCoinsP.setPosition(camX + 5 + coinsP.getWidth() + ((WIDTH - coinsP.getWidth() - nroCoinsP.getWidth() + 10) / 2), titleP.getY() - 50);
+        lifesP.setPosition(camX + (WIDTH - lifesP.getWidth()) / 2, coinsP.getY() - 50);
         iconoP.setSize(90, 90);
-        iconoP.setPosition(WIDTH - iconoP.getWidth() - 5, 5);
+        iconoP.setPosition(camX + WIDTH - iconoP.getWidth() - 5, 5);
 
-        btnLeaveP.setPosition(dialogP.getX() + 10, dialogP.getY() - 20);
-        btnSettingP.setPosition(dialogP.getX() + dialogP.getWidth() - btnSettingP.getWidth() - 10, dialogP.getY() - 20);
-        btnPlayP.setPosition((WIDTH - btnPlayP.getWidth()) / 2, dialogP.getY() - 40);
-        btnCloseP.setPosition(WIDTH - dialogP.getX() - 30,HEIGHT - dialogP.getY() - 30);
+        btnLeaveP.setPosition( dialogP.getX() + 10, dialogP.getY() - 20);
+        btnSettingP.setPosition( dialogP.getX() + dialogP.getWidth() - btnSettingP.getWidth() - 10, dialogP.getY() - 20);
+        btnPlayP.setPosition(camX + (WIDTH - btnPlayP.getWidth()) / 2, dialogP.getY() - 40);
+        btnCloseP.setPosition( dialogP.getX() + dialogP.getWidth() - 30,HEIGHT - dialogP.getY() - 30);
 
     }
 
@@ -235,6 +230,8 @@ public class GameScreen extends BaseScreen{
 
             if (player.getX() > 150 && player.isAlive()) {
                 stage.getCamera().translate(SPEED * delta * PIXEL_METERS, 0, 0);
+                stage.getCamera().update();
+                setComponents(stage.getCamera().position.x - (stage.getCamera().viewportWidth/2));
             }
 
             if(Gdx.input.justTouched() && player.isAlive() && !player.isJumping()) {

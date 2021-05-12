@@ -12,9 +12,7 @@ import com.badlogic.gdx.utils.ScreenUtils;
 import com.upb.runrocks.RunRocks;
 
 import static com.badlogic.gdx.scenes.scene2d.actions.Actions.*;
-import static com.upb.runrocks.RunRocks.FONDOHEX;
-import static com.upb.runrocks.RunRocks.HEIGHT;
-import static com.upb.runrocks.RunRocks.WIDTH;
+import static com.upb.runrocks.RunRocks.*;
 
 public class InfoScreen extends BaseScreen {
 
@@ -45,6 +43,9 @@ public class InfoScreen extends BaseScreen {
 
     }
 
+    /**
+     * Obtener componentes
+     */
     private void loadComponents() {
         bg = new Image(game.assets.get("scene/bg_0.png", Texture.class));
         dialog = new Image(game.assets.get("dialogs/acercade.png", Texture.class));
@@ -55,6 +56,9 @@ public class InfoScreen extends BaseScreen {
         btnClose = new Image(game.assets.get("buttons/btn_close.png", Texture.class));
     }
 
+    /**
+     * Configurar componentes: Tamaño y posicion
+     */
     private void setComponents() {
         bg.setSize(stage.getWidth(), stage.getHeight());
         dialog.setPosition((WIDTH - dialog.getWidth()) / 2, (HEIGHT - dialog.getHeight()) / 2);
@@ -66,6 +70,9 @@ public class InfoScreen extends BaseScreen {
         btnClose.setPosition(WIDTH - dialog.getX() - 30,HEIGHT - dialog.getY() - 30);
     }
 
+    /**
+     * Agregar acciones y animaciones
+     */
     private void addActions() {
         icono.addAction(alpha(0.4f));
         dialog.addAction(sequence(alpha(0f), fadeIn(0.5f, Interpolation.pow2) ));
@@ -100,7 +107,7 @@ public class InfoScreen extends BaseScreen {
     @Override
     public void dispose() {
         super.dispose();
-        System.out.println("DISPOSE INFO");
+        // System.out.println("DISPOSE INFO");
     }
 
 }

@@ -23,7 +23,7 @@ public class SettingScreen extends BaseScreen {
 
     @Override
     public void show() {
-        Gdx.input.setInputProcessor(stage);
+        Gdx.input.setInputProcessor(stage); // Capturar las entradas
         stage.clear();
 
         //Inicializar elementos
@@ -45,6 +45,9 @@ public class SettingScreen extends BaseScreen {
 
     }
 
+    /**
+     * Obtener los componentes del Asset
+     */
     private void loadComponents() {
         bg = new Image(game.assets.get("scene/bg_0.png", Texture.class));
         jabali = new Image(game.assets.get("jabali/die.png", Texture.class));
@@ -72,6 +75,9 @@ public class SettingScreen extends BaseScreen {
         }
     }
 
+    /**
+     * Configurar los componentes, tamaño y posicion
+     */
     private void setComponents() {
         bg.setSize(stage.getWidth(), stage.getHeight());
         jabali.setPosition(10, 55);
@@ -85,6 +91,9 @@ public class SettingScreen extends BaseScreen {
         btnClose.setPosition(WIDTH - dialog.getX() - 30,HEIGHT - dialog.getY() - 30);
     }
 
+    /**
+     * Agregar las acciones y animaciones
+     */
     private void addActions() {
         icono.addAction(alpha(0.4f));
         //jabali.addAction(sequence(alpha(0f), fadeIn(0.5f, Interpolation.pow2) ));
@@ -165,7 +174,7 @@ public class SettingScreen extends BaseScreen {
     @Override
     public void dispose() {
         super.dispose();
-        System.out.println("DISPOSE SETTINGS");
+        // System.out.println("DISPOSE SETTINGS");
     }
 
 }

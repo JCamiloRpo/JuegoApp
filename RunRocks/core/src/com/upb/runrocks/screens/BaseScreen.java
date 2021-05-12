@@ -7,10 +7,14 @@ import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.upb.runrocks.RunRocks;
 import static com.upb.runrocks.RunRocks.*;
 
+/**
+ * Case base para los Screen, para no tener que implementar todos los metodos
+ * sino que solo los necesarios para la respectiva clase
+ */
 public abstract  class BaseScreen implements Screen {
 
-    protected RunRocks game; // Para tener acceso al manager
-    protected Stage stage; // Para dibujar en los screen
+    protected RunRocks game;    // Para tener acceso al manager
+    protected Stage stage;      // Para dibujar en los screen
 
     public BaseScreen(RunRocks game){
         this.game = game;
@@ -18,36 +22,23 @@ public abstract  class BaseScreen implements Screen {
     }
 
     @Override
-    public void show() {
-
-    }
+    public void show() { }
 
     @Override
-    public void render(float delta) {
-
-    }
+    public void render(float delta) { }
 
     @Override
     public void resize(int width, int height) { stage.getViewport().update(width, height, false); }
 
     @Override
-    public void pause() {
-
-    }
+    public void pause() { }
 
     @Override
-    public void resume() {
-
-    }
+    public void resume() { }
 
     @Override
-    public void hide() {
-        Gdx.input.setInputProcessor(null);
-    }
+    public void hide() { Gdx.input.setInputProcessor(null); }
 
     @Override
-    public void dispose() {
-        System.out.println("DISPOSE BS");
-        if (stage != null) stage.dispose();
-    }
+    public void dispose() { if (stage != null) stage.dispose(); }
 }

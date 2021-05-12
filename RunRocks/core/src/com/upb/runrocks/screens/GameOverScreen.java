@@ -62,9 +62,10 @@ public class GameOverScreen extends BaseScreen {
 
     }
 
+    /**
+     * Obtener componentes
+     */
     private void loadComponents() {
-        skin = new Skin(Gdx.files.internal("skin/app.json"));
-
         bg = new Image(game.assets.get("scene/bg_0.png", Texture.class));
         jabali = new Image(game.assets.get("jabali/die.png", Texture.class));
         coin = new Image(game.assets.get("icons/coin.png", Texture.class));
@@ -79,10 +80,15 @@ public class GameOverScreen extends BaseScreen {
                 new Image(game.assets.get("icons/heart_off.png", Texture.class)),
                 new Image(game.assets.get("icons/heart_off.png", Texture.class))};
         coins = new Image(game.assets.get("icons/coins.png", Texture.class));
-        nroCoins = new Label(game.nroCoins + "", skin, "black");
         icono = new Image(game.assets.get("icons/icono.png", Texture.class));
+
+        skin = new Skin(Gdx.files.internal("skin/app.json"));               // Para elementos personalidos
+        nroCoins = new Label(game.nroCoins + "", skin, "black");   // Escribir en un label
     }
 
+    /**
+     * Configurar componentes: tamaño y posicion
+     */
     private void setComponents() {
         bg.setSize(stage.getWidth(), stage.getHeight());
         jabali.setPosition(10, 60);
@@ -105,6 +111,9 @@ public class GameOverScreen extends BaseScreen {
 
     }
 
+    /**
+     * Agregar acciones y animaciones
+     */
     private void addActions() {
         icono.addAction(alpha(0.4f));
         dialog.addAction(sequence(alpha(0f), fadeIn(0.5f, Interpolation.pow2) ));
@@ -171,7 +180,7 @@ public class GameOverScreen extends BaseScreen {
     @Override
     public void dispose() {
         super.dispose();
-        System.out.println("DISPOSE MENU");
+        // System.out.println("DISPOSE GAMEOVER");
     }
 
 }

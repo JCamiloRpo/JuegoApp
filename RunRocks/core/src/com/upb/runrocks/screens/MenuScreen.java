@@ -1,7 +1,6 @@
 package com.upb.runrocks.screens;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
@@ -45,6 +44,9 @@ public class MenuScreen extends BaseScreen {
 
     }
 
+    /**
+     * Obtener los componentes
+     */
     private void loadComponents() {
         bg = new Image(game.assets.get("scene/bg_0.png", Texture.class));
         jabali = new Image(game.assets.get("jabali/still.png", Texture.class));
@@ -56,6 +58,9 @@ public class MenuScreen extends BaseScreen {
         btnSetting = new Image(game.assets.get("buttons/btn_setting.png", Texture.class));
     }
 
+    /**
+     * Configurar los componentes: tamaño y posicion
+     */
     private void setComponents() {
         bg.setSize(WIDTH, HEIGHT);
 
@@ -69,6 +74,9 @@ public class MenuScreen extends BaseScreen {
         btnPlay.setPosition((WIDTH - btnPlay.getWidth()) / 2, (HEIGHT - btnPlay.getHeight()) / 2);
     }
 
+    /**
+     * Agregar acciones y animaciones
+     */
     private void addActions() {
         icono.addAction(alpha(0.4f));
         //jabali.addAction(sequence(alpha(0f), fadeIn(0.5f, Interpolation.pow2)));
@@ -122,7 +130,7 @@ public class MenuScreen extends BaseScreen {
     @Override
     public void dispose() {
         super.dispose();
-        System.out.println("DISPOSE MENU");
+        //System.out.println("DISPOSE MENU");
     }
 
 }

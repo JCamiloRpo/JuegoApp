@@ -5,7 +5,6 @@ import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
@@ -24,10 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.badlogic.gdx.scenes.scene2d.actions.Actions.*;
-import static com.upb.runrocks.RunRocks.FONDOHEX;
-import static com.upb.runrocks.RunRocks.HEIGHT;
-import static com.upb.runrocks.RunRocks.SPEED;
-import static com.upb.runrocks.RunRocks.WIDTH;
+import static com.upb.runrocks.RunRocks.*;
 
 public class GameScreen extends BaseScreen{
 
@@ -92,24 +88,27 @@ public class GameScreen extends BaseScreen{
 
     @Override
     public void show() {
+        // Actualizar la camara cuando se estaba en partida
         if (camX > 0){
             stage.getCamera().translate(camX, 0, 0);
         }
         setComponents();
     }
 
+    /**
+     * Obtener componentes
+     */
     private void loadComponents() {
         actors = new ActorManager(game);
-        player = actors.createPlayer(10);
+        player = actors.createPlayer(10);               // Crear un jugador
 
-        floors.add(actors.createFloor(0, -1));
+        floors.add(actors.createFloor(0, -1));     // Crear el escenario inicial (-1)
         for (int i=0; i < 3;i++){
-            floors.add(actors.createFloor(i+1, i));
+            floors.add(actors.createFloor(i+1, i));     // Crear los escenarios 0,1,2
         }
         for (int i=0; i < 6; i++){
-            rocks.add(actors.createRock(i, i));
+            rocks.add(actors.createRock(i, i));            // Crear las rocas 0,1,2,3,4,5
         }
-
 
         lifeOff = new Image(game.assets.get("icons/heart_off.png", Texture.class));
         lifes = new Image[]{ new Image(game.assets.get("icons/heart.png", Texture.class)),
@@ -118,8 +117,8 @@ public class GameScreen extends BaseScreen{
         coins = new Image(game.assets.get("icons/coins.png", Texture.class));
         btnPause = new Image(game.assets.get("buttons/btn_pause.png", Texture.class));
 
-        skin = new Skin(Gdx.files.internal("skin/app.json"));
-        nroCoins = new Label(player.getNroCoins()+"", skin, "default");
+        skin = new Skin(Gdx.files.internal("skin/app.json"));                    // Elementos personalizados
+        nroCoins = new Label(player.getNroCoins()+"", skin, "default"); // Escribir en un label
 
         // Componentes cuando esta en pausa
         bgP = new Image(floors.get(0).getBg());
@@ -142,6 +141,9 @@ public class GameScreen extends BaseScreen{
         iconoP = new Image(game.assets.get("icons/icono.png", Texture.class));
     }
 
+    /**
+     * Configurar componetes: Tamaño y posicion
+     */
     private void setComponents() {
         btnPause.setPosition(camX + WIDTH - btnPause.getWidth() - 10, HEIGHT - btnPause.getHeight() - 10);
         lifes[0].setPosition(btnPause.getX() - lifes[0].getWidth() - 20, HEIGHT - 55);
@@ -154,8 +156,12 @@ public class GameScreen extends BaseScreen{
         setUpPause();
     }
 
+    /**
+     * Agregar las acciones y animaciones
+     */
     private void addActions() {
         iconoP.addAction(alpha(0.4f));
+        btnPause.addAction(alpha(0.7f));
         btnPause.addCaptureListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -163,7 +169,7 @@ public class GameScreen extends BaseScreen{
                 if (!game.gameOver) game.pause = true;
             }
         });
-
+        // botones del menu de pausa
         btnCloseP.addCaptureListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -196,6 +202,9 @@ public class GameScreen extends BaseScreen{
 
     }
 
+    /**
+     * Posicion de los elementos del menu de pausa
+     */
     private void setUpPause(){
         // Pausa
         bgP.setSize(stage.getWidth(), stage.getHeight());
@@ -229,12 +238,8 @@ public class GameScreen extends BaseScreen{
         // Actualizar
         update(delta);
         // Dibujar
-        if(game.pause){
-            stageP.draw();
-        }
-        else {
-            stage.draw();
-        }
+        if(game.pause) stageP.draw();
+        else stage.draw();
     }
 
     public void update(float delta) {
@@ -245,22 +250,26 @@ public class GameScreen extends BaseScreen{
         else {
             Gdx.input.setInputProcessor(stage);
             if (player.isAlive()){
+                // Mover la camara
                 if (player.getX() > 50) {
-                    stage.getCamera().translate(SPEED * delta, 0, 0);
+                    stage.getCamera().translate(player.SPEED * delta, 0, 0);
                     camX = stage.getCamera().position.x - (stage.getCamera().viewportWidth/2);
                 }
-                setComponents();
-                setFloors();
-                setRocks();
-                handleInputs();
+                setComponents();    // Actualizar posicion de los componentes
+                setFloors();        // Actualizar el piso
+                setRocks();         // Actualizar las rocas y detectar colisiones
+                handleInputs();     // Controlar las entradas
             }
             else {
-                gameOver();
+                gameOver();         // Cambiar de pantalla al perder
             }
             stage.act(delta);
         }
     }
 
+    /**
+     * Actualizar el piso
+     */
     private void setFloors(){
         // Reposicion pisos
         for (FloorActor f : floors)
@@ -268,6 +277,9 @@ public class GameScreen extends BaseScreen{
                 f.rePos(f.getX() + (floors.size() * f.getWidth()));
     }
 
+    /**
+     * Actualizar las rocas y detectar colisiones
+     */
     private void setRocks(){
         for (RockActor r : rocks) {
             // Colisiones
@@ -290,20 +302,27 @@ public class GameScreen extends BaseScreen{
         }
     }
 
+    /**
+     * Controlar las entradas
+     */
     private void handleInputs(){
+        // Cuando se preciona una vez
         if(Gdx.input.justTouched() && !player.isJumping()) {
             int x = Gdx.input.getX(), y = Gdx.input.getY();
-            if (x < 580 && y > 60)
+            if (x < 580 && y > 60)  // Validar que no haya sido en el boton de pausa
                 player.jump();
         }
-
+        // Si se mantiene precionado
         if (Gdx.input.isTouched()) {
             int x = Gdx.input.getX(), y = Gdx.input.getY();
-            if (x < 580 && y > 60)
+            if (x < 580 && y > 60)  // Validar que no haya sido en el boton de pausa
                 player.setMustJump(true);
         }
     }
 
+    /**
+     * Cambiar de pantalla al perder
+     */
     private void gameOver(){
         game.gameOver = true;
         Runnable trans = new Runnable() {
@@ -319,16 +338,16 @@ public class GameScreen extends BaseScreen{
     @Override
     public void dispose() {
         super.dispose();
-        player.detach();
+        //player.detach();
 
-        for (FloorActor f : floors) f.detach();
+        //for (FloorActor f : floors) f.detach();
         floors.clear();
 
-        for (RockActor r : rocks) r.detach();
+        //for (RockActor r : rocks) r.detach();
         rocks.clear();
 
         stageP.dispose();
         game.cam.translate(0, 0, 0);
-        System.out.println("DISPOSE GAME");
+        //System.out.println("DISPOSE GAME");
     }
 }

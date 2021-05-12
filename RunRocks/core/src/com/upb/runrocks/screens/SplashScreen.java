@@ -27,10 +27,13 @@ public class SplashScreen extends BaseScreen {
 
     @Override
     public void show() {
-        Gdx.input.setInputProcessor(stage);
+        Gdx.input.setInputProcessor(stage); // Capturar las entradas
         stage.clear();
 
-        logo = new Image(new Texture("icons/runrocks.png"));
+        logo = new Image(new Texture("icons/runrocks.png"));                    // Obtener el logo
+        bgProgress = new Image(new Texture("buttons/progress-bar-empty.png"));  // Obtener el fondo de la barra de progreso
+        clProgress = new Image(new Texture("buttons/progress-bar-knof.png"));   // Obtener en relleno de la barra de progreso
+        // Configurar logo
         logo.setSize(220, 220);
         logo.setPosition((WIDTH - logo.getWidth()) / 2, HEIGHT );
         logo.addAction( sequence(
@@ -38,20 +41,23 @@ public class SplashScreen extends BaseScreen {
                         moveTo((WIDTH - logo.getWidth()) / 2, ((HEIGHT - logo.getHeight()) / 2) + 40, 2f, Interpolation.swing) ,
                         fadeIn(2f, Interpolation.pow2), scaleTo(1f, 1f, 2f, Interpolation.pow2))
         ));
-        stage.addActor(logo);
-
-        bgProgress = new Image(new Texture("buttons/progress-bar-empty.png"));
+        // Configurar barra
         bgProgress.setPosition((WIDTH - bgProgress.getWidth()) / 2, 30 );
-        stage.addActor(bgProgress);
-        clProgress = new Image(new Texture("buttons/progress-bar-knof.png"));
+        // Configurar relleno
         clProgress.setSize(0,clProgress.getHeight());
-        clProgress.setPosition(bgProgress.getX()+5, 35 );
+        clProgress.setPosition(bgProgress.getX()+5, 34 );
+        // Agregar al stage
+        stage.addActor(logo);
+        stage.addActor(bgProgress);
         stage.addActor(clProgress);
 
         progress = 0;
         queuAssets();
     }
 
+    /**
+     * Metodo para cargar todos los elementos necesarios
+     */
     private void queuAssets() {
         // Cargar audios
         game.assets.load("audio/music.mp3", Music.class);
@@ -63,7 +69,6 @@ public class SplashScreen extends BaseScreen {
         game.assets.load("audio/start.mp3", Sound.class);
         game.assets.load("audio/end.mp3", Sound.class);
         // Cargar buttons
-        game.assets.load("buttons/btn_check.png", Texture.class);
         game.assets.load("buttons/btn_close.png", Texture.class);
         game.assets.load("buttons/btn_info.png", Texture.class);
         game.assets.load("buttons/btn_leave.png", Texture.class);
@@ -97,15 +102,6 @@ public class SplashScreen extends BaseScreen {
         game.assets.load("scene/floor_0.png", Texture.class);
         game.assets.load("scene/floor_1.png", Texture.class);
         game.assets.load("scene/floor_2.png", Texture.class);
-        game.assets.load("scene/planet_0.png", Texture.class);
-        game.assets.load("scene/planet_1.png", Texture.class);
-        game.assets.load("scene/planet_2.png", Texture.class);
-        game.assets.load("scene/planet_3.png", Texture.class);
-        game.assets.load("scene/planet_4.png", Texture.class);
-        game.assets.load("scene/planet_5.png", Texture.class);
-        game.assets.load("scene/planet_6.png", Texture.class);
-        game.assets.load("scene/planet_7.png", Texture.class);
-        game.assets.load("scene/planet_8.png", Texture.class);
         game.assets.load("scene/rock_0.png", Texture.class);
         game.assets.load("scene/rock_1.png", Texture.class);
         game.assets.load("scene/rock_2.png", Texture.class);
@@ -120,7 +116,6 @@ public class SplashScreen extends BaseScreen {
         game.assets.load("texts/opciones.png", Texture.class);
         game.assets.load("texts/pausa.png", Texture.class);
         game.assets.load("texts/runrocks.png", Texture.class);
-
     }
 
     @Override
@@ -132,7 +127,6 @@ public class SplashScreen extends BaseScreen {
         update(delta);
         // Dibujar
         stage.draw();
-
     }
 
     private void update(float delta) {
@@ -143,7 +137,7 @@ public class SplashScreen extends BaseScreen {
         if (game.assets.update() && progress >= game.assets.getProgress() - 0.001f){
             game.clicked = game.assets.get("audio/click.ogg");
             game.music = game.assets.get("audio/music.mp3");
-            game.music.setVolume(0.4f);
+            game.music.setVolume(VOLM);
             game.music.setLooping(true);
             if(game.musicOn) game.music.play();
 
@@ -156,7 +150,7 @@ public class SplashScreen extends BaseScreen {
     @Override
     public void dispose() {
         super.dispose();
-        System.out.println("DISPOSE SPLASH");
+        //System.out.println("DISPOSE SPLASH");
     }
 
 }

@@ -18,7 +18,6 @@ import static com.upb.runrocks.RunRocks.*;
 public class MenuScreen extends BaseScreen {
 
     private Image bg, jabali, dialog, title, btnPlay, btnLeave, btnSetting, icono;
-    private Sound start;
 
     public MenuScreen(RunRocks game) { super(game); }
 
@@ -27,7 +26,7 @@ public class MenuScreen extends BaseScreen {
         Gdx.input.setInputProcessor(stage);
         stage.clear();
 
-        start = game.assets.get("audio/start.ogg");
+        game.start = game.assets.get("audio/start.mp3");
         //Inicializar elementos
         loadComponents();
         //Posicionar elementos
@@ -98,7 +97,7 @@ public class MenuScreen extends BaseScreen {
             public void clicked(InputEvent event, float x, float y) {
                 if (game.soundOn){
                     game.clicked.play(0.5f);
-                    start.play(0.5f);
+                    game.start.play(0.5f);
                 }
                 game.screens.set(game.screens.newGame());
             }

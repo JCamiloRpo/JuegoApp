@@ -57,11 +57,11 @@ public class SplashScreen extends BaseScreen {
         game.assets.load("audio/music.mp3", Music.class);
         game.assets.load("audio/click.ogg", Sound.class);
         game.assets.load("audio/coin.ogg", Sound.class);
-        game.assets.load("audio/hitvoice1.ogg", Sound.class);
-        game.assets.load("audio/jump.ogg", Sound.class);
+        game.assets.load("audio/hitvoice.ogg", Sound.class);
+        game.assets.load("audio/jump.mp3", Sound.class);
         game.assets.load("audio/pause.ogg", Sound.class);
-        game.assets.load("audio/start.ogg", Sound.class);
-        game.assets.load("audio/gameover.ogg", Sound.class);
+        game.assets.load("audio/start.mp3", Sound.class);
+        game.assets.load("audio/end.mp3", Sound.class);
         // Cargar buttons
         game.assets.load("buttons/btn_check.png", Texture.class);
         game.assets.load("buttons/btn_close.png", Texture.class);

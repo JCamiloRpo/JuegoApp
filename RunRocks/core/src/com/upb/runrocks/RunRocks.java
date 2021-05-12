@@ -20,7 +20,7 @@ public class RunRocks extends Game {
 	public AssetManager assets;
 	public ScreenManager screens;
 
-	public Sound clicked;
+	public Sound clicked, start;
 	public Music music;
 	public boolean musicOn = true, soundOn = true, pause = false, gameOver = false;
 	public int nroCoins = 0;

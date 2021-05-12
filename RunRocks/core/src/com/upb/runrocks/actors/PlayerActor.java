@@ -40,9 +40,9 @@ public class PlayerActor extends Actor {
 
     public PlayerActor(TextureAtlas atlas, float x, float y, RunRocks game){
         this.game = game;
-        sndJump = game.assets.get("audio/jump.ogg");
-        sndHit = game.assets.get("audio/hitvoice1.ogg");
-        sndDie = game.assets.get("audio/gameover.ogg");
+        sndJump = game.assets.get("audio/jump.mp3");
+        sndHit = game.assets.get("audio/hitvoice.ogg");
+        sndDie = game.assets.get("audio/end.mp3");
         sndCoin = game.assets.get("audio/coin.ogg");
 
         Array<TextureAtlas.AtlasRegion> run = atlas.findRegions("run");

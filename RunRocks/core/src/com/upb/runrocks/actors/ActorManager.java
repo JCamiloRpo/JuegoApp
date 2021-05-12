@@ -1,6 +1,5 @@
 package com.upb.runrocks.actors;
 
-import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.upb.runrocks.RunRocks;

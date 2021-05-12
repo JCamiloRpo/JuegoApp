@@ -160,7 +160,7 @@ public class GameScreen extends BaseScreen{
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 if (game.soundOn) pause.play(0.5f);
-                game.pause = true;
+                if (!game.gameOver) game.pause = true;
             }
         });
 
@@ -244,66 +244,76 @@ public class GameScreen extends BaseScreen{
         }
         else {
             Gdx.input.setInputProcessor(stage);
-
             if (player.isAlive()){
                 if (player.getX() > 50) {
                     stage.getCamera().translate(SPEED * delta, 0, 0);
-
                     camX = stage.getCamera().position.x - (stage.getCamera().viewportWidth/2);
-                    setComponents();
-
-                    // Reposicion pisos
-                    for (FloorActor f : floors)
-                        if (camX > f.getX() + f.getWidth())
-                            f.rePos(f.getX() + (floors.size() * f.getWidth()));
-
-                    for (RockActor r : rocks) {
-                        // Colisiones
-                        if(r.rockOn && player.collision(r.getBoundsRock())){
-                            r.rockOn = false;
-                            if (player.getNroLifes() >= 0){
-                                lifes[player.getNroLifes()].setDrawable(lifeOff.getDrawable());
-                                lifesP[player.getNroLifes()].setDrawable(lifeOff.getDrawable());
-                            }
-                        }
-                        if(r.coinOn && player.coin(r.getBoundsCoin())){
-                            r.coinOn = false;
-                            nroCoins.setText(player.getNroCoins()+"");
-                            nroCoinsP.setText(player.getNroCoins()+"");
-                        }
-
-                        // Reposiconar rocas
-                        if (camX > r.getX() + r.getWidth())
-                            r.rePos(r.getX() + (rocks.size() * RockActor.GAP));
-                    }
                 }
-
-                // x < 583 && y < 58
-                if(Gdx.input.justTouched() && !player.isJumping()) {
-                    int x = Gdx.input.getX(), y = Gdx.input.getY();
-                    if (x < 580 && y > 60)
-                        player.jump();
-                }
-
-                if (Gdx.input.isTouched()) {
-                    int x = Gdx.input.getX(), y = Gdx.input.getY();
-                    if (x < 580 && y > 60)
-                        player.setMustJump(true);
-                }
-
+                setComponents();
+                setFloors();
+                setRocks();
+                handleInputs();
             }
             else {
-                Runnable trans = new Runnable() {
-                    @Override
-                    public void run() {
-                        game.nroCoins = player.getNroCoins();
-                        game.screens.set(game.screens.newGameOver());
-                    }
-                };
-                player.addAction(sequence(delay(3f), run(trans)));
+                gameOver();
             }
             stage.act(delta);
         }
+    }
+
+    private void setFloors(){
+        // Reposicion pisos
+        for (FloorActor f : floors)
+            if (camX > f.getX() + f.getWidth())
+                f.rePos(f.getX() + (floors.size() * f.getWidth()));
+    }
+
+    private void setRocks(){
+        for (RockActor r : rocks) {
+            // Colisiones
+            if(r.rockOn && player.collision(r.getBoundsRock())){
+                r.rockOn = false;
+                if (player.getNroLifes() >= 0){
+                    lifes[player.getNroLifes()].setDrawable(lifeOff.getDrawable());
+                    lifesP[player.getNroLifes()].setDrawable(lifeOff.getDrawable());
+                }
+            }
+            if(r.coinOn && player.coin(r.getBoundsCoin())){
+                r.coinOn = false;
+                nroCoins.setText(player.getNroCoins()+"");
+                nroCoinsP.setText(player.getNroCoins()+"");
+            }
+
+            // Reposiconar rocas
+            if (camX > r.getX() + r.getWidth())
+                r.rePos(r.getX() + (rocks.size() * RockActor.GAP));
+        }
+    }
+
+    private void handleInputs(){
+        if(Gdx.input.justTouched() && !player.isJumping()) {
+            int x = Gdx.input.getX(), y = Gdx.input.getY();
+            if (x < 580 && y > 60)
+                player.jump();
+        }
+
+        if (Gdx.input.isTouched()) {
+            int x = Gdx.input.getX(), y = Gdx.input.getY();
+            if (x < 580 && y > 60)
+                player.setMustJump(true);
+        }
+    }
+
+    private void gameOver(){
+        game.gameOver = true;
+        Runnable trans = new Runnable() {
+            @Override
+            public void run() {
+                game.nroCoins = player.getNroCoins();
+                game.screens.set(game.screens.newGameOver());
+            }
+        };
+        player.addAction(sequence(delay(3f), run(trans)));
     }
 
     @Override

@@ -126,7 +126,10 @@ public class GameOverScreen extends BaseScreen {
         btnRetry.addCaptureListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                if(game.soundOn) game.clicked.play(0.5f);
+                if(game.soundOn){
+                    game.clicked.play(0.5f);
+                    game.start.play(0.5f);
+                }
                 game.gameOver = false;
                 game.screens.set(game.screens.newGame());
             }

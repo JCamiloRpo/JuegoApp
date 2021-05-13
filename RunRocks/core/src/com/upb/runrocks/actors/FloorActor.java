@@ -28,8 +28,16 @@ public class FloorActor extends Actor {
         setSize(WIDTH, HEIGHT);         // Tamaño del actor
         setPosition(x, 0);          // Posicion del actor
     }
-    // Getter del fondo
+    // Getters and Setter necesarios
     public Texture getBg() { return bg; }
+
+    public void setBg(Texture bg) {
+        this.bg = bg;
+    }
+
+    public void setFloor(Texture floor) {
+        this.floor = floor;
+    }
 
     @Override
     public void draw(Batch batch, float parentAlpha) {

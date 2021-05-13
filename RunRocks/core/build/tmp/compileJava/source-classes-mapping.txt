@@ -1,7 +1,7 @@
-com/upb/runrocks/actors/FloorActor.java
- com.upb.runrocks.actors.FloorActor
 com/upb/runrocks/actors/RockActor.java
  com.upb.runrocks.actors.RockActor
+com/upb/runrocks/actors/FloorActor.java
+ com.upb.runrocks.actors.FloorActor
 com/upb/runrocks/actors/PlayerActor.java
  com.upb.runrocks.actors.PlayerActor
 com/upb/runrocks/screens/GameScreen.java

@@ -42,6 +42,8 @@ public class GameScreen extends BaseScreen{
     private PlayerActor player;
     private List<FloorActor> floors = new ArrayList<>();
     private List<RockActor> rocks = new ArrayList<>();
+    private int scene = -1, time = 0;
+    private boolean nextScene = false;
 
     public GameScreen(RunRocks game) {
         super(game);
@@ -101,10 +103,8 @@ public class GameScreen extends BaseScreen{
     private void loadComponents() {
         actors = new ActorManager(game);
         player = actors.createPlayer(10);               // Crear un jugador
-
-        floors.add(actors.createFloor(0, -1));     // Crear el escenario inicial (-1)
         for (int i=0; i < 3;i++){
-            floors.add(actors.createFloor(i+1, i));     // Crear los escenarios 0,1,2
+            floors.add(actors.createFloor(i, scene));     // Crear los escenarios
         }
         for (int i=0; i < 6; i++){
             rocks.add(actors.createRock(i, i));            // Crear las rocas 0,1,2,3,4,5
@@ -161,7 +161,6 @@ public class GameScreen extends BaseScreen{
      */
     private void addActions() {
         iconoP.addAction(alpha(0.4f));
-        btnPause.addAction(alpha(0.7f));
         btnPause.addCaptureListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -272,9 +271,30 @@ public class GameScreen extends BaseScreen{
      */
     private void setFloors(){
         // Reposicion pisos
-        for (FloorActor f : floors)
-            if (camX > f.getX() + f.getWidth())
+        for (FloorActor f : floors) {
+            if (camX > f.getX() + f.getWidth()) {
                 f.rePos(f.getX() + (floors.size() * f.getWidth()));
+                if (time==4){       // Activar siguiente escenario
+                    scene = scene == 2 ? -1 : scene+1;
+                    nextScene=true;
+                }
+                else if (time==8){  // Reiniciar el conteo
+                    time = 0;
+                    nextScene = false;
+                }
+                time++;
+                if (nextScene){
+                    if (scene == -1){
+                        f.setBg(game.assets.get("scene/bg_0.png", Texture.class));
+                        f.setFloor(null);
+                    }
+                    else{
+                        f.setBg(game.assets.get("scene/bg_1.png", Texture.class));
+                        f.setFloor(game.assets.get("scene/floor_"+scene+".png", Texture.class));
+                    }
+                }
+            }
+        }
     }
 
     /**

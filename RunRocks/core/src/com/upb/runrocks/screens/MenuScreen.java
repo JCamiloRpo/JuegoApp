@@ -1,6 +1,7 @@
 package com.upb.runrocks.screens;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
@@ -117,6 +118,11 @@ public class MenuScreen extends BaseScreen {
         // Limpiar la pantalla
         ScreenUtils.clear(new Color(FONDOHEX));
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        if (Gdx.input.isKeyJustPressed(Input.Keys.BACK)){
+            System.out.println("MENU");
+            if(game.soundOn) game.clicked.play(0.5f);
+            Gdx.app.exit();
+        }
         // Actualizar
         update(delta);
         // Dibujar

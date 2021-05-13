@@ -18,11 +18,15 @@
       <change beforePath="$PROJECT_DIR$/.gradle/6.7.1/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.7.1/javaCompile/taskHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/build/classes/java/main/com/upb/runrocks/RunRocks.class" beforeDir="false" afterPath="$PROJECT_DIR$/core/build/classes/java/main/com/upb/runrocks/RunRocks.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/build/libs/core-1.0.jar" beforeDir="false" afterPath="$PROJECT_DIR$/core/build/libs/core-1.0.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/build/tmp/compileJava/source-classes-mapping.txt" beforeDir="false" afterPath="$PROJECT_DIR$/core/build/tmp/compileJava/source-classes-mapping.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/com/upb/runrocks/actors/FloorActor.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/upb/runrocks/actors/FloorActor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/com/upb/runrocks/RunRocks.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/upb/runrocks/RunRocks.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/com/upb/runrocks/screens/BaseScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/upb/runrocks/screens/BaseScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/com/upb/runrocks/screens/GameOverScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/upb/runrocks/screens/GameOverScreen.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/src/com/upb/runrocks/screens/GameScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/upb/runrocks/screens/GameScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/com/upb/runrocks/screens/InfoScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/upb/runrocks/screens/InfoScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/com/upb/runrocks/screens/MenuScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/upb/runrocks/screens/MenuScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/com/upb/runrocks/screens/SettingScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/upb/runrocks/screens/SettingScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/com/upb/runrocks/screens/SplashScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/upb/runrocks/screens/SplashScreen.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,7 +77,7 @@
       <recent name="C:\Users\Administrador\Documents\Repositorios\JuegoApp\RunRocks\android\assets\skin" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Desktop">
+  <component name="RunManager" selected="Android App.android">
     <configuration default="true" type="AndroidJUnit" factoryName="Android JUnit">
       <option name="TEST_OBJECT" value="class" />
       <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
@@ -172,10 +176,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="526" y="214" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1536.824@0.0.1536.824" timestamp="1620856255070" />
-    <state x="574" y="96" key="#com.intellij.ide.util.MemberChooser" timestamp="1620738600679">
+    <state x="574" y="96" key="#com.intellij.ide.util.MemberChooser" timestamp="1620867415001">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="574" y="96" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1620738600679" />
+    <state x="574" y="96" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1620867415001" />
     <state x="498" y="202" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1620404005005">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -192,38 +196,38 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1620750834154" />
-    <state width="1491" height="141" key="GridCell.Tab.0.bottom" timestamp="1620866414545">
+    <state width="1491" height="141" key="GridCell.Tab.0.bottom" timestamp="1620870313485">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1491" height="141" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1620866414545" />
-    <state width="1491" height="141" key="GridCell.Tab.0.center" timestamp="1620866414544">
+    <state width="1491" height="141" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1620870313485" />
+    <state width="1491" height="141" key="GridCell.Tab.0.center" timestamp="1620870313485">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1491" height="141" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1620866414544" />
-    <state width="1491" height="141" key="GridCell.Tab.0.left" timestamp="1620866414544">
+    <state width="1491" height="141" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1620870313485" />
+    <state width="1491" height="141" key="GridCell.Tab.0.left" timestamp="1620870313485">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1491" height="141" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1620866414544" />
-    <state width="1491" height="141" key="GridCell.Tab.0.right" timestamp="1620866414545">
+    <state width="1491" height="141" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1620870313485" />
+    <state width="1491" height="141" key="GridCell.Tab.0.right" timestamp="1620870313485">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1491" height="141" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1620866414545" />
-    <state width="1491" height="210" key="GridCell.Tab.1.bottom" timestamp="1620860445077">
+    <state width="1491" height="141" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1620870313485" />
+    <state width="1491" height="210" key="GridCell.Tab.1.bottom" timestamp="1620866990871">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1491" height="210" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1620860445077" />
-    <state width="1491" height="210" key="GridCell.Tab.1.center" timestamp="1620860445077">
+    <state width="1491" height="210" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1620866990871" />
+    <state width="1491" height="210" key="GridCell.Tab.1.center" timestamp="1620866990871">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1491" height="210" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1620860445077" />
-    <state width="1491" height="210" key="GridCell.Tab.1.left" timestamp="1620860445077">
+    <state width="1491" height="210" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1620866990871" />
+    <state width="1491" height="210" key="GridCell.Tab.1.left" timestamp="1620866990871">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1491" height="210" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1620860445077" />
-    <state width="1491" height="210" key="GridCell.Tab.1.right" timestamp="1620860445077">
+    <state width="1491" height="210" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1620866990871" />
+    <state width="1491" height="210" key="GridCell.Tab.1.right" timestamp="1620866990871">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1491" height="210" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1620860445077" />
+    <state width="1491" height="210" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1620866990871" />
     <state x="0" y="0" width="1216" height="639" key="dock-window-1" timestamp="1620450627004">
       <screen x="0" y="0" width="1536" height="824" />
     </state>

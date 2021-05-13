@@ -1,6 +1,7 @@
 package com.upb.runrocks.screens;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
@@ -21,9 +22,7 @@ public class SplashScreen extends BaseScreen {
     private float progress;
     private Image logo, bgProgress, clProgress;
 
-    public SplashScreen(RunRocks game) {
-        super(game);
-    }
+    public SplashScreen(RunRocks game) { super(game); }
 
     @Override
     public void show() {
@@ -123,6 +122,9 @@ public class SplashScreen extends BaseScreen {
         // Limpiar la pantalla
         ScreenUtils.clear(new Color(FONDOHEX));
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        if (Gdx.input.isKeyPressed(Input.Keys.BACK)){
+            Gdx.app.exit();
+        }
         // Actualizar
         update(delta);
         // Dibujar

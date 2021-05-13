@@ -1,6 +1,7 @@
 package com.upb.runrocks.screens;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
@@ -237,8 +238,20 @@ public class GameScreen extends BaseScreen{
         // Actualizar
         update(delta);
         // Dibujar
-        if(game.pause) stageP.draw();
-        else stage.draw();
+        if(game.pause) {
+            if (Gdx.input.isKeyJustPressed(Input.Keys.BACK)){
+                if(game.soundOn) game.clicked.play(0.5f);
+                game.pause = false;
+            }
+            stageP.draw();
+        }
+        else {
+            if (Gdx.input.isKeyJustPressed(Input.Keys.BACK)){
+                if(game.soundOn) game.clicked.play(0.5f);
+                if (!game.gameOver) game.pause = true;
+            }
+            stage.draw();
+        }
     }
 
     public void update(float delta) {
@@ -328,14 +341,12 @@ public class GameScreen extends BaseScreen{
     private void handleInputs(){
         // Cuando se preciona una vez
         if(Gdx.input.justTouched() && !player.isJumping()) {
-            int x = Gdx.input.getX(), y = Gdx.input.getY();
-            if (x < 580 && y > 60)  // Validar que no haya sido en el boton de pausa
+            if (!btnPause.isTouchFocusTarget())  // Validar que no haya sido en el boton de pausa
                 player.jump();
         }
         // Si se mantiene precionado
         if (Gdx.input.isTouched()) {
-            int x = Gdx.input.getX(), y = Gdx.input.getY();
-            if (x < 580 && y > 60)  // Validar que no haya sido en el boton de pausa
+            if (!btnPause.isTouchFocusTarget())  // Validar que no haya sido en el boton de pausa
                 player.setMustJump(true);
         }
     }

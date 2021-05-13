@@ -1,6 +1,7 @@
 package com.upb.runrocks.screens;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
@@ -19,6 +20,7 @@ public abstract  class BaseScreen implements Screen {
     public BaseScreen(RunRocks game){
         this.game = game;
         this.stage = new Stage(new StretchViewport(WIDTH, HEIGHT, game.cam));
+        Gdx.input.setCatchKey(Input.Keys.BACK, true);
     }
 
     @Override

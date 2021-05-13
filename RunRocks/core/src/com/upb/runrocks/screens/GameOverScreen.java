@@ -1,6 +1,7 @@
 package com.upb.runrocks.screens;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
@@ -26,9 +27,7 @@ public class GameOverScreen extends BaseScreen {
     private Label nroCoins;
     private Skin skin;
 
-    public GameOverScreen(RunRocks game) {
-        super(game);
-    }
+    public GameOverScreen(RunRocks game) { super(game); }
 
     @Override
     public void show() {
@@ -167,6 +166,10 @@ public class GameOverScreen extends BaseScreen {
         // Limpiar la pantalla
         ScreenUtils.clear(new Color(FONDOHEX));
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        if (Gdx.input.isKeyJustPressed(Input.Keys.BACK)){
+            if(game.soundOn) game.clicked.play(0.5f);
+            game.screens.set(game.screens.newMenu());
+        }
         // Actualizar
         update(delta);
         // Dibujar

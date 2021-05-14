@@ -1,31 +1,50 @@
 package com.upb.runrocks;
 
-import com.badlogic.gdx.ApplicationAdapter;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.utils.ScreenUtils;
+import com.badlogic.gdx.Game;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
+import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.audio.Sound;
+import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.upb.runrocks.screens.ScreenManager;
 
-public class RunRocks extends ApplicationAdapter {
-	SpriteBatch batch;
-	Texture img;
-	
+public class RunRocks extends Game {
+	// Constantes de vista
+	public static int FONDOHEX = 0x65C1E6FF;
+	public static String TITLE = "RUNROCKS";
+	public static int WIDTH = 640, HEIGHT = 360;
+	public static float VOLS = 0.5f, VOLM = 0.4f;
+
+	// Variables de administracion
+	public OrthographicCamera cam;
+	public AssetManager assets;
+	public ScreenManager screens;
+
+	public Sound clicked, start;
+	public Music music;
+	public boolean musicOn = true, soundOn = true, pause = false, gameOver = false;
+	public int nroCoins = 0;
+
 	@Override
 	public void create () {
-		batch = new SpriteBatch();
-		img = new Texture("badlogic.jpg");
+		assets = new AssetManager();
+		cam = new OrthographicCamera();
+		cam.setToOrtho(false, WIDTH, HEIGHT);
+
+		// Inicializacion de Screen
+		screens = new ScreenManager(this);
+		screens.set(screens.newSplash());
 	}
 
 	@Override
-	public void render () {
-		ScreenUtils.clear(1, 0, 0, 1);
-		batch.begin();
-		batch.draw(img, 0, 0);
-		batch.end();
-	}
-	
+	public void render () { super.render(); }
+
 	@Override
 	public void dispose () {
-		batch.dispose();
-		img.dispose();
+		assets.dispose();
+		screens.dispose();
+		music.dispose();
+		clicked.dispose();
 	}
 }

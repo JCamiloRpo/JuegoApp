@@ -1,0 +1,33 @@
+{
+com.badlogic.gdx.graphics.g2d.BitmapFont: {
+	montserrat: { file: montserrat.fnt }
+},
+com.badlogic.gdx.graphics.Color: {
+	black: { r: 0, g: 0, b: 0, a: 1 },
+	white: { r: 1, g: 1, b: 1, a: 1 }
+},
+com.badlogic.gdx.scenes.scene2d.ui.Button$ButtonStyle: {
+	default: { up: button1 },
+	secundary: { up: button2 },
+	tertiary: { up: button3 }
+},
+com.badlogic.gdx.scenes.scene2d.ui.Label$LabelStyle: {
+	default: { font: montserrat, fontColor: white, },
+	black: { font: montserrat, fontColor: black, }
+},
+com.badlogic.gdx.scenes.scene2d.ui.ProgressBar$ProgressBarStyle: {
+	default-horizontal: { background: progress-bar, knobAfter: progress-bar-knof, }
+},
+com.badlogic.gdx.scenes.scene2d.ui.TextButton$TextButtonStyle: {
+	default: { font: montserrat, fontColor: white, up: button1 },
+	secundary: { font: montserrat, fontColor: white, up: button2 },
+	tertiary: { font: montserrat, fontColor: white, up: button3 }
+},
+com.badlogic.gdx.scenes.scene2d.ui.TextField$TextFieldStyle: {
+	default: { font: montserrat, fontColor: black, background: label2 },
+	label: { font: montserrat, fontColor: white, background: label1 }
+},
+com.badlogic.gdx.scenes.scene2d.ui.TextTooltip$TextTooltipStyle: {
+	default: { label: default }
+}
+}

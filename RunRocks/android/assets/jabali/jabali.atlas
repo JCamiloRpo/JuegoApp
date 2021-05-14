@@ -1,0 +1,97 @@
+
+jabali.png
+size: 1024, 256
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+die
+  rotate: false
+  xy: 269, 134
+  size: 111, 96
+  orig: 111, 96
+  offset: 0, 0
+  index: 0
+die
+  rotate: false
+  xy: 156, 36
+  size: 110, 96
+  orig: 110, 96
+  offset: 0, 0
+  index: 1
+die
+  rotate: false
+  xy: 833, 135
+  size: 110, 95
+  orig: 110, 95
+  offset: 0, 0
+  index: 2
+die
+  rotate: false
+  xy: 268, 36
+  size: 110, 96
+  orig: 110, 96
+  offset: 0, 0
+  index: 3
+jump
+  rotate: false
+  xy: 607, 135
+  size: 111, 95
+  orig: 111, 95
+  offset: 0, 0
+  index: 0
+jump
+  rotate: false
+  xy: 382, 134
+  size: 111, 96
+  orig: 111, 96
+  offset: 0, 0
+  index: 1
+jump
+  rotate: false
+  xy: 156, 134
+  size: 111, 96
+  orig: 111, 96
+  offset: 0, 0
+  index: 2
+jump
+  rotate: false
+  xy: 2, 2
+  size: 111, 96
+  orig: 111, 96
+  offset: 0, 0
+  index: 3
+run
+  rotate: false
+  xy: 380, 37
+  size: 110, 95
+  orig: 110, 95
+  offset: 0, 0
+  index: 0
+run
+  rotate: false
+  xy: 495, 134
+  size: 110, 96
+  orig: 110, 96
+  offset: 0, 0
+  index: 1
+run
+  rotate: false
+  xy: 492, 37
+  size: 110, 95
+  orig: 110, 95
+  offset: 0, 0
+  index: 2
+run
+  rotate: false
+  xy: 720, 135
+  size: 111, 95
+  orig: 111, 95
+  offset: 0, 0
+  index: 3
+still
+  rotate: false
+  xy: 2, 100
+  size: 152, 130
+  orig: 152, 130
+  offset: 0, 0
+  index: 0

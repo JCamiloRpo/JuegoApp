@@ -20,3 +20,14 @@ Para acceder al juego dirigete a [Google Play Store](https://play.google.com/sto
 - [Juan Camilo Restrepo](https://github.com/JCamiloRpo)
 - [Wilder Valencia Ocampo](https://github.com/wilder3756)
 - [Carolina Monsalve](https://github.com/CarolinaMons)
+
+# Referentes Graficos
+- [Game GUI #5](https://auladigital.upb.edu.co/pluginfile.php/1246444/mod_folder/content/0/gui-juego.zip?forcedownload=1)
+- [Jabali Sprite](https://auladigital.upb.edu.co/pluginfile.php/1246444/mod_folder/content/0/juego-jabali-sprite.zip?forcedownload=1)
+- [Sonidos](https://github.com/leosavvy/2DAssets)
+- [Vecteezy](https://www.vecteezy.com)
+- [Sonidos Gratis](http://www.sonidosmp3gratis.com/index.php)
+- [Canva](https://www.canva.com)
+- [Figma](www.figma.com)
+- [Storyset](https://storyset.com)
+
